@@ -1,0 +1,13 @@
+const conn = require('./conn');
+const { Sequelize } = conn;
+
+const LineItem = conn.define('lineItem',{
+    quantity:{
+        type: Sequelize.INTEGER,
+        validate:{
+            min: 0
+        }
+    }
+})
+
+module.exports=LineItem;
