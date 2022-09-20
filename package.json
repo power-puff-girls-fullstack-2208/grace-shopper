@@ -9,7 +9,7 @@
     "test": "mocha spec.js",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/acme_db_test npm test -- --watch",
     "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev",
-    "start": "JWT=shhh node server & react-scripts start"
+    "start": "JWT=shhh node server & npm run build & "
   },
   "keywords": [],
   "author": "",
