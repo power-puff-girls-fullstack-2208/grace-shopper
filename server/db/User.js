@@ -17,7 +17,6 @@ const User = conn.define('user', {
             allowNull: false,
             notEmpty: true,
         }
-
     },
     email:{
         type: Sequelize.STRING,
@@ -54,12 +53,15 @@ const User = conn.define('user', {
 
 
 User.prototype.getCart = async function(){
-
+    const cart = await this.getOrders().filter(order => order.isCart);
+    return cart;
 }
 
 User.prototype.addToCart = async function(){
 //    grab the order associated with the user
 //    orders are your cart
+    const cart = this.getCart();
+
 }
 
 User.prototype.removeFromCart = async function(){

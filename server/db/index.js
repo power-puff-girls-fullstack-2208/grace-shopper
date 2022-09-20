@@ -16,9 +16,27 @@ LineItem.belongsTo(Product)
 Order.belongsTo(User);
 Order.hasMany(LineItem)
 
+const syncAndSeed = async () => {
+    await conn.sync({ force: true });
 
+    
 
+    const usersExample = await User.create();
+    const productsExample = await Product.create();
+    const ordersExample = await Order.create();
+    const tagsExample = await Tag.create();
+    const lineItemExample = await LineItem.create();
+
+    console.log(`
+    Seeding successful!
+  `);
+}
 
 module.exports = {
     conn,
+    User,
+    Product,
+    Order,
+    Tag,
+    LineItem,
 };
