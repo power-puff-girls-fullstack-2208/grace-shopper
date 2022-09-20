@@ -1,6 +1,7 @@
 {
   "name": "grace-shopper-powerpuff-girls",
   "version": "1.0.0",
+  "engines": {"node": "16.16.0"},
   "description": "",
   "main": "index.js",
   "scripts": {
