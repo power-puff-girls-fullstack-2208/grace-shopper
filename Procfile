@@ -1,1 +1,1 @@
-web: node server/app.js
+web: JWT=shhh npm run build && node server/app.js
