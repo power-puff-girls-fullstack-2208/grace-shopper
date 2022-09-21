@@ -1,10 +1,6 @@
 {
   "name": "grace-shopper-powerpuff-girls",
   "version": "1.0.0",
-  "engines": {
-    "node": "16.16.0",
-    "npm": "8.11.0"
-  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +9,7 @@
     "test": "mocha spec.js",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/acme_db_test npm test -- --watch",
     "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev",
-    "start": "JWT=shhh npm run build && node server/app.js"
+    "start": "JWT=shhh node server/app.js"
   },
   "keywords": [],
   "author": "",
@@ -61,8 +57,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "supertest": "^6.2.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack": "^5.74.0"
   },
   "browserslist": {
     "production": [
