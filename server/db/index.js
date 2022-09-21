@@ -83,6 +83,10 @@ const syncAndSeed = async () => {
   `);
 }
 
+//todo: finish associations
+//test with seeding
+//see what the database looks like and refactor isntance methods on User if necessary
+
 module.exports = {
     conn,
     User,
