@@ -2,7 +2,6 @@
   "name": "grace-shopper-powerpuff-girls",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
@@ -27,7 +26,6 @@
     "path": "^0.12.7",
     "pg": "^8.7.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^5.3.3",
     "react-scripts": "^5.0.1",
