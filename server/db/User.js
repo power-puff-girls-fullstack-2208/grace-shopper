@@ -42,6 +42,10 @@ const User = conn.define('user', {
             notEmpty: true,
         }
     },
+    isAdmin:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
     // cart:{
     //     //pokemon cards unique ID from the api is a string
     //     type: Sequelize.ARRAY(Sequelize.STRING),
