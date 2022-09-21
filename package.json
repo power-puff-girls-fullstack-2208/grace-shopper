@@ -6,8 +6,9 @@
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/acme_db_test npm test -- --watch",
-    "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev",
-    "start": "JWT=shhh node server/index.js"
+    "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev & nodemon server/app.js",
+    "start": "JWT=shhh node server/app.js",
+    "seed": "node server"
   },
   "keywords": [],
   "author": "",
