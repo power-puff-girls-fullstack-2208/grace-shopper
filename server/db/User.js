@@ -68,6 +68,7 @@ User.prototype.addToCart = async function(productId){
     lineItem.quantity++;
 
     //maybe product should be appended to lineItem and then lineItem appended to Cart?
+    //maybe solved by findOrCreate in the api (TBD)
 }
 
 User.prototype.removeFromCart = async function(){
