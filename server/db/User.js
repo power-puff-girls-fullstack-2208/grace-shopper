@@ -17,6 +17,7 @@ const User = conn.define('user', {
             allowNull: false,
             notEmpty: true,
         }
+
     },
     email:{
         type: Sequelize.STRING,
@@ -57,20 +58,29 @@ User.prototype.getCart = async function(){
     return cart;
 }
 
-User.prototype.addToCart = async function(){
+User.prototype.addToCart = async function(productId){
 //    grab the order associated with the user
 //    orders are your cart
-    const cart = this.getCart();
+    const cart = await this.getCart();
+    //find this cart's line item where productId = product.Id
+    const lineItem = await cart.getLineItems().filter(item => item.productId === productId);
+    //increment line item quantity field
+    lineItem.quantity++;
 
+    //maybe product should be appended to lineItem and then lineItem appended to Cart?
+    //maybe solved by findOrCreate in the api (TBD)
 }
 
 User.prototype.removeFromCart = async function(){
-
+    const cart = await this.getCart();
+    const lineItem = await cart.getLineItems().filter(item => item.productId === productId);
+    lineItem.quantity--;
 }
 
 //coverting order model from cart to actual placed order
 User.prototype.createOrder = async function(){
-
+    const cart = await this.getCart();
+    cart.isCart === false;
 }
 
 module.exports = User;

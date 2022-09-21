@@ -2,7 +2,7 @@ const conn = require('./conn');
 const { Sequelize } = conn;
 
 const Product = conn.define('product', {
-    Id:{
+    cardId:{
         //GET from API call 
         type: Sequelize.STRING,
     },
