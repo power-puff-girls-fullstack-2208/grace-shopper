@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Product} = require('../db');
 
-//get /api/cards
+//get /api/products
 router.get('/', async (req, res, next) => {
     try {
         res.send(await Product.findAll());
@@ -11,9 +11,9 @@ router.get('/', async (req, res, next) => {
 });
 
 //get single card
-router.get('/:cardId', async (req, res, next) => {
+router.get('/:productId', async (req, res, next) => {
     try {
-        res.send(await Product.findByPK(req.params.cardId));
+        res.send(await Product.findByPK(req.params.productId));
     } catch(error) {
         next(error);
     }

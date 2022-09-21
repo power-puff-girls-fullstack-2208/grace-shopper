@@ -25,5 +25,6 @@ app.get("/test/", (req, res) => {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
+
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:3000/`));
 module.exports = app;
