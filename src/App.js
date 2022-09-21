@@ -7,12 +7,13 @@ const App = () => {
     return (
         <BrowserRouter>
             <div>
-                <p>main app</p>
+                <Nav/>
                 {/* Nav component will go here */}
                 <main>
                     <Routes>
                         <Route exact path='/' element={<Home/>}/>
-                        <Route path='/navtest' element={<Nav/>}/>
+                        <Route path='/#' element={<br/>/* <Example/> */ }/>
+                        {/* add route for your component when you are ready to test it out */}
                     </Routes>
                 </main>
             </div>
