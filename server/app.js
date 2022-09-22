@@ -15,13 +15,12 @@ app.use(express.static('development-wireframes'))
 // app.use(volleyball);
 // app.use(cors);
 //this is where some things should go
-// app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-// app.use("/api", require("./api"));
+app.use("/api", require("./api"));
 
-app.get("/test/", (req, res) => {
-  res.send('this is a drill');
-})
+//testing
+//app.use("/products", require("./api/products"));
 
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
@@ -46,5 +45,6 @@ app.get('api/auth', async(req,res,next) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
+
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
