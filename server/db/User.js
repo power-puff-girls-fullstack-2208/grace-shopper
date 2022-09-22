@@ -85,6 +85,23 @@ User.authenticate = async function ({ username, password }) {
     return user.generateToken()
 }
 
+User.authenticate = async function ({ username, password }) {
+    const user = await this.findOne(
+        {
+            where: {
+                username,
+                password
+            }
+        }
+    )
+    if(!user) {
+        const error = Error('bad credentials')
+        error.status = 401
+        throw error
+    }
+    return user.generateToken()
+}
+
 //cart prototypes
 User.prototype.getCart = async function(){
     const cart = await this.getOrders().filter(order => order.isCart);
