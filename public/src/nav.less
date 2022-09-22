@@ -1,10 +1,11 @@
-// !!! navBar/footer STYLING BEGINS HERE !!! 
+// !!! navBar/footer STYLING BEGINS HERE !!!
 // navBar and footer are similar sans the dropdown in navBar
 @navHeight: 60px;
 @navPaddingHeight: 15px;
 @navPaddingWidth: 30px;
-// makes sure the nav bar stays at the top of the page 
-#navBar, #footer {
+// makes sure the nav bar stays at the top of the page
+#navBar,
+#footer {
   text-align: center;
   max-width: 100vw;
   height: @navHeight;
@@ -16,7 +17,8 @@
 }
 
 // the child elements of navBar are also flex (home link, and other links)
-#navBar > *, #footer > * {
+#navBar > *,
+#footer > * {
   display: flex;
   justify-content: space-evenly;
   height: @navHeight;
@@ -25,22 +27,26 @@
 }
 
 // when user hovers over any link in nav; li covers all of padding as well
-#navBar a:hover, #navBar li:hover, #footer a:hover {
+#navBar a:hover,
+#navBar li:hover,
+#footer a:hover {
   background-color: green;
 }
 
 // for every li under the navBar element
-#navBar li, #footer li {
+#navBar li,
+#footer li {
   display: inline-block;
   padding: @navPaddingHeight @navPaddingWidth;
 }
 
 // makes sure the the dropdown and navBar RHS only us li padding/margins
-#navBar ul, #footer ul {
+#navBar ul,
+#footer ul {
   padding: 0;
   margin: 0;
 }
-   
+
 // the dropdown boxes in the navBar
 #navBar li ul {
   background-color: yellow;
@@ -52,7 +58,7 @@
   display: none;
   box-shadow: 2px 2px 2px 2px black;
 }
-   
+
 // css that allows for 'dropdown' functionality
 #navBar li:hover > ul,
 #navBar li ul:hover {
@@ -60,7 +66,7 @@
   opacity: 1;
   display: block;
 }
-   
+
 // each element under the dropdown ul
 #navBar li ul li {
   clear: both;
@@ -70,7 +76,8 @@
 // !!! navBar STYLING ENDS HERE !!!
 
 // styling for footer ONLY
-#footer, #footer li {
-    font-size: 12px;
-    height: 45px;
+#footer,
+#footer li {
+  font-size: 12px;
+  height: 45px;
 }
