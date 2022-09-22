@@ -15,7 +15,7 @@ app.use(express.static('development-wireframes'))
 // app.use(volleyball);
 // app.use(cors);
 //this is where some things should go
-app.use(express.json());
+// app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 // app.use("/api", require("./api"));
 
@@ -28,24 +28,5 @@ app.use('/static', express.static(path.join(__dirname, '../public')));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
-
-app.post('/api/auth', async(req, res, next) => {
-  try{
-    res.send(await User.authenticate(req.body))
-  }
-  catch (ex) {
-    next(ex)
-  }
-})
-
-app.get('api/auth', async(req,res,next) => {
-  try{
-    res.send(await User.findByToken(req.headers.authorization))
-  }
-  catch (ex) {
-    next(ex)
-  }
-})
-
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
