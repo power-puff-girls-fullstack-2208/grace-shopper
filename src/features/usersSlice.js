@@ -10,10 +10,14 @@ export const getUsers = createAsyncThunk('users/getUsers', () => {
 })
 
 export const getUser = createAsyncThunk('users/getUser', (id) => {
-    return axios.get(`/api/users/${id}`)
+   try {return axios.get(`/api/users/${id}`)
         .then((res) => {
             return res.data
         })
+    }
+    catch (ex){
+        next(ex)
+    }
 })
 
 export const deleteUser = (id) => {
@@ -37,14 +41,16 @@ export const addNewUser = (user) => {
     }
   }  
 
+  const initialState = {
+    loading: false,
+    users: [],
+    user: {},
+    error: ''
+}
+
 const usersSlice = createSlice({
     name: 'users',
-    initialState: {
-        loading: false,
-        users: [],
-        user: {},
-        error: ''
-    },
+    initialState: initialState,
     reducers: {
         addUser: (state, action) => {
             const newUser = action.payload
