@@ -8,7 +8,6 @@ const App = () => {
         <BrowserRouter>
             <div>
                 <Nav/>
-                {/* Nav component will go here */}
                 <main>
                     <Routes>
                         <Route exact path='/' element={<Home/>}/>
