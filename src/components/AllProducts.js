@@ -12,10 +12,10 @@ const AllProducts = () => {
         //why does running getProducts and not running it throw such a crazy error?
         //whether or not 
         dispatch(getProducts());
-        console.log('weve dispatched our getALLProducts');
+        // console.log('weve dispatched our getALLProducts');
     }, [dispatch]);
 
-    console.dir(getProducts);
+    // console.dir(getProducts);
 
     return (
         <div className = 'productContainer'>

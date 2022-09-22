@@ -3,9 +3,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getProducts = createAsyncThunk('products/getProducts', async () => {
     try {
-        console.log('hello world');
         const { data } = await axios.get('api/products');
-        console.log(data);
+        // console.log(data);
         return data;
     } catch(error) {
         console.error(error);
@@ -18,7 +17,7 @@ export const productsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getProducts.fulfilled, (state, action) => {
-            console.log(action.payload)
+            // console.log(action.payload)
             return action.payload;
         });
     },
