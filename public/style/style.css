@@ -42,7 +42,7 @@
   margin-top: 25px;
   margin-left: -15px;
   display: none;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px 2px black;
 }
 #navBar li:hover > ul,
 #navBar li ul:hover {
