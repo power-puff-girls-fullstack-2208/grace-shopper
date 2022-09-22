@@ -17,7 +17,7 @@ const App = () => {
                         <Route exact path='/' element={<Home/>}/>
                         <Route path='/all' element={<AllProducts/>/* <Example/> */ }/>
                         <Route path='/product' element={<br/>/* <Example/> */ }/>
-                        <Route path='/user' element={<User/>/* <Example/> */ }/>
+                        <Route path='/user' element={<br/>/* <Example/> */ }/>
                         {/* add route for your component when you are ready to test it out */}
                     </Routes>
                 </main>
