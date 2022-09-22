@@ -1,4 +1,19 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
+*,
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// nav bar styling
+@import "./nav.less";
+
+// homepage styling
+@import "./home.less";

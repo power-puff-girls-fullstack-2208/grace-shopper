@@ -14,7 +14,7 @@ function Register(){
     return (
         <div className="full-screen-container">
             <div className="login-container">
-                <h1 className="login-title">Pokemon TCG</h1>
+                <h1 className="login-title">Pokemon TCG? Change?</h1>
                 <p className="login-message">Register New User</p>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="input-login">
