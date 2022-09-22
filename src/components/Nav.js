@@ -1,29 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import styled from 'styled-components';
-// package to deal with styling by component
-
-const NavBar = styled.div`
-    padding: 8px;
-    text-align: center;
-    width: 100vw;
-    position: sticky;
-    top: 0px;
-    display: flex;
-    justify-content: space-between;
-    justify-items: space-between;
-    background-color: gray;
-
-    * {
-        display: flex;
-        justify-content: space-evenly;
-    justify-items: space-evenly;
-    }
-`
 
 const Nav = () => {
     return (
-        <NavBar>
+        <div id="navBar">
             <Link to='#'>Home</Link>
             <ul>
                 <li>
@@ -46,7 +26,7 @@ const Nav = () => {
                 <li><Link to='#'>User</Link></li>
                 <li><Link to='#'>Cart</Link></li>
             </ul>
-        </NavBar>
+        </div>
     )
 }
 
