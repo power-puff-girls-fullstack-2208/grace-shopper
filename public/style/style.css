@@ -1,8 +1,44 @@
 *,
 *::before,
 *::after {
-  background-color: aqua;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a {
+  color: black;
+  margin: 5px;
+}
+a:hover {
+  color: maroon;
+  margin: 5px;
+}
+li {
+  display: inline-block;
+}
+li:hover {
+  cursor: pointer;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li ul {
+  background-color: yellow;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: auto;
+  margin-top: 1rem;
+  display: none;
+}
+ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+ul li ul li {
+  clear: both;
+  width: 100%;
 }

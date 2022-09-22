@@ -19,53 +19,6 @@ const NavBar = styled.div`
         justify-content: space-evenly;
     justify-items: space-evenly;
     }
-
-    a {
-        color: black;
-        margin: 5px;
-    }
-      
-    a:hover {
-        color: maroon;
-        margin: 5px;
-    }
-
-    li {
-        display: inline-block;
-        transition-duration: 0.5s;
-       }
-       
-       li:hover {
-         cursor: pointer;
-       }
-
-       ul {
-        margin: 0;
-        padding: 0;
-       }
-       
-       ul li ul {
-        background-color: yellow;
-         visibility: hidden;
-         opacity: 0;
-         position: fixed;
-         width: auto;
-         transition: all 0.5s ease;
-         margin-top: 1rem;
-         display: none;
-       }
-       
-       ul li:hover > ul,
-       ul li ul:hover {
-         visibility: visible;
-         opacity: 1;
-         display: block;
-       }
-       
-       ul li ul li {
-         clear: both;
-         width: 100%;
-       }
 `
 
 const Nav = () => {
