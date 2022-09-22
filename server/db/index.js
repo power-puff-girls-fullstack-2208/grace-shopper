@@ -26,7 +26,7 @@ const syncAndSeed = async () => {
 
     const types = await pokemon.type.all();
     const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 50, page: 1})).data;
-  // console.dir(allPokemon)
+    
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
       {id:3,username:"nschiesterl2",password:"tL8fuz",email:"nschiesterl2@independent.co.uk",fName:"Nevile",lName:"Schiesterl"},
@@ -42,8 +42,6 @@ const syncAndSeed = async () => {
       const all = allPokemon.map(async pokemon => {
 
         const price = !pokemon.cardmarket ? 0 : pokemon.cardmarket.prices ? pokemon.cardmarket.prices.trendPrice : 0;
-        // const type = pokemon.types ? (await Tag.findOne({ attributes: ['id'], where: {types: pokemon.types[0]}})).id : null;
-        // console.dir(type)
         const newPokemon =  await Product.create({
           cardId: pokemon.id,
           price: price,
@@ -57,7 +55,6 @@ const syncAndSeed = async () => {
         pokemon.types.forEach(async type => {
           type ? await newPokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
         });
-        
         return newPokemon
       })
 
