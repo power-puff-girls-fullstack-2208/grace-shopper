@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "../features/singleProductReducer";
 import productsReducer from "../features/productsReducer";
 
-const store = configureStore({
+export const store = configureStore({
         reducer: {
             products: productsReducer,
             product: productReducer,
@@ -10,4 +10,3 @@ const store = configureStore({
     }
 );
 
-export default store;
