@@ -28,12 +28,10 @@
 }
 #navBar li {
   display: inline-block;
-}
-#navBar > ul {
-  padding: 0;
-}
-#navBar ul li {
   padding: 15px;
+}
+#navBar ul {
+  padding: 0;
 }
 #navBar li ul {
   background-color: yellow;
@@ -42,7 +40,6 @@
   position: absolute;
   margin-top: 25px;
   margin-left: -15px;
-  padding: 0;
   display: none;
   box-shadow: 2px 2px 2px black;
 }
