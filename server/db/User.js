@@ -54,7 +54,36 @@ const User = conn.define('user', {
 })
 
 //create authentication
+User.prototype.generateToken = function() {
+    return { token: this.id }
+}
 
+User.findByToken = async function(token) {
+    const user = await User.findByPk(token)
+    if(!user) {
+        const error = Error('bad credentials')
+        error.status = 401
+        throw error
+    }
+    return user
+}
+
+User.authenticate = async function ({ username, password }) {
+    const user = await this.findOne(
+        {
+            where: {
+                username,
+                password
+            }
+        }
+    )
+    if(!user) {
+        const error = Error('bad credentials')
+        error.status = 401
+        throw error
+    }
+    return user.generateToken()
+}
 
 
 User.prototype.getCart = async function(){
