@@ -10,9 +10,14 @@ const NavBar = styled.div`
     position: sticky;
     top: 0px;
     display: flex;
+    justify-content: space-between;
+    justify-items: space-between;
+    background-color: gray;
 
     * {
         display: flex;
+        justify-content: space-evenly;
+    justify-items: space-evenly;
     }
 
     a {
@@ -26,7 +31,7 @@ const NavBar = styled.div`
     }
 
     li {
-        display: block;
+        display: inline-block;
         transition-duration: 0.5s;
        }
        
@@ -40,12 +45,13 @@ const NavBar = styled.div`
        }
        
        ul li ul {
+        background-color: yellow;
          visibility: hidden;
          opacity: 0;
-         position: absolute;
+         position: fixed;
+         width: auto;
          transition: all 0.5s ease;
          margin-top: 1rem;
-         left: 0;
          display: none;
        }
        
@@ -84,9 +90,9 @@ const Nav = () => {
                         <li><Link to='#'>Diamond and Pearl</Link></li>
                     </ul>
                 </li>
+                <li><Link to='#'>User</Link></li>
+                <li><Link to='#'>Cart</Link></li>
             </ul>
-            <Link to='#'>User</Link>
-            <Link to='#'>Cart</Link>
         </NavBar>
     )
 }
