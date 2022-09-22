@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 1337;
 
 // static middleware
 app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static('development-wireframes'))
 // app.use(volleyball);
 // app.use(cors);
 //this is where some things should go
@@ -21,6 +22,8 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.get("/test/", (req, res) => {
   res.send('this is a drill');
 })
+
+app.use('/static', express.static(path.join(__dirname, '../public')));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
