@@ -5,7 +5,8 @@
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-#navBar {
+#navBar,
+#footer {
   text-align: center;
   width: 100vw;
   height: 60px;
@@ -15,7 +16,8 @@
   justify-content: space-between;
   background-color: gray;
 }
-#navBar > * {
+#navBar > *,
+#footer > * {
   display: flex;
   justify-content: space-evenly;
   height: 60px;
@@ -23,14 +25,17 @@
   color: black;
 }
 #navBar a:hover,
-#navBar li:hover {
+#navBar li:hover,
+#footer a:hover {
   background-color: green;
 }
-#navBar li {
+#navBar li,
+#footer li {
   display: inline-block;
   padding: 15px 30px;
 }
-#navBar ul {
+#navBar ul,
+#footer ul {
   padding: 0;
   margin: 0;
 }
@@ -53,4 +58,9 @@
 #navBar li ul li {
   clear: both;
   width: 100%;
+}
+#footer,
+#footer li {
+  font-size: 12px;
+  height: 45px;
 }
