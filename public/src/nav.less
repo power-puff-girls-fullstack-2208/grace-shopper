@@ -1,0 +1,69 @@
+// !!! navBar STYLING BEGINS HERE !!! 
+@navHeight: 60px;
+@navPaddingHeight: 15px;
+@navPaddingWidth: 30px;
+// makes sure the nav bar stays at the top of the page 
+#navBar {
+  text-align: center;
+  width: 100vw;
+  height: @navHeight;
+  position: sticky;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  background-color: gray;
+}
+
+// the child elements of navBar are also flex (home link, and other links)
+#navBar > * {
+  display: flex;
+  justify-content: space-evenly;
+  height: @navHeight;
+  padding: @navPaddingHeight @navPaddingWidth;
+  color: black;
+}
+
+// when user hovers over any link in nav; li covers all of padding as well
+#navBar a:hover, #navBar li:hover {
+  background-color: green;
+}
+
+// for every li under the navBar element
+#navBar li {
+  display: inline-block;
+  padding: @navPaddingHeight @navPaddingWidth;
+}
+
+// makes sure the the dropdown and navBar RHS only us li padding/margins
+#navBar ul {
+  padding: 0;
+  margin: 0;
+}
+   
+// the dropdown boxes in the navBar
+#navBar li ul {
+  background-color: yellow;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: -(@navPaddingWidth);
+  display: none;
+  box-shadow: 2px 2px 2px 2px black;
+}
+   
+// css that allows for 'dropdown' functionality
+#navBar li:hover > ul,
+#navBar li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+   
+// each element under the dropdown ul
+#navBar li ul li {
+  clear: both;
+  width: 100%;
+}
+
+// !!! navBar STYLING ENDS HERE !!!

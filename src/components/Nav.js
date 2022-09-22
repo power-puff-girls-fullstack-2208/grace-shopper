@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 const Nav = () => {
     return (
         <div id="navBar">
-            <Link to='#'>Home</Link>
+            <Link to='#'>Home (this will eventually be a logo/icon instead)</Link>
             <ul>
                 <li>
                     <Link to='#'>All Cards</Link>
@@ -14,6 +14,7 @@ const Nav = () => {
                         <li><Link to='#'>Fire</Link></li>
                         <li><Link to='#'>Water</Link></li>
                         <li><Link to='#'>Ground</Link></li>
+                        {/* etc... you get the idea */}
                     </ul>
                 </li>
                 <li><Link to='#'>Generation</Link>
