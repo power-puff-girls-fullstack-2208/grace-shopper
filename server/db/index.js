@@ -14,7 +14,9 @@ pokemon.configure({apiKey: '123abc'})
 //line item is the product and the amount of sidproduct
 
 User.hasMany(Order);
-Tag.hasMany(Product);
+Product.belongsToMany(Tag, {through: 'Product_Tags'});
+Tag.belongsToMany(Product, {through: 'Product_Tags'});
+// Tag.hasMany(Product);
 LineItem.belongsTo(Product)
 Order.belongsTo(User);
 Order.hasMany(LineItem)
@@ -23,8 +25,8 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = await (pokemon.card.all({q: 'supertype:Pokémon'}));
-
+    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 50, page: 1})).data;
+  // console.dir(allPokemon)
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
       {id:3,username:"nschiesterl2",password:"tL8fuz",email:"nschiesterl2@independent.co.uk",fName:"Nevile",lName:"Schiesterl"},
@@ -36,21 +38,27 @@ const syncAndSeed = async () => {
       {id:9,username:"jsmitheram8",password:"07uA2NTPH1",email:"jsmitheram8@ihg.com",fName:"Jason",lName:"Smitheram"},
       {id:10,username:"ptremblay9",password:"5Hn0ai1Ozc",email:"ptremblay9@etsy.com",fName:"Pedro",lName:"Tremblay"}])
 
-      const tags = await Tag.bulkCreate(types.map(type => {return {types: type}}));
+      const tags = await Tag.bulkCreate(types.map(type => {return {type: type}}));
       const all = allPokemon.map(async pokemon => {
+
         const price = !pokemon.cardmarket ? 0 : pokemon.cardmarket.prices ? pokemon.cardmarket.prices.trendPrice : 0;
-        const type = pokemon.types ? await (Tag.findOne({ attributes: ['id'], where: {types: pokemon.types[0]}}).then(res => res.id)) : null;
-        console.dir(type)
-        return Product.create({
+        // const type = pokemon.types ? (await Tag.findOne({ attributes: ['id'], where: {types: pokemon.types[0]}})).id : null;
+        // console.dir(type)
+        const newPokemon =  await Product.create({
           cardId: pokemon.id,
           price: price,
           qty: pokemon.set.printedTotal,
           img: pokemon.images.large,
           descr: pokemon.flavorText,
           name: pokemon.name,
-          rarity: pokemon.rarity,
-          tagId: type,
-        }).then(res => res.data).catch(err => console.error(err));
+          rarity: pokemon.rarity
+        }).catch(err => console.error(err));
+        const pokemonTags = 0;
+        pokemon.types.forEach(async type => {
+          type ? await newPokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
+        });
+        
+        return newPokemon
       })
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
@@ -63,9 +71,7 @@ const syncAndSeed = async () => {
       {isCart:false,address:"3 Messerschmidt Center", userId: usersExample[0].id},
       {isCart:false,address:"4 Dapin Street", userId: usersExample[0].id},
       {isCart:true,address:"123 Esch Lane", userId: usersExample[0].id}]);
-
-    
-
+      
     const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
       {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
       {quantity: 0, productId: all[5].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[6].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[7].id, orderId: ordersExample[9].id},
