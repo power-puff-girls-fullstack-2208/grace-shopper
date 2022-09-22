@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const volleyball = require('volleyball');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 1337;
 
 // commented some of these lines out because localhost did not like some of them
 // but as we develop more we'll end up uncommenting and they'll be relevant
@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // static middleware
 app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static('development-wireframes'))
 // app.use(volleyball);
 // app.use(cors);
 //this is where some things should go
@@ -22,8 +23,10 @@ app.get("/test/", (req, res) => {
   res.send('this is a drill');
 })
 
-app.get("/", (req, res) => {
+app.use('/static', express.static(path.join(__dirname, '../public')));
+
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
-app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:3000/`));
+app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
