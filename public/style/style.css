@@ -5,10 +5,14 @@
   box-sizing: border-box;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 #navBar,
 #footer {
   text-align: center;
-  width: 100vw;
+  max-width: 100vw;
   height: 60px;
   position: sticky;
   top: 0px;

@@ -18,8 +18,7 @@ const Home = () => {
                         <p>Fast and Easy, 100% secure payment</p>
                     </div>
                     <div id="bannerButtons">
-                        <img src="" alt="secure payment logo"/>
-                        <p>Fast and Easy, 100% secure payment</p>
+                        
                     </div>
                 </div>
             </div>
