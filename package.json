@@ -35,7 +35,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
     "sequelize": "^6.21.3",
-    "styled-components": "^5.3.5",
     "supertest": "^6.2.4",
     "volleyball": "^1.5.1",
     "webpack": "^5.74.0",
