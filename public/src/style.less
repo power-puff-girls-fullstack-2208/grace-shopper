@@ -4,66 +4,64 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+// makes sure the nav bar stays at the top of the page 
 #navBar {
-  padding: 8px;
   text-align: center;
   width: 100vw;
+  height: 60px;
   position: sticky;
   top: 0px;
   display: flex;
   justify-content: space-between;
-  justify-items: space-between;
   background-color: gray;
 }
 
+// the child elements of navBar are also flex (home link, and other links)
 #navBar > * {
-    display: flex;
-    justify-content: space-evenly;
-justify-items: space-evenly;
-}
-
-a {
+  display: flex;
+  justify-content: space-evenly;
+  height: 60px;
+  padding: 15px;
   color: black;
-  margin: 5px;
-}
-  
-a:hover {
-  color: maroon;
-  margin: 5px;
 }
 
-li {
+// when user hovers over any link in nav; li covers all of padding as well
+#navBar a:hover, #navBar li:hover {
+  background-color: green;
+}
+
+#navBar li {
   display: inline-block;
-  text-align: left;
-  }
-   
-li:hover {
-  cursor: pointer;
 }
 
-ul {
-  margin: 0;
+#navBar > ul {
   padding: 0;
 }
+
+#navBar ul li {
+  padding: 15px;
+}
    
-ul li ul {
-background-color: yellow;
+#navBar li ul {
+  background-color: yellow;
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  width: auto;
-  margin-top: 1rem;
+  margin-top: 25px;
+  margin-left: -15px;
+  padding: 0;
   display: none;
+  box-shadow: 2px 2px 2px black;
 }
    
-ul li:hover > ul,
-ul li ul:hover {
+#navBar li:hover > ul,
+#navBar li ul:hover {
   visibility: visible;
   opacity: 1;
   display: block;
 }
    
-ul li ul li {
+#navBar li ul li {
   clear: both;
   width: 100%;
 }
