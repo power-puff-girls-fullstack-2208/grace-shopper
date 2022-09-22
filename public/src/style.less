@@ -16,6 +16,8 @@
   background-color: gray;
 }
 
+// !!! navBar STYLING BEGINS HERE !!! 
+
 // the child elements of navBar are also flex (home link, and other links)
 #navBar > * {
   display: flex;
@@ -36,10 +38,13 @@
   padding: 15px;
 }
 
+// makes sure the the dropdown and navBar RHS only us li padding/margins
 #navBar ul {
   padding: 0;
+  margin: 0;
 }
    
+// the dropdown boxes in the navBar
 #navBar li ul {
   background-color: yellow;
   visibility: hidden;
@@ -51,6 +56,7 @@
   box-shadow: 2px 2px 2px black;
 }
    
+// css that allows for 'dropdown' functionality
 #navBar li:hover > ul,
 #navBar li ul:hover {
   visibility: visible;
@@ -58,7 +64,10 @@
   display: block;
 }
    
+// each element under the dropdown ul
 #navBar li ul li {
   clear: both;
   width: 100%;
 }
+
+// !!! navBar STYLING ENDS HERE !!!
