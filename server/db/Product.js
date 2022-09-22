@@ -24,6 +24,9 @@ const Product = conn.define('product', {
     },
     name:{
         type: Sequelize.TEXT,
+    },
+    rarity: {
+        type: Sequelize.STRING,
     }
 })
 
