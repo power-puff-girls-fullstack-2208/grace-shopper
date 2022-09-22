@@ -18,10 +18,11 @@ const Home = () => {
                         <p>Fast and Easy, 100% secure payment</p>
                     </div>
                     <div id="bannerButtons">
-                        
+
                     </div>
                 </div>
             </div>
+            <hr/>
             <div id="cardShowcase">
                 <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu euismod ipsum. In tincidunt malesuada magna nec aliquet. Phasellus felis urna, congue eu purus at, molestie mollis eros. Fusce dictum tellus eu ligula egestas, at fringilla sem vulputate. Vestibulum tempor pharetra scelerisque. Ut eget consequat mauris. Curabitur quis ligula finibus, fermentum leo nec, mollis velit. Cras et eros quam. Pellentesque consequat lacus a erat cursus, nec interdum tellus fringilla.
