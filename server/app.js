@@ -19,6 +19,13 @@ app.use(express.static('development-wireframes'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(function(req, res, next) {
+  req.getUrl = function() {
+    return req.protocol + "://" + req.get('host') + req.originalUrl;
+  }
+  return next();
+});
+
 //testing
 //app.use("/products", require("./api/products"));
 
