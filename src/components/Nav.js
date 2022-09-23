@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const Nav = () => {
+    const products = useSelector(state => state.products);
     return (
         <div id="navBar">
-            <Link to='#'>Home (this will eventually be a logo/icon instead)</Link>
+            <Link to='/'>Home (this will eventually be a logo/icon instead)</Link>
             <ul>
                 <li>
-                    <Link to='#'>All Cards</Link>
+                    <Link to='/products'>All Cards ({products.length})</Link>
                 </li>
                 <li><Link to='#'>Type</Link>
                     <ul>
@@ -24,7 +26,7 @@ const Nav = () => {
                         <li><Link to='#'>Diamond and Pearl</Link></li>
                     </ul>
                 </li>
-                <li><Link to='#'>User</Link></li>
+                <li><Link to='/user'>User</Link></li>
                 <li><Link to='#'>Cart</Link></li>
             </ul>
         </div>
