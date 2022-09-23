@@ -17,12 +17,12 @@ const ViewCard = props => {
     return (
         <div className='innerContainer' key={props.card.id}>
             <Link to = {`/products/${props.card.id}`}>
-                <h3>product Name: {props.card.name}</h3>
+                <img className='productImg' src= {props.card.img}/>
+                <h3>{props.card.name}</h3>
             </Link>
-            <h3>product Name: {props.card.name}</h3>
-            <img className='productImg' src= {props.card.img}/>
-            <p>Types: {props.card.tags.map(tag => `${tag.type}`)}</p>
-            <p>{props.card.descr}</p>
+            <p>${props.card.price}</p>
+            <p>Types: {props.card.tags.map(tag => `${tag.type} `)}</p>
+            <h6>Rarity: {props.card.rarity}</h6>
         </div>
     )
 }
