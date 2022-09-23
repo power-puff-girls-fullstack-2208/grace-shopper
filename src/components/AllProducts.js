@@ -6,8 +6,6 @@ import { getProducts, selectProducts } from '../features/productsReducer';
 
 const AllProducts = () => {
     const { type, rarity } = useParams();
-    console.log(type);
-    console.log(rarity);
     const dispatch = useDispatch();
     const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
                     rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);

@@ -1,5 +1,6 @@
 import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import pokemon from 'pokemontcgsdk';
 
 export const getTypes = createAsyncThunk('getTypes', async () => {
     try {
@@ -12,7 +13,7 @@ export const getTypes = createAsyncThunk('getTypes', async () => {
 
 export const getRarities = createAsyncThunk('getRarities', async () => {
     try {
-        const { data } = await axios.get(`https://api.pokemontcg.io/v2/rarities`);
+        const data = await pokemon.rarity.all();
         return data;
     } catch(error) {
         console.error(error);
@@ -27,7 +28,7 @@ export const navSlice = createSlice({
             return {...state, types: action.payload};
         });
         builder.addCase(getRarities.fulfilled, (state, action) => {
-            return {...state, rarities: action.payload.data};
+            return {...state, rarities: action.payload};
         })
     },
 });
