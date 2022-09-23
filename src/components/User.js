@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { getUser } from "../features/usersSlice"
+import { getUser } from "../features/singleUsersSlice"
 import Login from "./Login"
 
 
 function User(){
-    const { user, loading, error } = useSelector(state => state.users) 
+    const { user, loading, error } = useSelector(state => state.singleUser) 
     const dispatch = useDispatch()
     
     useEffect(() => {
         dispatch(getUser(1))
-    }, [])
+    }, [dispatch])
     console.log(user)
+
+    function handleLogout(){
+
+    }
     
     return (
         <div className="user-container">
@@ -21,7 +25,7 @@ function User(){
             {!loading && user ? (
                 <>
                 <h1>Welcome {user.username}!</h1>
-                <button>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
                 </>
             ): <Login />}
             </div>

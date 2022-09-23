@@ -3,14 +3,17 @@ import productReducer from "../features/singleProductReducer";
 import productsReducer from "../features/productsReducer";
 import usersReducer from "../features/usersSlice"
 import authReducer from '../features/authSlice'
+import singleUserReducer from '../features/singleUsersSlice'
 
 
-export const store = configureStore({
+const store = configureStore({
         reducer: {
             products: productsReducer,
             product: productReducer,
             users: usersReducer,
             auth: authReducer,
+            singleUser: singleUserReducer,
     }
 });
 
+export default store
