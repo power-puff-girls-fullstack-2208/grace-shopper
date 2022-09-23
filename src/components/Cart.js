@@ -9,22 +9,23 @@ import Nav from './Nav';
 
 export default function Cart() {
     const dispatch = useDispatch();
-    //const user = getUser(1);
+    const currentUser = useSelector(state => state.user)//subscribe to the single user state from the store
+
+    useEffect(() => {
+        dispatch(getUser(1)); //later want to getUser by token
+       }, [dispatch]);
+
+    const cart = currentUser.getCart(); //fetch the User's cart 
+    const lineItems = cart.getLineItems();
+    lineItems.filter(itm => itm.quantity); //so that only the lineItems with quantity > 0 included
+
     //check if User is logged in 
         //hard coded example auth
         //const token = User.authenticate("cplace0", "WvUcrbJTJg5Z")
     //fetch the User
         //user = User.findByToken(token)
         //iffy about this-> const user = useSelector( state => state.getUser(user.id));
-    //fetch the User's cart 
-        //const cart = user.getCart()
-    //const lineItems = cart.getLineItems()
-        //lineItems.filter(item => itm.quantity) 
-        //so that only the lineItems with quantity > 0 included
 
-    // useEffect(() => {
-    //     dispatch(getUser(user.id));
-    // }, [dispatch]);
 
   return (
     <div>Cart
@@ -39,8 +40,7 @@ export default function Cart() {
                 *Name*
                 *Price*
             //})
-
-        //have cart state associated with specific user? */}
+        */}
         </div>
     </div>
   )
