@@ -30,7 +30,7 @@ function Login(){
     return (
         <div className="full-screen-container">
             <div className="login-container">
-                <h1 className="login-title">Welcome to Pokemon TCG</h1>
+                <h1 className="login-title">Welcome to Pokemon TCG?</h1>
                 <p className="login-message">Please Register or Login to Enter</p>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="input-login">
