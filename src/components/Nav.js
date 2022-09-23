@@ -1,33 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import pokemon from 'pokemontcgsdk';
+import { getRarities, getTypes } from "../store";
 
 const Nav = () => {
+    const dispatch = useDispatch();
     const products = useSelector(state => state.products);
+    let types = useSelector(state => state.nav.types);
+    let rarities = useSelector(state => state.nav.rarities);
+
+    // console.log(types)
+    // console.log(rarities)
+
+    React.useEffect(() => {
+        dispatch(getTypes());
+        dispatch(getRarities());
+        console.log('rendering');
+    }, []);
+
     return (
         <div id="navBar">
             <Link to='/'>Home (this will eventually be a logo/icon instead)</Link>
             <ul>
-                <li>
-                    <Link to='/products'>All Cards ({products.length})</Link>
-                </li>
-                <li><Link to='#'>Type</Link>
+                <Link to='/products' key='all'>
+                    <li>All Cards ({products.length})</li>
+                </Link>
+                
+                <li key='type'>Type
                     <ul>
-                        <li><Link to='#'>Fire</Link></li>
-                        <li><Link to='#'>Water</Link></li>
-                        <li><Link to='#'>Ground</Link></li>
-                        {/* etc... you get the idea */}
+                        {types ? types.map(type => <Link to={`/products/type/${type.type}`} key={type.id}><li>{type.type}</li></Link>) : null}
                     </ul>
                 </li>
-                <li><Link to='#'>Generation</Link>
+                <li key='rarity'>Rarity
                     <ul>
-                        <li><Link to='#'>SoulSilver</Link></li>
-                        <li><Link to='#'>Sword and Shield</Link></li>
-                        <li><Link to='#'>Diamond and Pearl</Link></li>
+                        {rarities ? rarities.map((rarity, ind) => <Link to='#' key={ind}><li>{rarity}</li></Link>) : null}
                     </ul>
                 </li>
-                <li><Link to='/user'>User</Link></li>
-                <li><Link to='#'>Cart</Link></li>
+                <Link to='/user' key='user'><li>User</li></Link>
+                <Link to='#' key='cart'><li>Cart</li></Link>
             </ul>
         </div>
     )
