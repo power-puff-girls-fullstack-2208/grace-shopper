@@ -25,7 +25,7 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 100, page: 1})).data;
+    const allPokemon = (await pokemon.card.all({q: 'supertype:Pokémon', pageSize: 40}));
 
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},

@@ -8,6 +8,9 @@
 body {
   overflow-y: auto;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 #navBar,
 #footer {
@@ -68,12 +71,35 @@ body {
   font-size: 12px;
   height: 45px;
 }
-#content {
+#footer {
+  height: 60px;
+  width: 100vw;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  background-color: gray;
+}
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#content > * {
+.content > * {
   width: 85vw;
   margin: 20px;
+}
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
+  margin: 10px;
+}
+.innerContainer img {
+  width: 180px;
+}
+.contentContainer {
+  width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
 }

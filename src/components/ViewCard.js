@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, selectProducts } from '../features/productsReducer';
-import ViewCard from './ViewCard';
 
-const AllProducts = () => {
+const ViewCard = props => {
+    // component that views a single card but within AllProducts alongside other cards
+    // styling and values shown are different than SingleProduct!!!
     const { type, rarity } = useParams();
     const dispatch = useDispatch();
     const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
@@ -12,18 +13,19 @@ const AllProducts = () => {
 
     useEffect(() => {
         dispatch(getProducts());
-        // console.log('weve dispatched our getALLProducts');
     }, [type, dispatch]);
 
     return (
-        <div className = 'productsContainer content'>
-            <div className="contentContainer">
-                {products && products.length ? products.map((product) =>
-                <ViewCard card={product} key={product.id}/>
-                ): 'Loading products!'}
-            </div>
+        <div className='innerContainer' key={props.card.id}>
+            <Link to = {`/products/${props.card.id}`}>
+                <img className='productImg' src= {props.card.img}/>
+                <h3>{props.card.name}</h3>
+            </Link>
+            <p>${props.card.price}</p>
+            <p>Types: {props.card.tags.map(tag => `${tag.type} `)}</p>
+            <h6>Rarity: {props.card.rarity}</h6>
         </div>
     )
 }
 
-export default AllProducts;
+export default ViewCard;
