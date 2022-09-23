@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import { Navigate } from "react-router-dom";
 import { getUser } from "../features/singleUsersSlice"
 import Login from "./Login"
 
@@ -11,10 +12,11 @@ function User(){
     useEffect(() => {
         dispatch(getUser(1))
     }, [dispatch])
-    console.log(user)
 
-    function handleLogout(){
-
+    function handleLogout(e){
+        e.preventDefault
+        console.log("logout was clicked")
+       return (<Navigate to="/login" />)
     }
     
     return (
@@ -24,7 +26,18 @@ function User(){
             {!loading && error ? <div>Error: {error}</div>: null}
             {!loading && user ? (
                 <>
-                <h1>Welcome {user.username}!</h1>
+                <h3>Welcome {user.username}!</h3>
+                <h4>General Information</h4>
+                <ul className="user-info">
+                    <li>First Name: {user.fName}</li>
+                    <li>Last Name: {user.lName}</li>
+                    <li>Username: {user.username}</li>
+                    <li>E-mail: {user.email}</li>
+                </ul>
+                <h4>Order History</h4>
+                <ul className="order-history">
+
+                </ul>
                 <button onClick={handleLogout}>Logout</button>
                 </>
             ): <Login />}
