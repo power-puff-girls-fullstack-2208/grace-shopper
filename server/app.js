@@ -28,32 +28,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
 
-app.post('/api/auth', async(req, res, next) => {
-  try{
-    res.send(await User.authenticate(req.body))
-  }
-  catch (ex) {
-    next(ex)
-  }
-})
 
-app.get('api/auth', async(req,res,next) => {
-  try{
-    res.send(await User.findByToken(req.headers.authorization))
-  }
-  catch (ex) {
-    next(ex)
-  }
-})
-
-app.delete('/api/auth', async(req, res, next)=> {
-  try {
-     res.send();
-  }
-  catch(ex) {
-     next(ex);
-  }
-})
 
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;

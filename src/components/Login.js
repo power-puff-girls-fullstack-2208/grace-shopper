@@ -1,15 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { login } from '../features/authSlice'
 
 
 function Login(){
+
+    const [form, setForm] = useState({
+        username: 'breeveley1',
+        password: 'JqCwce1EzJJ'
+      })
+    
+      const dispatch = useDispatch();
+    
+      const handleChange = (props) => (e) => {
+        setForm({
+          ...form,
+          [props]: e.target.value
+        })
+      }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        const username = e.target[0].value
-        const password = e.target[1].value
-
-        console.log(username + password)
+        
+        dispatch(login(form))
     }
 
     return (
@@ -20,13 +35,13 @@ function Login(){
                 <form onSubmit={handleSubmit} className="form">
                     <div className="input-login">
                         <label htmlFor="text">Username</label>
-                        <input type="text" name="username" id="username" placeholder="Enter Username" />
+                        <input onChange={handleChange('username')} type="text" name="username" value={form.username} placeholder="Enter Username" />
                         <span className="msg">Incorrect Username</span>
                     </div>
 
                     <div className="input-login">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" />
+                        <input onChange={handleChange('password')} type="password" name="password" value={form.password} />
                         <span className="msg">Incorrect password</span>
                     </div>
 
