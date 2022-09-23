@@ -10,6 +10,9 @@
 body {
   overflow-y: auto;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 // nav bar styling
@@ -17,3 +20,11 @@ body {
 
 // homepage styling
 @import "./home.less";
+
+@import "./cardSmallView.less";
+
+.contentContainer {
+  width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+}

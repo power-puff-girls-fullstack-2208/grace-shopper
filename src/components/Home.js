@@ -1,9 +1,19 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectProducts, getProducts } from "../features/productsReducer";
 
 const Home = () => {
+    const dispatch = useDispatch();
+    const products = useSelector(selectProducts);
+
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch]);
+
     return (
-        <div id="content">
+        <div className="content">
             <div id="banner">
                 <div id="bannerImg">
                     <button onClick={() => {}}>Shop our cards</button>

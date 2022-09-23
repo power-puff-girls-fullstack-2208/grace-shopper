@@ -15,6 +15,15 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+//get /api/types returns all pokemon types
+router.get('/types', async (req, res, next) => {
+    try {
+        res.send(await Tag.findAll());
+    } catch (error) {
+        next(error);
+    }
+});
+
 //get single card
 router.get('/:id', async (req, res, next) => {
     try {
@@ -27,5 +36,6 @@ router.get('/:id', async (req, res, next) => {
         next(error);
     }
 });
+
 
 module.exports = router;

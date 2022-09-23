@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const volleyball = require('volleyball');
 const PORT = process.env.PORT || 1337;
+const db = require('./db');
 
 // commented some of these lines out because localhost did not like some of them
 // but as we develop more we'll end up uncommenting and they'll be relevant
@@ -46,5 +47,6 @@ app.get('api/auth', async(req,res,next) => {
 //   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 // });
 
+//db.conn.sync({force:false});
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
