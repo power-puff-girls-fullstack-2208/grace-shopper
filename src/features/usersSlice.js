@@ -2,18 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 
-export const getUsers = createAsyncThunk('users/getUsers', () => {
-    return axios.get('/api/users')
-        .then((res) => {
-            return res.data
-        })
+export const getUsers = createAsyncThunk('users/getUsers', async () => {
+    try{
+        const { data } = await axios.get('api/users')
+        return data
+    }
+    catch (ex){
+        next(ex)
+    }
 })
 
-export const getUser = createAsyncThunk('users/getUser', (id) => {
-   try {return axios.get(`/api/users/${id}`)
-        .then((res) => {
-            return res.data
-        })
+export const getUser = createAsyncThunk('users/getUser', async (id) => {
+   try {
+        const { data } = await axios.get(`/api/users/${id}`)
+        console.log(data)
+        return data
     }
     catch (ex){
         next(ex)
@@ -53,6 +56,7 @@ const usersSlice = createSlice({
     initialState: initialState,
     reducers: {
         addUser: (state, action) => {
+            console.log(action.payload)
             const newUser = action.payload
             state.users.push(newUser)
         },
@@ -76,14 +80,14 @@ const usersSlice = createSlice({
         [getUsers.rejected]: (state) => {
             state.loading = false
         },
-        [getUsers.pending]: (state) => {
+        [getUser.pending]: (state) => {
             state.loading = true
         },
-        [getUsers.fulfilled]: (state, action) => {
+        [getUser.fulfilled]: (state, action) => {
             state.loading = false
             state.user = action.payload
         },
-        [getUsers.rejected]: (state) => {
+        [getUser.rejected]: (state) => {
             state.loading = false
         }
     }    

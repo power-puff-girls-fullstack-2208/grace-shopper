@@ -1,15 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { addNewUser } from '../features/usersSlice'
 
 function Register(){
 
-    const handleSubmit = (e) => {
+    const [form, setForm] = useState({
+        username: '',
+        email: '',
+        password: '',
+      })
+    
+      const dispatch = useDispatch();
+    
+      const handleChange = (props) => (e) => {
+        setForm({
+          ...form,
+          [props]: e.target.value
+        })
+      }
+    
+      const handleSubmit = (e) => {
         e.preventDefault()
-        const username = e.target[0].value
-        const email = e.target[1].value
-        const password = e.target[2].value
-
-        console.log(username + email + password)
-    }
+        dispatch(addNewUser(form));
+      }
 
     return (
         <div className="full-screen-container">
@@ -19,24 +34,34 @@ function Register(){
                 <form onSubmit={handleSubmit} className="form">
                     <div className="input-login">
                         <label htmlFor="text">Username</label>
-                        <input type="text" name="username" id="username" placeholder="Enter Username" />
+                        <input onChange={handleChange('username')} type="text" name="username" value={form.username} placeholder="Enter Username" />
                         <span className="msg">Username Taken</span>
+                    </div>
+                    
+                    <div className="input-login">
+                        <label htmlFor="text">First Name</label>
+                        <input onChange={handleChange('fName')} type="text" name="fName" value={form.fName} placeholder="Enter First Name" />
+                    </div>
+                    
+                    <div className="input-login">
+                        <label htmlFor="text">Last Name</label>
+                        <input onChange={handleChange('lName')} type="text" name="lName" value={form.lName} placeholder="Enter Last Name" />
                     </div>
 
                     <div className="input-login">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Enter Valid email" />
+                        <input onChange={handleChange('email')} type="email" name="email" value={form.email} placeholder="Enter Valid email" />
                         <span className="msg">Valid email</span>
                     </div>
 
                     <div className="input-login">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="New Password" />
+                        <input onChange={handleChange('password')} type="password" name="password" value={form.password} placeholder="New Password" />
                         <span className="msg">Must meet Password criteria</span>
                     </div>
 
                     <button type="submit" className="login-button">Create User</button>
-                    <p className="register-link">You have an account? Login</p>
+                    <Link to="/login" ><p className="register-link">You have an account? Login</p></Link>
                     {/* <div id="signInDiv"></div> */}
                 </form>
             </div>

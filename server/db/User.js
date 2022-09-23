@@ -5,40 +5,40 @@ const { Sequelize } = conn;
 const User = conn.define('user', {
     username:{
         type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
         validate:{
-            allowNull: false,
             notEmpty: true,
-            unique: true,
         }
     },
     password:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
 
     },
     email:{
         type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
         validate:{
             isEmail: true,
-            allowNull: false,
             notEmpty: true,
-            unique: true,
         }
     },
     fName:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
     },
     lName:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
     },
@@ -68,22 +68,6 @@ User.findByToken = async function(token) {
     return user
 }
 
-User.authenticate = async function ({ username, password }) {
-    const user = await this.findOne(
-        {
-            where: {
-                username,
-                password
-            }
-        }
-    )
-    if(!user) {
-        const error = Error('bad credentials')
-        error.status = 401
-        throw error
-    }
-    return user.generateToken()
-}
 
 User.authenticate = async function ({ username, password }) {
     const user = await this.findOne(

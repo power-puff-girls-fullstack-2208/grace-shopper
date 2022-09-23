@@ -24,6 +24,10 @@ app.use("/api", require("./api"));
 
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+});
+
 app.post('/api/auth', async(req, res, next) => {
   try{
     res.send(await User.authenticate(req.body))
@@ -42,9 +46,14 @@ app.get('api/auth', async(req,res,next) => {
   }
 })
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
-});
+app.delete('/api/auth', async(req, res, next)=> {
+  try {
+     res.send();
+  }
+  catch(ex) {
+     next(ex);
+  }
+})
 
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
