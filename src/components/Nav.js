@@ -1,29 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getRarities, getTypes, selectRarities, selectTypes } from "../features/filterReducer";
+import { selectProducts } from "../features/productsReducer";
 
 const Nav = () => {
-    const products = useSelector(state => state.products);
+    const dispatch = useDispatch();
+    const products = useSelector(selectProducts);
+    // gets an array of types and rarities from the state after first render
+    let types = useSelector(selectTypes);
+    let rarities = useSelector(selectRarities);
+
+    React.useEffect(() => {
+        dispatch(getTypes());
+        dispatch(getRarities());
+    }, []);
+
     return (
         <div id="navBar">
             <Link to='/'>Home (this will eventually be a logo/icon instead)</Link>
             <ul>
-                <li>
-                    <Link to='/products'>All Cards ({products.length})</Link>
-                </li>
-                <li><Link to='#'>Type</Link>
+                {/* link that leads to all the cards */}
+                <Link to='/products' key='all'>
+                    <li>All Cards ({products.length})</li>
+                </Link>
+                {/* dropdown menu that has links to view cards by a certain type */}
+                <li key='type'>Type
                     <ul>
-                        <li><Link to='#'>Fire</Link></li>
-                        <li><Link to='#'>Water</Link></li>
-                        <li><Link to='#'>Ground</Link></li>
-                        {/* etc... you get the idea */}
+                        {types ? types.map(type => <Link to={`/products/type/${type.type}`} key={type.id}><li>{type.type}</li></Link>) : null}
                     </ul>
                 </li>
-                <li><Link to='#'>Generation</Link>
+                {/* dropdown menu that has links to view cards by a certain rarity */}
+                <li key='rarity'>Rarity
                     <ul>
-                        <li><Link to='#'>SoulSilver</Link></li>
-                        <li><Link to='#'>Sword and Shield</Link></li>
-                        <li><Link to='#'>Diamond and Pearl</Link></li>
+                        {rarities ? rarities.map((rarity, ind) => <Link to={`/products/rarity/${rarity}`} key={ind}><li>{rarity}</li></Link>) : null}
                     </ul>
                 </li>
                 <li><Link to='/users'>User</Link></li>

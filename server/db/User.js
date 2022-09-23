@@ -1,6 +1,7 @@
 const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
+const jwt = require('jsonwebtoken');
 
 const User = conn.define('user', {
     username:{
@@ -55,7 +56,8 @@ const User = conn.define('user', {
 
 //create authentication
 User.prototype.generateToken = function() {
-    return { token: this.id }
+    return jwt.sign({ id: this.id }, process.env.JWT);
+
 }
 
 User.findByToken = async function(token) {

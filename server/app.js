@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 const volleyball = require('volleyball');
 const PORT = process.env.PORT || 1337;
+const db = require('./db');
 
 // app.use(cors);
 // app.use(volleyball);

@@ -1,1 +1,1 @@
-web: JWT=shhh node server/app.js
+web: JWT=shhh lessc public/src/style.less public/style/style.css ; webpack ; node server
