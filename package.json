@@ -7,7 +7,7 @@
     "build:dev": "npm run build -- --watch --mode=development",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/pokemon_db npm test -- --watch",
     "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev & nodemon server/app.js",
-    "start": "JWT=shhh npm run build ; nodemon server ; echo 'site ready --> http://localhost:1337/'",
+    "start": "JWT=shhh npm-run-all --parallel npm run build ; nodemon server",
     "seed": "node server"
   },
   "keywords": [],
@@ -38,7 +38,6 @@
     "sequelize": "^6.21.3",
     "supertest": "^6.2.4",
     "volleyball": "^1.5.1",
-    "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
