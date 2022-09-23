@@ -20,7 +20,7 @@ const ViewCard = props => {
                 <img className='productImg' src= {props.card.img}/>
                 <h3>{props.card.name}</h3>
             </Link>
-            <p>${props.card.price.toString().length === 3 ? props.card.price.toString() + '0' : props.card.price}</p>
+            <p>${props.card.price}</p>
             <p>Types: {props.card.tags.map(tag => `${tag.type} `)}</p>
             <h6>Rarity: {props.card.rarity}</h6>
         </div>
