@@ -22,10 +22,10 @@ Order.belongsTo(User);
 Order.hasMany(LineItem)
 
 const syncAndSeed = async () => {
-    await conn.sync({ force: true });
+    await conn.sync({ force: false });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 500})).data;
+    const allPokemon = (await pokemon.card.all({q: 'supertype:Pokémon', pageSize: 40}));
 
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
