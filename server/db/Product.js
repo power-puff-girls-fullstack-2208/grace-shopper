@@ -16,6 +16,24 @@ const Product = conn.define('product', {
         },
         defaultValue: 10,
     },
+    hp:{
+        type: Sequelize.INTEGER
+    },
+    evolvesFrom: {
+        type: Sequelize.STRING
+    },
+    abilities: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
+    },
+    attacks: {
+        type: Sequelize.ARRAY(Sequelize.TEXT)
+    },
+    weaknesses: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+    },
+    retreatCost: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+    },
     img:{
         type: Sequelize.STRING,
     },
@@ -26,6 +44,12 @@ const Product = conn.define('product', {
         type: Sequelize.TEXT,
     },
     rarity: {
+        type: Sequelize.STRING,
+    },
+    series: {
+        type: Sequelize.STRING,
+    },
+    releasedOn: {
         type: Sequelize.STRING,
     }
 })

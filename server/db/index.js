@@ -41,20 +41,31 @@ const syncAndSeed = async () => {
       const tags = await Tag.bulkCreate(types.map(type => {return {type: type}}));
       const all = allPokemon.map(async pokemon => {
 
+        const abilities = pokemon.abilities ? pokemon.abilities.map(ability => `${ability.name}: ${ability.text}`) : null;
+        const attacks = pokemon.attacks ? pokemon.attacks.map(attack => `${attack.name} (${attack.damage} damage): ${attack.text}`) : null;
+        const weaknesses = pokemon.weaknesses ? pokemon.weaknesses.map(weakness => `${weakness.type}: ${weakness.value}`) : null;
         const price = !pokemon.cardmarket ? 0 : pokemon.cardmarket.prices ? pokemon.cardmarket.prices.trendPrice : 0;
         const newPokemon =  await Product.create({
           cardId: pokemon.id,
           price: price,
           qty: pokemon.set.printedTotal,
+          hp: pokemon.hp,
+          evolvesFrom: pokemon.evolvesFrom,
+          abilities: abilities,
+          attacks: attacks,
+          weaknesses: weaknesses,
+          retreatCost: pokemon.retreatCost,
           img: pokemon.images.large,
           descr: pokemon.flavorText,
           name: pokemon.name,
-          rarity: pokemon.rarity
+          rarity: pokemon.rarity,
+          series: pokemon.set.series,
+          releasedOn: pokemon.set.releaseDate
         }).catch(err => console.error(err));
         const pokemonTags = 0;
-        pokemon.types.forEach(async type => {
+        pokemon.types ? pokemon.types.forEach(async type => {
           type ? await newPokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
-        });
+        }) : undefined;
         return newPokemon
       })
 
