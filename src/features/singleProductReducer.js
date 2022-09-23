@@ -3,8 +3,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getProduct = createAsyncThunk('products/getProduct', async (id) => {
     try {
-        const { data } = await axios.get(`api/products/${id}`);
-        return data;
+        const { data } = await axios.get(`http://localhost:1337/api/products/${id}`);
+        return data;                      
     } catch(error) {
         console.error(error);
     }

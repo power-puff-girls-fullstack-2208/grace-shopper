@@ -15,17 +15,27 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-//get single card
-router.get('/:productId', async (req, res, next) => {
+//get /api/types returns all pokemon types
+router.get('/types', async (req, res, next) => {
     try {
-        res.send(await Product.findByPk(req.params.productId, {
-            include: {
-                model: Tag
-            }
-        }));
+        res.send(await Tag.findAll());
+    } catch (error) {
+        next(error);
+    }
+});
+
+//get single card
+router.get('/:id', async (req, res, next) => {
+    try {
+        const data = await Product.findByPk(req.params.id); 
+            //{
+            // include: {
+            //     model: Tag}} 
+            res.send(data);
     } catch(error) {
         next(error);
     }
 });
+
 
 module.exports = router;
