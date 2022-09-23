@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, selectProducts } from '../features/productsReducer';
 
 const ViewCard = props => {
+    // component that views a single card but within AllProducts alongside other cards
+    // styling and values shown are different than SingleProduct!!!
     const { type, rarity } = useParams();
     const dispatch = useDispatch();
     const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
@@ -11,7 +13,6 @@ const ViewCard = props => {
 
     useEffect(() => {
         dispatch(getProducts());
-        // console.log('weve dispatched our getALLProducts');
     }, [type, dispatch]);
 
     return (
