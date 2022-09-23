@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, selectProducts } from '../features/productsReducer';
-import ViewCard from './ViewCard';
 
-const AllProducts = () => {
+const ViewCard = props => {
     const { type, rarity } = useParams();
     const dispatch = useDispatch();
     const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
@@ -16,14 +15,16 @@ const AllProducts = () => {
     }, [type, dispatch]);
 
     return (
-        <div className = 'productsContainer content'>
-            <div className="contentContainer">
-                {products && products.length ? products.map((product) =>
-                <ViewCard card={product} key={product.id}/>
-                ): 'Loading products!'}
-            </div>
+        <div className='innerContainer' key={props.card.id}>
+            <Link to = {`/products/${props.card.id}`}>
+                <h3>product Name: {props.card.name}</h3>
+            </Link>
+            <h3>product Name: {props.card.name}</h3>
+            <img className='productImg' src= {props.card.img}/>
+            <p>Types: {props.card.tags.map(tag => `${tag.type}`)}</p>
+            <p>{props.card.descr}</p>
         </div>
     )
 }
 
-export default AllProducts;
+export default ViewCard;
