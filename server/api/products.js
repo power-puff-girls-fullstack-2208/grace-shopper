@@ -16,13 +16,13 @@ router.get('/', async (req, res, next) => {
 });
 
 //get single card
-router.get('/:productId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
-        res.send(await Product.findByPk(req.params.productId, {
-            include: {
-                model: Tag
-            }
-        }));
+        const data = await Product.findByPk(req.params.id); 
+            //{
+            // include: {
+            //     model: Tag}} 
+            res.send(data);
     } catch(error) {
         next(error);
     }
