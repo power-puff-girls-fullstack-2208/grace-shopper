@@ -6,6 +6,7 @@ import { getRarities, getTypes } from "../store";
 const Nav = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.products);
+    // gets an array of types and rarities from the state after first render
     let types = useSelector(state => state.nav.types);
     let rarities = useSelector(state => state.nav.rarities);
 
