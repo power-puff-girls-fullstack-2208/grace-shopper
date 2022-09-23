@@ -7,7 +7,7 @@ const Product = conn.define('product', {
         type: Sequelize.STRING,
     },
     price:{
-        type: Sequelize.DOUBLE,
+        type: Sequelize.DECIMAL,
     },
     qty:{
         type: Sequelize.INTEGER,
