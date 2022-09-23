@@ -22,7 +22,7 @@ Order.belongsTo(User);
 Order.hasMany(LineItem)
 
 const syncAndSeed = async () => {
-    await conn.sync({ force: false });
+    await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
     const allPokemon = (await pokemon.card.all({q: 'supertype:Pokémon', pageSize: 40}));
