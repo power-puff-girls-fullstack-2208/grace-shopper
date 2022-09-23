@@ -2,6 +2,11 @@ import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios";
 import pokemon from 'pokemontcgsdk';
 
+// filterReducer are the thunks/reducer that deal with filtering options:
+// pokemon type and pokemon rarity
+// goes into the main store as nav:filterReducer
+// as it is used mainly for the nav bar, but also globally on AllProducts (eventually, yet to implement)
+
 export const getTypes = createAsyncThunk('getTypes', async () => {
     try {
         const { data } = await axios.get('/api/products/types');
@@ -13,6 +18,7 @@ export const getTypes = createAsyncThunk('getTypes', async () => {
 
 export const getRarities = createAsyncThunk('getRarities', async () => {
     try {
+        // data from pokemon api does not need to be dereferenced :)
         const data = await pokemon.rarity.all();
         return data;
     } catch(error) {

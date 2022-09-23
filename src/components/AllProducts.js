@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { getProducts, selectProducts } from '../features/productsReducer';
 
 const AllProducts = () => {
@@ -16,7 +15,7 @@ const AllProducts = () => {
     }, [type, dispatch]);
 
     return (
-        <div className = 'productsContainer'>
+        <div className = 'productsContainer content'>
             <div className="contentContainer">
                 {products && products.length ? products.map((product) =>
                 <div className='innerContainer' key={product.id}>
