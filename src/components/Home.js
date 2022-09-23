@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const Home = () => {
     return (
-        <div id="content">
+        <div className="content">
             <div id="banner">
                 <div id="bannerImg">
                     <button onClick={() => {}}>Shop our cards</button>
