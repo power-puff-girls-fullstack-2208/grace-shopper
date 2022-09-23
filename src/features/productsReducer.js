@@ -4,7 +4,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getProducts = createAsyncThunk('products/getProducts', async () => {
     try {
         const { data } = await axios.get('api/products');
-        // console.log(data);
         return data;
     } catch(error) {
         console.error(error);
@@ -22,6 +21,9 @@ export const productsSlice = createSlice({
         });
     },
 });
+
+export const selectProducts = (state) => state.products;
+export default productsSlice.reducer;
 
 // const handleFetch = async () => {
 //     const { data } = await axios.get('http://localhost:3000/products')
@@ -50,9 +52,6 @@ export const productsSlice = createSlice({
 //         });
 //     },
 // }); 
-
-export const selectProducts = (state) => state.products;
-export default productsSlice.reducer;
 
 
 
