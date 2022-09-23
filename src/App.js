@@ -25,6 +25,8 @@ const App = () => {
                         <Route path= '/register' element={<Register />} />
                         {/* route that leads to all the cards, but filters in cards of a certain type from the nav dropdown */}
                         <Route path='/products/type/:type' element={<AllProducts/>}/>
+                        <Route path='/products' element={<AllProducts/>}/>
+                        <Route path='/products/:id' element={<SingleProduct/>}/>
                         {/* route that leads to all the cards, but filters in cards of a certain rarity from the nav dropdown */}
                         <Route path='/products/rarity/:rarity' element={<AllProducts/>}/>
                         {/* route that goes to a view single card given its id */}
