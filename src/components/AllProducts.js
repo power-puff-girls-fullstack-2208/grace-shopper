@@ -6,11 +6,9 @@ import { getProducts, selectProducts } from '../features/productsReducer';
 
 const AllProducts = () => {
     const { type } = useParams();
-    console.log(type)
     const dispatch = useDispatch();
-    // const products = useSelector(selectProducts);
     const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) : useSelector(selectProducts);
-    console.log(products)
+
     useEffect(() => {
         dispatch(getProducts());
         // console.log('weve dispatched our getALLProducts');

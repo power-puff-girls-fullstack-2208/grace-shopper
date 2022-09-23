@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import pokemon from 'pokemontcgsdk';
 import { getRarities, getTypes } from "../store";
 
 const Nav = () => {
@@ -9,9 +8,6 @@ const Nav = () => {
     const products = useSelector(state => state.products);
     let types = useSelector(state => state.nav.types);
     let rarities = useSelector(state => state.nav.rarities);
-
-    // console.log(types)
-    // console.log(rarities)
 
     React.useEffect(() => {
         dispatch(getTypes());
