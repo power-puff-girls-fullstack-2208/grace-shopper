@@ -5,8 +5,6 @@ import SingleProduct from "./components/SingleProduct";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
-import AllProducts from "./components/AllProducts";
-import SingleProduct from "./components/SingleProduct";
 import User from "./components/User";
 
 const App = () => {
