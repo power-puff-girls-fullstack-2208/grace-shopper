@@ -1,44 +1,45 @@
 const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
+const jwt = require('jsonwebtoken');
 
 const User = conn.define('user', {
     username:{
         type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
         validate:{
-            allowNull: false,
             notEmpty: true,
-            unique: true,
         }
     },
     password:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
 
     },
     email:{
         type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
         validate:{
             isEmail: true,
-            allowNull: false,
             notEmpty: true,
-            unique: true,
         }
     },
     fName:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
     },
     lName:{
         type: Sequelize.STRING,
+        allowNull: false,
         validate:{
-            allowNull: false,
             notEmpty: true,
         }
     },
@@ -55,7 +56,8 @@ const User = conn.define('user', {
 
 //create authentication
 User.prototype.generateToken = function() {
-    return { token: this.id }
+    return jwt.sign({ id: this.id }, process.env.JWT);
+
 }
 
 User.findByToken = async function(token) {
@@ -67,6 +69,7 @@ User.findByToken = async function(token) {
     }
     return user
 }
+
 
 User.authenticate = async function ({ username, password }) {
     const user = await this.findOne(
@@ -85,7 +88,7 @@ User.authenticate = async function ({ username, password }) {
     return user.generateToken()
 }
 
-
+//cart prototypes
 User.prototype.getCart = async function(){
     const cart = await this.getOrders().filter(order => order.isCart);
     return cart;
