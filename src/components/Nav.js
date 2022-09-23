@@ -36,10 +36,8 @@ const Nav = () => {
                         {rarities ? rarities.map((rarity, ind) => <Link to={`/products/rarity/${rarity}`} key={ind}><li>{rarity}</li></Link>) : null}
                     </ul>
                 </li>
-                {/* link the leads to user profile OR log-in/sign-up page */}
-                <Link to='/user' key='user'><li>User</li></Link>
-                {/* link that leads to the user (or guest) shopping cart */}
-                <Link to='#' key='cart'><li>Cart</li></Link>
+                <li><Link to='/users'>User</Link></li>
+                <li><Link to='#'>Cart</Link></li>
             </ul>
         </div>
     )
