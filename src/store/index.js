@@ -5,7 +5,7 @@ import usersReducer from "../features/usersSlice"
 import authReducer from '../features/authSlice'
 
 
-const store = configureStore({
+export const store = configureStore({
         reducer: {
             products: productsReducer,
             product: productReducer,
@@ -14,4 +14,3 @@ const store = configureStore({
     }
 });
 
-export default store;
