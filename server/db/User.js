@@ -90,7 +90,8 @@ User.authenticate = async function ({ username, password }) {
 
 //cart prototypes
 User.prototype.getCart = async function(){
-    const cart = await this.getOrders().filter(order => order.isCart);
+    const orders = await this.getOrders();
+    const cart = await orders.filter(order => order.dataValues.isCart === true);
     return cart;
 }
 
