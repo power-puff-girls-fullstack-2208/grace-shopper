@@ -30,7 +30,7 @@ const Nav = () => {
                 </li>
                 <li key='rarity'>Rarity
                     <ul>
-                        {rarities ? rarities.map((rarity, ind) => <Link to='#' key={ind}><li>{rarity}</li></Link>) : null}
+                        {rarities ? rarities.map((rarity, ind) => <Link to={`/products/rarity/${rarity}`} key={ind}><li>{rarity}</li></Link>) : null}
                     </ul>
                 </li>
                 <Link to='/user' key='user'><li>User</li></Link>
