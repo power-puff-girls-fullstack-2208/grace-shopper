@@ -43,10 +43,10 @@ app.get('api/auth', async(req,res,next) => {
   }
 })
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+// });
 
-db.conn.sync({force:false});
+//db.conn.sync({force:false});
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;
