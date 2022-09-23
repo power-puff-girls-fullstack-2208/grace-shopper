@@ -7,7 +7,7 @@
     "build:dev": "npm run build -- --watch --mode=development",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/pokemon_db npm test -- --watch",
     "start:dev": "JWT=shhh nodemon server --ignore src/ --ignore dist/ & npm run build:dev & nodemon server/app.js",
-    "start": "JWT=shhh npm run build ; node server/app.js",
+    "start": "JWT=shhh npm run build ; nodemon server ; echo 'site ready --> http://localhost:1337/'",
     "seed": "node server"
   },
   "keywords": [],

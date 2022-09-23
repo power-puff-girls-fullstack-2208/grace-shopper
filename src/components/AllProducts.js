@@ -27,6 +27,7 @@ const AllProducts = () => {
                     </Link>
                     <h3>product Name: {product.name}</h3>
                     <img className='productImg' src= {product.img}/>
+                    <p>Types: {product.tags.map(tag => `${tag.type}`)}</p>
                     <p>{product.descr}</p>
                 </div>
                 ): 'Loading products!'}

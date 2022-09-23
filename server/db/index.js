@@ -14,8 +14,8 @@ pokemon.configure({apiKey: '123abc'})
 //line item is the product and the amount of sidproduct
 
 User.hasMany(Order);
+// Tag.belongsToMany(Product, {through: 'Product_Tags'});
 Product.belongsToMany(Tag, {through: 'Product_Tags'});
-Tag.belongsToMany(Product, {through: 'Product_Tags'});
 // Tag.hasMany(Product);
 LineItem.belongsTo(Product)
 Order.belongsTo(User);
@@ -25,8 +25,8 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 50, page: 1})).data;
-    
+    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 100, page: 1})).data;
+
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
       {id:3,username:"nschiesterl2",password:"tL8fuz",email:"nschiesterl2@independent.co.uk",fName:"Nevile",lName:"Schiesterl"},
@@ -71,8 +71,8 @@ const syncAndSeed = async () => {
       
     const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
       {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[5].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[6].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[7].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[8].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[9].id, orderId: ordersExample[9].id}]);
+      {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
+      {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
 
     console.log(`
     Seeding successful!
