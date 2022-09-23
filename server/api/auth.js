@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const User = require('../db/User');
 
-router.post('/api/auth', async(req, res, next) => {
+router.post('/', async(req, res, next) => {
     try{
+      console.log(req.body)
       res.send(await User.authenticate(req.body))
     }
     catch (ex) {
@@ -10,7 +11,7 @@ router.post('/api/auth', async(req, res, next) => {
     }
   })
   
-  router.get('api/auth', async(req,res,next) => {
+  router.get('/', async(req,res,next) => {
     try{
       res.send(await User.findByToken(req.headers.authorization))
     }
@@ -19,7 +20,7 @@ router.post('/api/auth', async(req, res, next) => {
     }
   })
   
-  router.delete('/api/auth', async(req, res, next)=> {
+  router.delete('/', async(req, res, next)=> {
     try {
        res.send();
     }
