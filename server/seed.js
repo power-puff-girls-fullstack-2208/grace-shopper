@@ -3,7 +3,7 @@ const app = require('./app');
 const db = require('./db')
 
 const init = async () => {
-    await db.syncAndStart();
+    await db.syncAndSeed();
 };
 
 init();
