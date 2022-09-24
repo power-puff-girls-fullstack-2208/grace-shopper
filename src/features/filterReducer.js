@@ -29,7 +29,6 @@ export const getRarities = createAsyncThunk('getRarities', async () => {
 export const getSets = createAsyncThunk('getSets', async () => {
     try {
         const data = await pokemon.set.all();
-        console.log(data);
         return data;
     } catch(error) {
         console.error(error);
@@ -54,4 +53,5 @@ export const navSlice = createSlice({
 
 export const selectTypes = (state) => state.nav.types;
 export const selectRarities = (state) => state.nav.rarities;
+export const selectSets = (state) => state.nav.sets;
 export default navSlice.reducer;
