@@ -11,29 +11,31 @@ const AllProducts = () => {
                     rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);
 
     useEffect(() => {
-        dispatch(getProducts());
+        // dispatch(getProducts());
         // console.log('weve dispatched our getALLProducts');
     }, [type, dispatch]);
 
     return (
         <div className = 'productsContainer content'>
-            <h1>aaaaaaa</h1>
             <div className='filtersPrompt'>
                 <button id='filterButton'>Show filtering options</button>
             </div>
             <div className='filters-overlay'>
                 <form id='filters-form'>
                     <div id='poke-type'>
+                        <h3>By Pokemon Type:</h3>
                         <input type='checkbox' id='poke-type-type' name='type' value='true'></input>
                         <label for='poke-type-type'>TYPE</label>
                     </div>
                     <div id='poke-rarity'>
-                        <input type='checkbox' id='poke-type-type' name='type' value='true'></input>
-                        <label for='poke-type-type'>TYPE</label>
+                    <h3>By Pokemon Rarity:</h3>
+                        <input type='checkbox' id='poke-type-rarity' name='rarity' value='true'></input>
+                        <label for='poke-type-rarity'>RARITY</label>
                     </div>
                     <div id='poke-sets'>
-                        <input type='checkbox' id='poke-type-type' name='type' value='true'></input>
-                        <label for='poke-type-type'>TYPE</label>
+                    <h3>By Card Set:</h3>
+                        <input type='checkbox' id='poke-type-set' name='set' value='true'></input>
+                        <label for='poke-type-set'>SET</label>
                     </div>
                     <div id='filter-buttons'>
                         <button onClick={() => {}}>Cancel</button>

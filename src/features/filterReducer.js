@@ -26,6 +26,16 @@ export const getRarities = createAsyncThunk('getRarities', async () => {
     }
 });
 
+export const getSets = createAsyncThunk('getSets', async () => {
+    try {
+        const data = await pokemon.set.all();
+        console.log(data);
+        return data;
+    } catch(error) {
+        console.error(error);
+    }
+});
+
 export const navSlice = createSlice({
     name: 'nav',
     initialState: {},
@@ -35,6 +45,9 @@ export const navSlice = createSlice({
         });
         builder.addCase(getRarities.fulfilled, (state, action) => {
             return {...state, rarities: action.payload};
+        })
+        builder.addCase(getSets.fulfilled, (state, action) => {
+            return {...state, sets: action.payload};
         })
     },
 });
