@@ -11,12 +11,26 @@ const AllProducts = () => {
     const types = useSelector(selectTypes);
     const rarities = useSelector(selectRarities);
     const sets = useSelector(selectSets);
-    const products = type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts);
-    // const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
-    //                 rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);
 
+    const sortProducts = (productArray, sortOption) => {
+        switch(sortOption) {
+            case 'price-asc':
+                return [...productArray].sort((a, b) => parseFloat(a.price) > parseFloat(b.price) ? 1 : parseFloat(a.price) < parseFloat(b.price) ? -1 : 0)
+            case 'price-desc':
+                return [...productArray].sort((a, b) => parseFloat(a.price) < parseFloat(b.price) ? 1 : parseFloat(a.price) > parseFloat(b.price) ? -1 : 0)
+            case 'alpha-up':
+                return [...productArray].sort((a, b) => a.name < b.name ? 1 : a.name > b.name ? -1 : 0)
+            case 'alpha-down':
+                return [...productArray].sort((a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0)
+            case 'none':
+                return productArray;
+        }
+    }
     const [optionalFilter, setOptionalFilter] = React.useState([]);
     const [appliedFilters, setAppliedFilters] = React.useState([]);
+    const [sort, setSort] = React.useState('none');
+    const products = sortProducts(type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts), sort);
+
 
     const showFilters = () => {
         const filtersScreen = document.querySelector('#filters-screen');
@@ -44,23 +58,29 @@ const AllProducts = () => {
             let tempValue = optionalFilter.findIndex(filter => filter === event.target.id);
             const temp = [...optionalFilter];
             temp.splice(tempValue, 1);
-            console.dir(temp)
-            console.dir(tempValue)
             setOptionalFilter(temp);
         }
     }
 
+    const handleOptions = event => {
+        setSort(event.target.value);
+    }
+
     useEffect(() => {
-        // dispatch(getProducts());
-        // console.log('weve dispatched our getALLProducts');
-    }, [appliedFilters]);
-
-    console.dir(optionalFilter);
-
+    }, [appliedFilters, sort]);
+console.log(sort)
     return (
         <div className = 'productsContainer content'>
             <div className='filtersPrompt'>
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
+                <label htmlFor='filter-options'>Filter products by:</label>
+                <select name='filter-options' onChange={handleOptions} defaultValue={sort}>
+                    <option value='price-asc'>Price: $ - $$$</option>
+                    <option value='price-desc'>Price: $$$ - $</option>
+                    <option value='alpha-up'>Alphabetical: Z - A</option>
+                    <option value='alpha-down'>Alphabetical: A - Z</option>
+                    <option value='none'>No sorting</option>
+                </select>
             </div>
             <div id='filters-screen'>
                 <form id='filters-form' onSubmit={applyFilters}>
