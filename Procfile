@@ -1,1 +1,1 @@
-web: JWT=shhh lessc public/src/style.less public/style/style.css ; webpack ; node server
+web: JWT=shhh npm run build & nodemon server/seed.js

@@ -21,6 +21,11 @@ LineItem.belongsTo(Product)
 Order.belongsTo(User);
 Order.hasMany(LineItem)
 
+const syncAndStart = async () => {
+  await conn.sync({ force: false });
+  console.log('Syncing success! Your site is live :)')
+}
+
 const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
@@ -96,6 +101,7 @@ const syncAndSeed = async () => {
 module.exports = {
     conn,
     syncAndSeed,
+    syncAndStart,
     User,
     Product,
     Order,

@@ -1,0 +1,10 @@
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
+  margin: 10px;
+}
+.innerContainer img {
+  width: 180px;
+}
