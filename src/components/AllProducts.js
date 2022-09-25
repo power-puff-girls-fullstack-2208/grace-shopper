@@ -11,8 +11,9 @@ const AllProducts = () => {
     const types = useSelector(selectTypes);
     const rarities = useSelector(selectRarities);
     const sets = useSelector(selectSets);
-    const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
-                    rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);
+    const products = type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts);
+    // const products = type ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type)) :
+    //                 rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);
 
     const [optionalFilter, setOptionalFilter] = React.useState([]);
     const [appliedFilters, setAppliedFilters] = React.useState([]);
