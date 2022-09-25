@@ -52,7 +52,7 @@ const syncAndSeed = async () => {
         const price = !pokemon.cardmarket ? 0 : pokemon.cardmarket.prices ? pokemon.cardmarket.prices.trendPrice : 0;
         const newPokemon =  await Product.create({
           cardId: pokemon.id,
-          price: parseFloat(price),
+          price: price,
           qty: pokemon.set.printedTotal,
           hp: pokemon.hp,
           evolvesFrom: pokemon.evolvesFrom,

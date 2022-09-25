@@ -15,11 +15,8 @@ const AllProducts = () => {
     const filterProducts = (productArray, filterOptions) => {
         if (filterOptions.length === 0) return productArray;
 
-        console.dir (productArray.filter(card => {
-            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag)));
-        }))
         return (productArray.filter(card => {
-            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag)));
+            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
         }))
     }
 
