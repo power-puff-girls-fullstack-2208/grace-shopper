@@ -12,6 +12,17 @@ const AllProducts = () => {
     const rarities = useSelector(selectRarities);
     const sets = useSelector(selectSets);
 
+    const filterProducts = (productArray, filterOptions) => {
+        if (filterOptions.length === 0) return productArray;
+
+        console.dir (productArray.filter(card => {
+            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag)));
+        }))
+        return (productArray.filter(card => {
+            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag)));
+        }))
+    }
+
     const sortProducts = (productArray, sortOption) => {
         switch(sortOption) {
             case 'price-asc':
@@ -29,7 +40,7 @@ const AllProducts = () => {
     const [optionalFilter, setOptionalFilter] = React.useState([]);
     const [appliedFilters, setAppliedFilters] = React.useState([]);
     const [sort, setSort] = React.useState('none');
-    const products = sortProducts(type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts), sort);
+    const products = filterProducts(sortProducts(type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts), sort), appliedFilters);
 
 
     const showFilters = () => {
@@ -48,7 +59,6 @@ const AllProducts = () => {
         event.preventDefault();
         setAppliedFilters(optionalFilter);
         cancelFilters();
-        console.log('filters applied!');
     }
 
     const handleOptionCheckboxes = event => {
@@ -68,7 +78,6 @@ const AllProducts = () => {
 
     useEffect(() => {
     }, [appliedFilters, sort]);
-console.log(sort)
     return (
         <div className = 'productsContainer content'>
             <div className='filtersPrompt'>
