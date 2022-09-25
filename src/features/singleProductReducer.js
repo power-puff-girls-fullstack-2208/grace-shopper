@@ -15,7 +15,6 @@ export const productSlice = createSlice({
     initialState: {},
     extraReducers: (builder) => {
         builder.addCase(getProduct.fulfilled, (state, action) => {
-            console.log(action.payload)
             return action.payload;
         });
     },
