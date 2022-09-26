@@ -66,21 +66,16 @@ const syncAndSeed = async () => {
           series: pokemon.set.series,
           releasedOn: pokemon.set.releaseDate
         }
-        const pokemonTags = 0;
-        pokemon.types ? pokemon.types.forEach(async type => {
-          type ? await newPokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
-        }) : undefined;
-        return newPokemon;
       }));
+      // above creates the products first all at once
+      // and after bulkCreate, tags are individually added to each product upon checking its types array
 
+      // ** previously, creating products and associating tags at the same time created async issues
       all.forEach(pokemon => {
         pokemon.types ? pokemon.types.forEach(async type => {
           type ? await pokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
         }) : undefined;
       })
-
-      console.dir(tags)
-      console.dir(all)
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
