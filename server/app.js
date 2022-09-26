@@ -26,6 +26,7 @@ app.use('/static', express.static(path.join(__dirname, '../public')));
 
 app.use("/api", require("./api"));
 
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "/public/index.html"));
 });
