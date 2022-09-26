@@ -44,13 +44,12 @@ const syncAndSeed = async () => {
       {id:10,username:"ptremblay9",password:"5Hn0ai1Ozc",email:"ptremblay9@etsy.com",fName:"Pedro",lName:"Tremblay"}])
 
       const tags = await Tag.bulkCreate(types.map(type => {return {type: type}}));
-      const all = allPokemon.map(async pokemon => {
-
+      const all = await Product.bulkCreate(allPokemon.map(pokemon => {
         const abilities = pokemon.abilities ? pokemon.abilities.map(ability => `${ability.name}: ${ability.text}`) : null;
         const attacks = pokemon.attacks ? pokemon.attacks.map(attack => `${attack.name} (${attack.damage} damage): ${attack.text}`) : null;
         const weaknesses = pokemon.weaknesses ? pokemon.weaknesses.map(weakness => `${weakness.type}: ${weakness.value}`) : null;
         const price = !pokemon.cardmarket ? 0 : pokemon.cardmarket.prices ? pokemon.cardmarket.prices.trendPrice : 0;
-        const newPokemon =  await Product.create({
+        return {
           cardId: pokemon.id,
           price: price,
           qty: pokemon.set.printedTotal,
@@ -66,13 +65,22 @@ const syncAndSeed = async () => {
           rarity: pokemon.rarity,
           series: pokemon.set.series,
           releasedOn: pokemon.set.releaseDate
-        }).catch(err => console.error(err));
+        }
         const pokemonTags = 0;
         pokemon.types ? pokemon.types.forEach(async type => {
           type ? await newPokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
         }) : undefined;
-        return newPokemon
+        return newPokemon;
+      }));
+
+      all.forEach(pokemon => {
+        pokemon.types ? pokemon.types.forEach(async type => {
+          type ? await pokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
+        }) : undefined;
       })
+
+      console.dir(tags)
+      console.dir(all)
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
