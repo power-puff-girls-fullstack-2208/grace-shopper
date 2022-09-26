@@ -1,1 +1,1 @@
-web: JWT=shhh npm run build & nodemon server/seed.js
+web: JWT=shhh npm run build & node server/seed.js
