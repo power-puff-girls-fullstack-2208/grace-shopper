@@ -1,5 +1,6 @@
-const router = require('express').Router();
+ const router = require('express').Router();
 const User = require('../db/User');
+const bcrypt = require('bcrypt');
 
 
 // GET /api/users
@@ -37,6 +38,23 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
+// router.post("/register", async (req, res, next) => {
+//   try {
+//     const { username, password, email, fName, lName } = req.body;
+//     const hash = await bcrypt.hash(password, 10)
+//     res.status(201).send(await User.create({
+//       username,
+//       password: hash,
+//       email,
+//       fName,
+//       lName,
+//       isAdmin: false
+//     }));
+//   } catch(error) {
+//     next(error);
+//   }
+// })
 
 // PUT /api/users/:id
 router.put('/:id', async (req, res, next) => {
