@@ -8,18 +8,27 @@ const LineItem = require('./LineItem');
 const { response } = require('express');
 const pokemon = require('pokemontcgsdk');
 pokemon.configure({apiKey: '123abc'})
+
 //what are the models for an ecommerce website?
 //users products orders tag
 
 //line item is the product and the amount of sidproduct
 
+//THIS IS WHAT WE ORIGINALLY HAD
+// User.hasMany(Order);
+// // Tag.belongsToMany(Product, {through: 'Product_Tags'});
+// Product.belongsToMany(Tag, {through: 'Product_Tags'});
+// // Tag.hasMany(Product);
+// LineItem.belongsTo(Product)
+// Order.belongsTo(User);
+// Order.hasMany(LineItem)
+
 User.hasMany(Order);
-// Tag.belongsToMany(Product, {through: 'Product_Tags'});
-Product.belongsToMany(Tag, {through: 'Product_Tags'});
-// Tag.hasMany(Product);
-LineItem.belongsTo(Product)
 Order.belongsTo(User);
-Order.hasMany(LineItem)
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
+Product.belongsToMany(Tag, { through: 'Product_Tags'});
+Tag.belongsToMany(Product, { through: 'Product_Tags'});
 
 const syncAndStart = async () => {
   await conn.sync({ force: false });
@@ -32,16 +41,16 @@ const syncAndSeed = async () => {
     const types = await pokemon.type.all();
     const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 40})).data;
 
-    const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
-      {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
-      {id:3,username:"nschiesterl2",password:"tL8fuz",email:"nschiesterl2@independent.co.uk",fName:"Nevile",lName:"Schiesterl"},
-      {id:4,username:"zlabbati3",password:"wmB5G9MbJ",email:"zlabbati3@fc2.com",fName:"Zolly",lName:"Labbati"},
-      {id:5,username:"hverrier4",password:"NxEyqRqLJ7",email:"hverrier4@kickstarter.com",fName:"Hercules",lName:"Verrier"},
-      {id:6,username:"sstolz5",password:"OchCwv99GRD",email:"sstolz5@yelp.com",fName:"Sigismundo",lName:"Stolz"},
-      {id:7,username:"rcogin6",password:"mVu07Mzr",email:"rcogin6@addthis.com",fName:"Rudy",lName:"Cogin"},
-      {id:8,username:"pwolfindale7",password:"fjgg1rPuZIV",email:"pwolfindale7@jalbum.net",fName:"Peirce",lName:"Wolfindale"},
-      {id:9,username:"jsmitheram8",password:"07uA2NTPH1",email:"jsmitheram8@ihg.com",fName:"Jason",lName:"Smitheram"},
-      {id:10,username:"ptremblay9",password:"5Hn0ai1Ozc",email:"ptremblay9@etsy.com",fName:"Pedro",lName:"Tremblay"}])
+    const usersExample = await User.bulkCreate([{username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
+      {username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
+      {username:"nschiesterl2",password:"tL8fuz",email:"nschiesterl2@independent.co.uk",fName:"Nevile",lName:"Schiesterl"},
+      {username:"zlabbati3",password:"wmB5G9MbJ",email:"zlabbati3@fc2.com",fName:"Zolly",lName:"Labbati"},
+      {username:"hverrier4",password:"NxEyqRqLJ7",email:"hverrier4@kickstarter.com",fName:"Hercules",lName:"Verrier"},
+      {username:"sstolz5",password:"OchCwv99GRD",email:"sstolz5@yelp.com",fName:"Sigismundo",lName:"Stolz"},
+      {username:"rcogin6",password:"mVu07Mzr",email:"rcogin6@addthis.com",fName:"Rudy",lName:"Cogin"},
+      {username:"pwolfindale7",password:"fjgg1rPuZIV",email:"pwolfindale7@jalbum.net",fName:"Peirce",lName:"Wolfindale"},
+      {username:"jsmitheram8",password:"07uA2NTPH1",email:"jsmitheram8@ihg.com",fName:"Jason",lName:"Smitheram"},
+      {username:"ptremblay9",password:"5Hn0ai1Ozc",email:"ptremblay9@etsy.com",fName:"Pedro",lName:"Tremblay"}])
 
       const tags = await Tag.bulkCreate(types.map(type => {return {type: type}}));
       const all = await Product.bulkCreate(allPokemon.map(pokemon => {
@@ -87,11 +96,13 @@ const syncAndSeed = async () => {
       {isCart:false,address:"3 Messerschmidt Center", userId: usersExample[0].id},
       {isCart:false,address:"4 Dapin Street", userId: usersExample[0].id},
       {isCart:true,address:"123 Esch Lane", userId: usersExample[0].id}]);
+    
       
-    const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
+    //Fixing the associations had to comment out LINEITEM SEED
+    // const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
 
     console.log(`
     Seeding successful!

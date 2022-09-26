@@ -31,30 +31,30 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // POST /api/users
-router.post('/', async (req, res, next) => {
-  try {
-    res.status(201).send(await User.create(req.body));
-  } catch (error) {
-    next(error);
-  }
-});
-
-// router.post("/register", async (req, res, next) => {
+// router.post('/', async (req, res, next) => {
 //   try {
-//     const { username, password, email, fName, lName } = req.body;
-//     const hash = await bcrypt.hash(password, 10)
-//     res.status(201).send(await User.create({
-//       username,
-//       password: hash,
-//       email,
-//       fName,
-//       lName,
-//       isAdmin: false
-//     }));
-//   } catch(error) {
+//     res.status(201).send(await User.create(req.body));
+//   } catch (error) {
 //     next(error);
 //   }
-// })
+// });
+
+router.post("/", async (req, res, next) => {
+  try {
+    const { username, password, email, fName, lName } = req.body;
+    const hash = await bcrypt.hash(password, 10)
+    res.status(201).json(await User.create({
+      username,
+      password: hash,
+      email,
+      fName,
+      lName,
+      isAdmin: false
+    }));
+  } catch(error) {
+    next(error);
+  }
+})
 
 // PUT /api/users/:id
 router.put('/:id', async (req, res, next) => {
