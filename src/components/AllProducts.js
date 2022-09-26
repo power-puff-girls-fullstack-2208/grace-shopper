@@ -15,6 +15,10 @@ const AllProducts = () => {
     const filterProducts = (productArray, filterOptions) => {
         if (filterOptions.length === 0) return productArray;
 
+        console.dir (productArray.filter(card => {
+            console.dir(card)
+            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
+        }))
         return (productArray.filter(card => {
             return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
         }))
@@ -72,6 +76,8 @@ const AllProducts = () => {
     const handleOptions = event => {
         setSort(event.target.value);
     }
+
+    console.dir(appliedFilters);
 
     useEffect(() => {
     }, [appliedFilters, sort]);

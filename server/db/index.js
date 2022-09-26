@@ -71,11 +71,15 @@ const syncAndSeed = async () => {
       // and after bulkCreate, tags are individually added to each product upon checking its types array
 
       // ** previously, creating products and associating tags at the same time created async issues
-      all.forEach(pokemon => {
+      all.forEach(async pokemon => {
         pokemon.types ? pokemon.types.forEach(async type => {
           type ? await pokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
         }) : undefined;
+        await pokemon.save();
       })
+
+      console.log(all);
+
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
