@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
-export const getCart = createAsyncThunk('singleUser/getCart', async (id) =>{
+export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) =>{
     try{
+        //takes userId as param
         const {data} = await axios.get(`api/order/${id}/cart`)
+        console.log(data);
         return data;
     } catch (ex){
         next(ex)
@@ -19,15 +21,11 @@ export const getCart = createAsyncThunk('singleUser/getCart', async (id) =>{
 //     }
 // })
 
-
+const initialState = [];
 
 const cartSlice = createSlice({
     name: "cart",
-    initialState: {
-        cartItems: [],
-        cartTotalQuantity: 0,
-        cartTotalCost: 0,
-    },
+    initialState,
     reducers: {
         // addToCart(state, action){
         //     //action.payload assumes that the product is passed as a payload from a clickHandler
@@ -44,16 +42,15 @@ const cartSlice = createSlice({
         // },
     },
     extraReducers: (builder) => {
-        builder.addCase(getCart.fulfilled, (state, action) => {
-            // Add campus to the state array
+        builder.addCase(getCartThunk.fulfilled, (state, action) => {
+            // Add cart to the state array
+            console.log(action.payload)
             return action.payload;
           });
     }
 })
 
-export const selectCart = (state) => {
-    return state.cart;
-  }; 
+export const selectCart = (state) => state.cart; 
 
-export const { addToCart } = cartSlice.actions;
+// export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -10,6 +10,7 @@ import store from "../src/store/index"
 import User from "./components/User";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Cart from "./components/Cart";
 
 const App = () => {
     return (
@@ -34,6 +35,7 @@ const App = () => {
                         <Route path='/#' element={<br/>/* <Example/> */ }/>
                         
                         {/* add route for your component when you are ready to test it out */}
+                        <Route path = '/cart' element = {<Cart/>}/> 
                     </Routes>
                 </main>
                 <Footer/>

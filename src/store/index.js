@@ -5,7 +5,7 @@ import usersReducer from "../features/usersSlice"
 import authReducer from '../features/authSlice'
 import singleUserReducer from '../features/singleUsersSlice'
 import filterReducer from "../features/filterReducer";
-
+import cartReducer from "../features/cartSlice";
 
 const store = configureStore({
         reducer: {
@@ -15,6 +15,7 @@ const store = configureStore({
             users: usersReducer,
             auth: authReducer,
             singleUser: singleUserReducer,
+            cart: cartReducer,
     }
 });
 
