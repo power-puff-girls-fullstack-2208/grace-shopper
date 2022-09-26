@@ -9,7 +9,7 @@ const Home = () => {
     const products = useSelector(selectProducts);
 
     useEffect(() => {
-        dispatch(getProducts());
+        // dispatch(getProducts());
     }, [dispatch]);
 
     return (
