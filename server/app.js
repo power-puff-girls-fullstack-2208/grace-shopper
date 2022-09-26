@@ -39,22 +39,5 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal server error')
 })
 
-// app.post("/register", async (req, res, next) => {
-//   try {
-//     const { username, password, email, fName, lName } = req.body;
-//     const hash = await bcrypt.hash(password, 10)
-//     res.status(201).json(await User.create({
-//       username,
-//       password: hash,
-//       email,
-//       fName,
-//       lName,
-//       isAdmin: false
-//     }));
-//   } catch(error) {
-//     next(error);
-//   }
-// })
-
 app.listen(PORT, ()=> console.log(`listening on port ${PORT}\ngo --> http://localhost:${PORT}/`));
 module.exports = app;

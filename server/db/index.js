@@ -15,20 +15,21 @@ pokemon.configure({apiKey: '123abc'})
 //line item is the product and the amount of sidproduct
 
 //THIS IS WHAT WE ORIGINALLY HAD
-// User.hasMany(Order);
-// // Tag.belongsToMany(Product, {through: 'Product_Tags'});
-// Product.belongsToMany(Tag, {through: 'Product_Tags'});
-// // Tag.hasMany(Product);
-// LineItem.belongsTo(Product)
-// Order.belongsTo(User);
-// Order.hasMany(LineItem)
-
 User.hasMany(Order);
+// Tag.belongsToMany(Product, {through: 'Product_Tags'});
+Product.belongsToMany(Tag, {through: 'Product_Tags'});
+// Tag.hasMany(Product);
+LineItem.belongsTo(Product)
 Order.belongsTo(User);
-Product.belongsToMany(Order, { through: LineItem });
-Order.belongsToMany(Product, { through: LineItem });
-Product.belongsToMany(Tag, { through: 'Product_Tags'});
-Tag.belongsToMany(Product, { through: 'Product_Tags'});
+Order.hasMany(LineItem)
+
+//THIS IS WHAT AUSTIN SUGGESTS BUT SHOULDNT BE AN ISSUE
+// User.hasMany(Order);
+// Order.belongsTo(User);
+// Product.belongsToMany(Order, { through: LineItem });
+// Order.belongsToMany(Product, { through: LineItem });
+// Product.belongsToMany(Tag, { through: 'Product_Tags'});
+// Tag.belongsToMany(Product, { through: 'Product_Tags'});
 
 const syncAndStart = async () => {
   await conn.sync({ force: false });

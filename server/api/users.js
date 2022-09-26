@@ -56,6 +56,20 @@ router.post("/", async (req, res, next) => {
   }
 })
 
+router.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ where: { username: username }});
+  if(!user) res.status(400).json({error:'User Doesnt Exist'});
+  const dbPassword = user.password
+  bcrypt.compare(password, dbPassword).then((match) => {
+    if (!match) {
+      res.status(400).json({error: "Wrong Username and Password Combination!"});
+    } else {
+      res.json("LOGGED IN!");
+    }
+  });
+});
+
 // PUT /api/users/:id
 router.put('/:id', async (req, res, next) => {
   try {

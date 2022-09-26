@@ -24,7 +24,7 @@ const SingleProduct = () => {
                 <p>{product.releasedOn}<br></br>
                 {product.series}</p>
                 </div>
-                <div className='singleProduct productInfo'>
+                <div className='singleProductInfo'>
                 <h1>{product.name}</h1>
                 <p>{product.descr}</p>
                 <p>Rarity: {product.rarity}  Series: {product.series}</p>
