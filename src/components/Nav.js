@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getRarities, getTypes, selectRarities, selectTypes } from "../features/filterReducer";
-import { selectProducts } from "../features/productsReducer";
+import { getRarities, getSets, getTypes, selectRarities, selectTypes } from "../features/filterReducer";
+import { getProducts, selectProducts } from "../features/productsReducer";
 
 const Nav = () => {
     const dispatch = useDispatch();
@@ -14,6 +14,8 @@ const Nav = () => {
     React.useEffect(() => {
         dispatch(getTypes());
         dispatch(getRarities());
+        dispatch(getProducts());
+        dispatch(getSets());
     }, []);
 
     return (
