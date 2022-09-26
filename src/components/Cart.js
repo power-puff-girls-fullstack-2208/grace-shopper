@@ -14,15 +14,16 @@ export default function Cart() {
         //iffy about this-> const user = useSelector( state => state.getUser(user.id));
 
     const dispatch = useDispatch();
-    //const currentUser = useSelector(state => state.user)//subscribe to the single user state from the store
     const cart = useSelector(selectCart);
     const cards = useSelector(selectProducts);
+
     
     console.log('cart contents: ')
     console.log(cart)
 
     console.log('cards contents: ')
     console.log(cards);
+
 
     useEffect(() => {
         dispatch(getCartThunk(1)); //hard coded right now for the userId from the seed
@@ -33,33 +34,25 @@ export default function Cart() {
 
   return (
     <div>Cart
-        <Nav/>
         <h1>Your Shopping Cart</h1>
-        <div id='card-container'>
-            {cart.lineItems.map((itm) =>  {
-                const card = cards.filter(card => card.id === itm.productId)
-                console.log(card);
-                return (
-                    <div className='singleProduct'>
-                        <h1>{card.name}</h1>
-                        <img src={card.img}/>
-                        <p>{card.descr}</p>
-                        <h3>Price: {card.price}</h3>
-                        <button>Remove from Cart</button>
-                    </div>
-                )
+        <div id='cart-container'>
+            {cart.lineItems && cart.lineItems.length? 
+                cart.lineItems.map((itm) =>  {
+                    const card = cards.find(card => card.id === itm.productId)
+                    return (
+                        <div className='cart-Product' key={itm.id}>
+                            <h1>{card.name}</h1>
+                            <h2>Quantity: {itm.quantity}</h2>
+                            <img src={card.img}/>
+                            <p>{card.descr}</p>
+                            <h3>Price: {card.price}</h3>
 
-            })
+                            <button>Remove from Cart</button>
+                        </div>
+                    )
+                }) 
+                 :null
             }
-        {/* 
-        //map over cart and render everything in it
-            //lineItems.map((itm)=>{
-            //  const product = getProduct(itm.productId)
-            //  *Product image here*
-                *Name*
-                *Price*
-            //})
-        */}
         </div>
     </div>
   )

@@ -10,7 +10,7 @@ export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) =>{
     } catch (ex){
         next(ex)
     }
-})
+});
 
 // export const addToCart = createAsyncThunk('', async () =>{
 //     try{
@@ -24,7 +24,7 @@ export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) =>{
 const initialState = [];
 
 const cartSlice = createSlice({
-    name: "cart",
+    name: 'cart',
     initialState,
     reducers: {
         // addToCart(state, action){
