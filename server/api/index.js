@@ -6,6 +6,10 @@ router.use('/users', require('./users'));
 
 router.use('/auth', require('./auth'))
 
+router.use('/register', require('./register'))
+
+router.use('/login', require('./login'))
+
 module.exports = router;
 
 

@@ -5,6 +5,7 @@ const app = express();
 const volleyball = require('volleyball');
 const PORT = process.env.PORT || 1337;
 const db = require('./db');
+const bodyParser = require("body-parser")
 
 // app.use(cors);
 // app.use(volleyball);
@@ -16,8 +17,10 @@ const db = require('./db');
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static('development-wireframes'))
 //this is where some things should go
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 //testing
 //app.use("/products", require("./api/products"));
