@@ -19,6 +19,7 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: {
         [login.fulfilled]: (state, action) => {
+            console.log(action.payload)
             state.username = action.payload
             state.token = action.payload
         }

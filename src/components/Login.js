@@ -23,7 +23,7 @@ function Login(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+        console.log(form)
         dispatch(login(form))
     }
 
