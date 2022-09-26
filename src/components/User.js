@@ -16,7 +16,7 @@ function User(){
     function handleLogout(e){
         e.preventDefault
         console.log("logout was clicked")
-       return (<Navigate to="/login" />)
+       return (<Navigate to="/login"/>)
     }
     
     return (

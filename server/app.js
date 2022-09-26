@@ -5,6 +5,8 @@ const app = express();
 const volleyball = require('volleyball');
 const PORT = process.env.PORT || 1337;
 const db = require('./db');
+const bcrypt = require('bcrypt');
+const User = require('./db/User');
 
 // app.use(cors);
 // app.use(volleyball);
@@ -23,6 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 //app.use("/products", require("./api/products"));
 
 app.use('/static', express.static(path.join(__dirname, '../public')));
+
+
 
 app.use("/api", require("./api"));
 
