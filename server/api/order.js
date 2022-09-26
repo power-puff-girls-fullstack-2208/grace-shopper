@@ -4,7 +4,8 @@ const Order = require('../db/Order');
 const LineItem = require('../db/LineItem');
 const {Op} = require('sequelize');
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id/cart', async (req, res, next) => {
+    //takes a userId and then returns the user's associated cart
     try {
       const user = await User.findByPk(req.params.id,{
         attributes: {
@@ -16,19 +17,15 @@ router.get('/:id', async (req, res, next) => {
        const cartId = cart[0].dataValues.id;
        
        const cart2 = await Order.findByPk(cartId,{
-        include: 
-            LineItem,
-            // where: {
-            //     quantity: {
-            //         [Op.gt] : 0
-            //     }
-            // }
-        
+        include: {
+            model: LineItem,
+            where: {
+                quantity: {
+                    [Op.gt] : 0
+                }
+            }
+        }
        })
-       console.log("lineItem[0]")
-       console.log(cart2.lineItems[0].dataValues)
-       
-       console.log(cart2);
        res.send(cart2)
     
     } catch (error) {
