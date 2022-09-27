@@ -98,6 +98,39 @@ body {
 .innerContainer img {
   width: 180px;
 }
+#filters-screen {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 0px;
+  margin: 0;
+}
+#filters-form {
+  width: 40vw;
+  border: 2px solid black;
+  background: white;
+  overflow-y: auto;
+  font-size: 0.7em;
+}
+#filters-overlay {
+  width: 60vw;
+  background-color: black;
+  opacity: 0.5;
+}
+.optionsOuter {
+  margin: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.optionsHeader {
+  width: 100%;
+}
+.optionsCheckbox {
+  width: 30%;
+  padding: 2% 0px;
+}
 .singleProductContainer {
   display: flex;
   height: 100%;
