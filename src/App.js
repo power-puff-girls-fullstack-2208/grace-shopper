@@ -22,9 +22,10 @@ const App = () => {
                     <Routes>
                         <Route exact path='/' element={<Home/>}/>
                         {/* route that leads to ALL the cards */}
-                        
-                        <Route path= '/login' element={<Login />} />
-                        <Route path= '/register' element={<Register />} />
+
+                        <Route path= 'users/login' element={<Login />} />
+                        <Route path= 'users/register' element={<Register />} />
+
                         {/* route that leads to all the cards, but filters in cards of a certain type from the nav dropdown */}
                         <Route path='/products/type/:type' element={<AllProducts/>}/>
                         <Route path='/products' element={<AllProducts/>}/>
@@ -33,10 +34,11 @@ const App = () => {
                         <Route path='/products/rarity/:rarity' element={<AllProducts/>}/>
                         {/* route that goes to a view single card given its id */}
                         <Route path= '/users' element={<User />} />
-                        <Route path='/cart' element={<Cart/>/* <Example/> */ }/>
+                        <Route path = '/cart' element = {<Cart/>}/> 
                         <Route path='/#' element={<br/>/* <Example/> */ }/>
                         
                         {/* add route for your component when you are ready to test it out */}
+                        
                     </Routes>
                 </main>
                 <Footer/>
