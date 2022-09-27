@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from '../features/productsReducer';
-import ViewCard from './ViewCard';
 import { selectRarities, selectSets, selectTypes } from '../features/filterReducer';
 import { filterProducts, sortProducts, showFilters, cancelFilters } from './allProductsHelper';
 import AllPagination from './Pagination';
@@ -47,20 +46,16 @@ const AllProducts = () => {
         setSort(event.target.value);
     }
 
-    // useEffect(() => {
-    // }, [appliedFilters, optionalFilter, sort]);
-
     useEffect(() => {
         setAppliedFilters([]);
         setOptionalFilter([]);
         setSort('none');
     }, [type, rarity]);
 
-    console.log(sort);
-
     return (
         <div className = 'productsContainer content'>
             <div><h1>All Products{type ? ' > ' + type : rarity ? ' > ' + rarity : null}</h1></div>
+            {/* div where filters and sorting is prompted */}
             <div className='filtersPrompt'>
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
                 <label htmlFor='filter-options'>Sort products by:</label>
@@ -72,7 +67,7 @@ const AllProducts = () => {
                     <option value='alpha-up'>Alphabetical: Z - A</option>
                 </select>
             </div>
-            <div>Filtered by: {appliedFilters.join(', ')}</div>
+            <div>Filtered by: {appliedFilters.length > 0 ? appliedFilters.join(', ') : 'No additional filters applied'}</div>
             <div id='filters-screen'>
                 <form id='filters-form' onSubmit={applyFilters}>
                     <div id='poke-type' className='optionsOuter'>
