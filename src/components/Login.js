@@ -10,11 +10,11 @@ function Login(){
     const currentUser = useSelector(selectCurrentUser)
     const currentToken = useSelector(selectCurrentToken)
     
-    console.log(currentUser)
-    console.log(currentToken)
+    // console.log(currentUser)
+    // console.log(currentToken)
 
     const [form, setForm] = useState({
-        username: 'rabbit122',
+        username: 'bbrozen',
         password: 'helpme'
       })
     

@@ -2,11 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct, selectProduct } from '../features/singleProductReducer';
 import { useParams } from "react-router-dom";
 import React, { useEffect } from 'react';
+import { selectCurrentUser } from '../features/authSlice';
+import { addToCart } from '../features/cartSlice';
 
 const SingleProduct = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const product = useSelector(selectProduct);
+    const user = useSelector(selectCurrentUser);
+    console.log('this is the current user: ')
+    console.log(user)
 
     useEffect(() => {
         dispatch(getProduct(params.id));
@@ -14,6 +19,15 @@ const SingleProduct = () => {
     }, [dispatch]);
 
     console.dir(product)
+
+    function addToCartHandler(e, userId, productId){
+        e.preventDefault();
+        console.log('this is the userId from the event handler:')
+        console.log(userId);
+        console.log('this is the productId from the event handler:')
+        console.log(productId);
+        dispatch(addToCart(userId, productId));
+    }
 
     return (
         <>
@@ -33,7 +47,7 @@ const SingleProduct = () => {
                 <p><i>Weaknesses: {product.weaknesses}<br></br>
                 Retreat Cost: {product.retreatCost}</i></p>
                 <h3>Price: {product.price}</h3>
-                <button>Add To Cart!</button>
+                <button onClick={(e) => addToCartHandler(e, user.id, product.id)}>Add To Cart!</button>
                 </div>
         </div>
     </>:null}

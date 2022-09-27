@@ -31,7 +31,7 @@ router.get('/:id/cart', async (req, res, next) => {
 });
 
 //route to handle adding to cart from button clicker
-router.put(':id/cart', async (req, res, next) =>{
+router.put('/:id/cart', async (req, res, next) =>{
   //takes userId and then returns the user's cart
   try{
     //clean this up later with helper function
@@ -49,9 +49,15 @@ router.put(':id/cart', async (req, res, next) =>{
        })
     //what do I want to do here?
     //update or create LineItem based on the input from req.body
-    //LineItem.create(quantity: 1, orderId: cartId, productId: req.body.productId)
-
-    
+    let cartLineItem = await cart2.lineItems.find(item => item.productId === req.body.productId)
+    if(cartLineItem){
+      cartLineItem.quantity++;
+    }
+    else{
+      await LineItem.create({quantity: 1, orderId: cartId, productId: req.body.productId})
+    }
+    //what to send? 
+    res.send(cart2)
   }
   catch(error){
     next(error);
