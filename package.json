@@ -6,7 +6,7 @@
     "build": "less-watch-compiler public/src public/style & webpack",
     "build:dev": "npm run build -- --watch --mode=development",
     "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/pokemon_db npm test -- --watch",
-    "start": "JWT=shhh node server/app.js",
+    "start": "JWT=shhh npm run build -- --watch & nodemon server/index.js",
     "seed": "node server/seed.js"
   },
   "keywords": [],
