@@ -1,34 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { Navigate } from "react-router-dom";
-<<<<<<< HEAD
-import { getUser, getCart } from "../features/singleUsersSlice"
-=======
 import { logOut, selectCurrentToken, selectCurrentUser } from "../features/authSlice";
 import { getUser } from "../features/singleUsersSlice"
->>>>>>> main
 import Login from "./Login"
 
 
 function User(){
-<<<<<<< HEAD
-    const { user, loading, error, cart } = useSelector(state => state.singleUser) 
-=======
     const { user, loading, error } = useSelector(state => state.singleUser) 
     const currentUser = useSelector(selectCurrentUser)
     const currentToken = useSelector(selectCurrentToken)
->>>>>>> main
     const dispatch = useDispatch()
     let id 
     if(currentUser) id = currentUser.id
     
     useEffect(() => {
-<<<<<<< HEAD
-        dispatch(getUser(1));
-        dispatch(getCart(1));
-=======
         dispatch(getUser(id))
->>>>>>> main
     }, [dispatch])
 
     // console.log(cart) 

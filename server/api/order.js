@@ -45,16 +45,11 @@ router.put(':id/cart', async (req, res, next) =>{
        const cart2 = await Order.findByPk(cartId,{
         include: {
             model: LineItem,
-            where: {
-                quantity: {
-                    [Op.gt] : 0
-                }
-            }
         }
        })
     //what do I want to do here?
     //update or create LineItem based on the input from req.body
-    //
+    //LineItem.create(quantity: 1, orderId: cartId, productId: req.body.productId)
 
     
   }
