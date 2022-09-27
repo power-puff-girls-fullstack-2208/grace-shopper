@@ -14,6 +14,7 @@ const SingleProduct = () => {
     }, [dispatch]);
 
     console.dir(product)
+    console.log(product.id)
 
     return (
         <>
