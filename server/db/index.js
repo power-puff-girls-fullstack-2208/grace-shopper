@@ -17,12 +17,12 @@ pokemon.configure({apiKey: '123abc'})
 
 //THIS IS WHAT WE ORIGINALLY HAD
 User.hasMany(Order);
-// Tag.belongsToMany(Product, {through: 'Product_Tags'});
-Product.belongsToMany(Tag, {through: 'Product_Tags'});
-// Tag.hasMany(Product);
-LineItem.belongsTo(Product)
 Order.belongsTo(User);
-Order.hasMany(LineItem)
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
+Product.belongsToMany(Tag, { through: 'Product_Tags'});
+Tag.belongsToMany(Product, { through: 'Product_Tags'});
+  
 
 //THIS IS WHAT AUSTIN SUGGESTS BUT SHOULDNT BE AN ISSUE
 // User.hasMany(Order);
@@ -41,7 +41,23 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 40})).data;
+    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 100})).data;
+
+    // it feels wrong to put this here but this is the only way it will work
+    // adds tags to Product instances after they are created
+    // this needs to be in here so the hook can refer to allPokemon which has a card's types
+    Product.afterBulkCreate(async (products, options) => {
+      products.map(async pokemon => {
+        // the card is the card that was created
+        const card = await Product.findByPk(pokemon.id);
+        // thisTypes are the types of card (not stored in card) found by referencing allPokemon
+        const thisTypes = allPokemon.find(aCard => aCard.id === card.cardId).types;
+        thisTypes ? thisTypes.forEach(async type => {
+          console.log(type);
+          await card.addTag((await Tag.findOne({where: {type: type}})).id);
+        }) : undefined;
+      })
+    })
 
     const usersExample = await User.bulkCreate([{username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
@@ -77,16 +93,7 @@ const syncAndSeed = async () => {
           series: pokemon.set.series,
           releasedOn: pokemon.set.releaseDate
         }
-      }));
-      // above creates the products first all at once
-      // and after bulkCreate, tags are individually added to each product upon checking its types array
-
-      // ** previously, creating products and associating tags at the same time created async issues
-      all.forEach(pokemon => {
-        pokemon.types ? pokemon.types.forEach(async type => {
-          type ? await pokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
-        }) : undefined;
-      })
+      }), { individualHooks: true });
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
@@ -110,9 +117,6 @@ const syncAndSeed = async () => {
     Seeding successful!
   `);
 }
-
-//test with seeding
-//see what the database looks like and refactor isntance methods on User if necessary
 
 module.exports = {
     conn,
