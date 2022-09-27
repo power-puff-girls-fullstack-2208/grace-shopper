@@ -1,4 +1,6 @@
 const conn = require('./conn');
+const User = require('./User');
+const Tag = require('./Tag');
 const { Sequelize } = conn;
 
 const Product = conn.define('product', {
@@ -53,5 +55,7 @@ const Product = conn.define('product', {
         type: Sequelize.STRING,
     }
 })
+
+
 
 module.exports = Product;
