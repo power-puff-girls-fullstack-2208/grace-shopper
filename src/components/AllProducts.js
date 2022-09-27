@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from '../features/productsReducer';
 import ViewCard from './ViewCard';
 import { selectRarities, selectSets, selectTypes } from '../features/filterReducer';
 import { filterProducts, sortProducts, showFilters, cancelFilters } from './allProductsHelper';
+import AllPagination from './Pagination';
+import ProductPaginated from './ProductPaginated';
 
 const AllProducts = () => {
+
     const { type, rarity } = useParams();
     const types = useSelector(selectTypes);
     const rarities = useSelector(selectRarities);
@@ -115,9 +118,12 @@ const AllProducts = () => {
                 <div id='filters-overlay' onClick={cancelFilters}></div>
             </div>
             <div className="contentContainer">
-                {products && products.length ? products.map((product) =>
+                {products.length > 0 ? 
+                    <AllPagination cards={products} RenderComponent={ProductPaginated} title="Cards" pageLimit={10} dataLimit={40}/>
+                : null}
+                {/* {products && products.length ? products.map((product) =>
                 <ViewCard card={product} key={product.id}/>
-                ): 'Loading products!'}
+                ): 'Loading products!'} */}
             </div>
         </div>
     )
