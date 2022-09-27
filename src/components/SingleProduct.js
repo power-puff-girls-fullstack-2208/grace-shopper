@@ -26,7 +26,8 @@ const SingleProduct = () => {
         console.log(userId);
         console.log('this is the productId from the event handler:')
         console.log(productId);
-        dispatch(addToCart(userId, productId));
+
+        dispatch(addToCart(+userId, +productId));
     }
 
     return (
