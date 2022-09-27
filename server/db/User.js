@@ -1,7 +1,10 @@
+const Order = require('./Order');
+
 const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
 const jwt = require('jsonwebtoken');
+
 
 const User = conn.define('user', {
     username:{
@@ -117,5 +120,16 @@ User.prototype.createOrder = async function(){
     const cart = await this.getCart();
     cart.isCart === false;
 }
+
+User.afterCreate(async (user, options) => {
+    try {
+        const cart = await Order.create({isCart: true, address: null, userId: user.id})
+        console.log(cart)
+    } catch (ex) {
+        console.log(ex)
+    }
+    
+})
+
 
 module.exports = User;
