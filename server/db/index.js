@@ -8,13 +8,6 @@ const LineItem = require('./LineItem');
 const { response } = require('express');
 const pokemon = require('pokemontcgsdk');
 pokemon.configure({apiKey: '123abc'})
-//what are the models for an ecommerce website?
-//users products orders tag
-
-//line item is the product and the amount of sidproduct
-
-// LineItem.belongsTo(Product)
-// Order.hasMany(LineItem)
 
 User.hasMany(Order);
 Order.belongsTo(User);
@@ -36,11 +29,13 @@ const syncAndSeed = async () => {
     const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 5})).data;
 
     // it feels wrong to put this here but this is the only way it will work
+    // adds tags to Product instances after they are created
+    // this needs to be in here so the hook can refer to allPokemon which has a card's types
     Product.afterBulkCreate(async (products, options) => {
-      // goes through each object passed into bulkCreate
       products.map(async pokemon => {
         // the card is the card that was created
         const card = await Product.findByPk(pokemon.id);
+        // thisTypes are the types of card (not stored in card) found by referencing allPokemon
         const thisTypes = allPokemon.find(aCard => aCard.id === card.cardId).types;
         thisTypes ? thisTypes.forEach(async type => {
           console.log(type);
@@ -84,19 +79,6 @@ const syncAndSeed = async () => {
           releasedOn: pokemon.set.releaseDate
         }
       }), { individualHooks: true });
-      // above creates the products first all at once
-      // and after bulkCreate, tags are individually added to each product upon checking its types array
-      // ** previously, creating products and associating tags at the same time created async issues
-    //   allPokemon.forEach(async pokemon => {
-    //     pokemon.types ? pokemon.types.forEach(async type => {
-    //       type ? await all.find((card, ind) => {console.log('iteration ' + ind);
-    //       console.log(card.cardId);console.log(pokemon.id);return card.CardId === pokemon.id
-    //     }).addTag((await Tag.findOne({where: {type: type}})).id)
-    //     : null;
-    //   }) : undefined;
-    // })
-    
-    // console.dir(all)
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
@@ -118,9 +100,6 @@ const syncAndSeed = async () => {
     Seeding successful!
   `);
 }
-
-//test with seeding
-//see what the database looks like and refactor isntance methods on User if necessary
 
 module.exports = {
     conn,

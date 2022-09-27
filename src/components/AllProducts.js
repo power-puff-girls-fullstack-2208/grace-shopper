@@ -12,18 +12,17 @@ const AllProducts = () => {
     const rarities = useSelector(selectRarities);
     const sets = useSelector(selectSets);
 
+    // filters productArray according to filterOptions passed in
     const filterProducts = (productArray, filterOptions) => {
+        // if there are no filterOptions to apply, returns productArray as is
         if (filterOptions.length === 0) return productArray;
 
-        console.dir (productArray.filter(card => {
-            console.dir(card)
-            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
-        }))
         return (productArray.filter(card => {
             return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
         }))
     }
 
+    // sorts products by ascending/descending $/ABC
     const sortProducts = (productArray, sortOption) => {
         switch(sortOption) {
             case 'price-asc':
@@ -38,9 +37,14 @@ const AllProducts = () => {
                 return productArray;
         }
     }
+
+    // optionalFilter is the state of the page changing as you check/uncheck filters
     const [optionalFilter, setOptionalFilter] = React.useState([]);
+    // appliedFilters is optionalFilter but persists after application
     const [appliedFilters, setAppliedFilters] = React.useState([]);
+    // the sorting method, if there is any selected; default is no sorting
     const [sort, setSort] = React.useState('none');
+    // products will be selected by being run through filters and sorting if any are present
     const products = filterProducts(sortProducts(type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts), sort), appliedFilters);
 
 
@@ -77,8 +81,6 @@ const AllProducts = () => {
         setSort(event.target.value);
     }
 
-    console.dir(appliedFilters);
-
     useEffect(() => {
     }, [appliedFilters, sort]);
     return (
@@ -87,11 +89,11 @@ const AllProducts = () => {
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
                 <label htmlFor='filter-options'>Filter products by:</label>
                 <select name='filter-options' onChange={handleOptions} defaultValue={sort}>
+                    <option value='none'>No sorting</option>
                     <option value='price-asc'>Price: $ - $$$</option>
                     <option value='price-desc'>Price: $$$ - $</option>
-                    <option value='alpha-up'>Alphabetical: Z - A</option>
                     <option value='alpha-down'>Alphabetical: A - Z</option>
-                    <option value='none'>No sorting</option>
+                    <option value='alpha-up'>Alphabetical: Z - A</option>
                 </select>
             </div>
             <div id='filters-screen'>
