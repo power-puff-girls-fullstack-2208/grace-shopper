@@ -27,7 +27,7 @@ const AllPagination = ({cards, RenderComponent, title, pageLimit, dataLimit}) =>
 
     const getPaginationGroup = () => {
         let start = Math.floor((activePage - 1) / pageLimit) * pageLimit;
-        return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+        return new Array(pages).fill().map((_, idx) => start + idx + 1);
     };
 
     return (
