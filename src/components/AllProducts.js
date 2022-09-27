@@ -44,14 +44,16 @@ const AllProducts = () => {
         setSort(event.target.value);
     }
 
-    useEffect(() => {
-    }, [appliedFilters, optionalFilter, sort]);
+    // useEffect(() => {
+    // }, [appliedFilters, optionalFilter, sort]);
 
     useEffect(() => {
         setAppliedFilters([]);
         setOptionalFilter([]);
         setSort('none');
-    }, [type, rarity])
+    }, [type, rarity]);
+
+    console.log(sort);
 
     return (
         <div className = 'productsContainer content'>
@@ -59,7 +61,7 @@ const AllProducts = () => {
             <div className='filtersPrompt'>
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
                 <label htmlFor='filter-options'>Sort products by:</label>
-                <select name='filter-options' onChange={handleOptions} defaultValue={sort}>
+                <select name='filter-options' onChange={handleOptions} value={sort}>
                     <option value='none'>No sorting</option>
                     <option value='price-asc'>Price: $ - $$$</option>
                     <option value='price-desc'>Price: $$$ - $</option>
