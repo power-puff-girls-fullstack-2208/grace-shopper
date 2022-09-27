@@ -39,19 +39,26 @@ const AllProducts = () => {
         }
     }
 
-    // will sort the products according to the sort method
+    // will sort the products according to the sort method chosen
     const handleOptions = event => {
         setSort(event.target.value);
     }
 
     useEffect(() => {
-    }, [appliedFilters, sort]);
+    }, [appliedFilters, optionalFilter, sort]);
+
+    useEffect(() => {
+        setAppliedFilters([]);
+        setOptionalFilter([]);
+        setSort('none');
+    }, [type, rarity])
 
     return (
         <div className = 'productsContainer content'>
+            <div><h1>All Products{type ? ' > ' + type : rarity ? ' > ' + rarity : null}</h1></div>
             <div className='filtersPrompt'>
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
-                <label htmlFor='filter-options'>Filter products by:</label>
+                <label htmlFor='filter-options'>Sort products by:</label>
                 <select name='filter-options' onChange={handleOptions} defaultValue={sort}>
                     <option value='none'>No sorting</option>
                     <option value='price-asc'>Price: $ - $$$</option>
@@ -60,6 +67,7 @@ const AllProducts = () => {
                     <option value='alpha-up'>Alphabetical: Z - A</option>
                 </select>
             </div>
+            <div>Filtered by: {appliedFilters.join(', ')}</div>
             <div id='filters-screen'>
                 <form id='filters-form' onSubmit={applyFilters}>
                     <div id='poke-type' className='optionsOuter'>
