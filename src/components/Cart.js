@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartThunk, selectCart } from '../features/cartSlice';
 import { selectProducts, getProducts } from '../features/productsReducer';
-import Nav from './Nav';
+import { selectCurrentUser } from '../features/authSlice';
 
 export default function Cart() {
 
-     //check if User is logged in 
-        //hard coded example auth
-        //const token = User.authenticate("cplace0", "WvUcrbJTJg5Z")
-    //fetch the User
-        //user = User.findByToken(token)
-        //iffy about this-> const user = useSelector( state => state.getUser(user.id));
+    const currentUser = useSelector(selectCurrentUser)
+
+    let id; 
+    if(currentUser) id = currentUser.id;
+
 
     const dispatch = useDispatch();
     const cart = useSelector(selectCart);
@@ -26,7 +25,7 @@ export default function Cart() {
 
 
     useEffect(() => {
-        dispatch(getCartThunk(1)); //hard coded right now for the userId from the seed
+        dispatch(getCartThunk(id)); //hard coded right now for the userId from the seed
         dispatch(getProducts())
     }, [dispatch]);
 
