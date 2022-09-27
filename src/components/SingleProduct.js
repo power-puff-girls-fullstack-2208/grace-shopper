@@ -20,14 +20,9 @@ const SingleProduct = () => {
 
     console.dir(product)
 
-    function addToCartHandler(e, userId, productId){
+    const addToCartHandler = async (e, userId, productId) =>{
         e.preventDefault();
-        console.log('this is the userId from the event handler:')
-        console.log(userId);
-        console.log('this is the productId from the event handler:')
-        console.log(productId);
-
-        dispatch(addToCart(+userId, +productId));
+        await dispatch(addToCart({ userId, productId } ) );
     }
 
     return (

@@ -12,10 +12,8 @@ export const getCartThunk = createAsyncThunk('cart/getCartThunk', async (id) =>{
     }
 });
 
-export const addToCart = createAsyncThunk('cart/addToCart', async (userId, productId) =>{
+export const addToCart = createAsyncThunk('cart/addToCart', async ( { userId, productId } ) =>{
     try{
-        console.log(userId)
-        console.log(productId)
         const {data} = await axios.put(`/api/order/${userId}/cart/${productId}`)
         console.log('expected data from api call: ');
         console.log(data);

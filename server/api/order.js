@@ -50,12 +50,21 @@ router.put('/:userId/cart/:productId', async (req, res, next) =>{
         }
        })
     //update or create LineItem based on the input from req.body
-    console.log('this is req.params.productId:');
-    console.log(req.params.productId)
-    let cartLineItem = await cart2.lineItems.find(item => item.productId === req.params.productId)
+    console.log('this is cart2:');
+    console.dir(cart2.lineItems[0])
+    console.log('this is req.params.productId')
+    console.dir(req.params.productId)
+    
+    const paramsProductId = Number(req.params.productId)
 
-    if(cartLineItem){
-      cartLineItem.quantity++;
+    let cartLineItem = cart2.lineItems.filter(item => item.dataValues.productId === paramsProductId)
+
+    console.log('this is cartLineItem')
+    console.log(cartLineItem)
+
+    if(cartLineItem.length){
+        const lineItemToUpdate = await LineItem.findByPk(cartLineItem[0].dataValues.id)
+        await lineItemToUpdate.update({quantity: cartLineItem[0].dataValues.quantity + 1})
     }
     else{
       await LineItem.create({quantity: 1, orderId: cartId, productId: req.params.productId})
