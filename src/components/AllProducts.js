@@ -1,42 +1,16 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, selectProducts } from '../features/productsReducer';
+import { selectProducts } from '../features/productsReducer';
 import ViewCard from './ViewCard';
-import { getRarities, getSets, getTypes, selectRarities, selectSets, selectTypes } from '../features/filterReducer';
+import { selectRarities, selectSets, selectTypes } from '../features/filterReducer';
+import { filterProducts, sortProducts, showFilters, cancelFilters } from './allProductsHelper';
 
 const AllProducts = () => {
-    const dispatch = useDispatch();
     const { type, rarity } = useParams();
     const types = useSelector(selectTypes);
     const rarities = useSelector(selectRarities);
     const sets = useSelector(selectSets);
-
-    // filters productArray according to filterOptions passed in
-    const filterProducts = (productArray, filterOptions) => {
-        // if there are no filterOptions to apply, returns productArray as is
-        if (filterOptions.length === 0) return productArray;
-
-        return (productArray.filter(card => {
-            return (filterOptions.includes(card.rarity) || filterOptions.includes(card.series) || card.tags.some(tag => filterOptions.includes(tag.type)));
-        }))
-    }
-
-    // sorts products by ascending/descending $/ABC
-    const sortProducts = (productArray, sortOption) => {
-        switch(sortOption) {
-            case 'price-asc':
-                return [...productArray].sort((a, b) => parseFloat(a.price) > parseFloat(b.price) ? 1 : parseFloat(a.price) < parseFloat(b.price) ? -1 : 0)
-            case 'price-desc':
-                return [...productArray].sort((a, b) => parseFloat(a.price) < parseFloat(b.price) ? 1 : parseFloat(a.price) > parseFloat(b.price) ? -1 : 0)
-            case 'alpha-up':
-                return [...productArray].sort((a, b) => a.name < b.name ? 1 : a.name > b.name ? -1 : 0)
-            case 'alpha-down':
-                return [...productArray].sort((a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0)
-            case 'none':
-                return productArray;
-        }
-    }
 
     // optionalFilter is the state of the page changing as you check/uncheck filters
     const [optionalFilter, setOptionalFilter] = React.useState([]);
@@ -47,25 +21,13 @@ const AllProducts = () => {
     // products will be selected by being run through filters and sorting if any are present
     const products = filterProducts(sortProducts(type || rarity ? useSelector(selectProducts).filter(card => card.tags.some(tag => tag.type === type) || card.rarity === rarity) : useSelector(selectProducts), sort), appliedFilters);
 
-
-    const showFilters = () => {
-        const filtersScreen = document.querySelector('#filters-screen');
-        filtersScreen.style.display = 'flex';
-        document.body.style.overflowY = 'hidden';
-    }
-
-    const cancelFilters = () => {
-        const filtersScreen = document.querySelector('#filters-screen');
-        filtersScreen.style.display = 'none';
-        document.body.style.overflowY = 'auto';
-    }
-
     const applyFilters = function(event) {
         event.preventDefault();
         setAppliedFilters(optionalFilter);
         cancelFilters();
     }
 
+    // toggles the checkmark
     const handleOptionCheckboxes = event => {
         if (event.target.checked)  {
             setOptionalFilter([...optionalFilter, event.target.id])
@@ -77,12 +39,14 @@ const AllProducts = () => {
         }
     }
 
+    // will sort the products according to the sort method
     const handleOptions = event => {
         setSort(event.target.value);
     }
 
     useEffect(() => {
     }, [appliedFilters, sort]);
+
     return (
         <div className = 'productsContainer content'>
             <div className='filtersPrompt'>
@@ -135,7 +99,7 @@ const AllProducts = () => {
                     </div>
                     <div id='filter-buttons'>
                         <button onClick={cancelFilters}>Cancel</button>
-                        <button type='submit' onClick={() => console.log('submitted!')}>Apply</button>
+                        <button type='submit'>Apply</button>
                     </div>
                 </form>
                 <div id='filters-overlay' onClick={cancelFilters}></div>
