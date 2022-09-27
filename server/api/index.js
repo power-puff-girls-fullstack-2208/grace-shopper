@@ -8,6 +8,10 @@ router.use('/auth', require('./auth'));
 
 router.use('/order', require('./order')); 
 
+router.use('/register', require('./register'))
+
+router.use('/login', require('./login'))
+
 module.exports = router;
 
 

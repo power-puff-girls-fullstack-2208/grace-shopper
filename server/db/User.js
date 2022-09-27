@@ -56,7 +56,7 @@ const User = conn.define('user', {
 
 //create authentication
 User.prototype.generateToken = function() {
-    return jwt.sign({ id: this.id }, process.env.JWT);
+    return jwt.sign({ id: this.id, username: this.username, password: this.password }, process.env.JWT);
 
 }
 
