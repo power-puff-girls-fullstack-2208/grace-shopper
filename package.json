@@ -5,6 +5,10 @@
   "scripts": {
     "build:dev": "less-watch-compiler public/src public/style & webpack",
     "build": "lessc public/src/style.less public/style/style.css & webpack",
+<<<<<<< HEAD
+=======
+    "test:dev": "QUIET=true JWT=shh DATABASE_URL=postgres://localhost/pokemon_db npm test -- --watch",
+>>>>>>> main
     "start": "JWT=shhh npm run build:dev -- --watch & nodemon server/index.js",
     "seed": "node server/seed.js"
   },
