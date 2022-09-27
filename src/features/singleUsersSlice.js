@@ -11,10 +11,22 @@ export const getUser = createAsyncThunk('singleUser/getUser', async (id) => {
     }
 })
 
+//thunk that gets the cart goes here
+export const getCart = createAsyncThunk('singleUser/getCart', async (id) =>{
+    try{
+        const {data} = await axios.get(`api/order/${id}`)
+        return data;
+    } catch (ex){
+        next(ex)
+    }
+})
+
   const initialState = {
     loading: false,
     user: {},
+    cart: {},
     error: ''
+
 }
 
 const userSlice = createSlice({
@@ -31,8 +43,14 @@ const userSlice = createSlice({
         },
         [getUser.rejected]: (state) => {
             state.loading = false
+        },
+        [getCart.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.cart = action.payload;
         }
     }    
 })
+
+
 
 export default userSlice.reducer

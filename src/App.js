@@ -34,10 +34,11 @@ const App = () => {
                         <Route path='/products/rarity/:rarity' element={<AllProducts/>}/>
                         {/* route that goes to a view single card given its id */}
                         <Route path= '/users' element={<User />} />
-                        <Route path='/cart' element={<Cart/>/* <Example/> */ }/>
+                        <Route path = '/cart' element = {<Cart/>}/> 
                         <Route path='/#' element={<br/>/* <Example/> */ }/>
                         
                         {/* add route for your component when you are ready to test it out */}
+                        
                     </Routes>
                 </main>
                 <Footer/>

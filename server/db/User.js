@@ -90,21 +90,20 @@ User.authenticate = async function ({ username, password }) {
 
 //cart prototypes
 User.prototype.getCart = async function(){
-    const cart = await this.getOrders().filter(order => order.isCart);
+    const orders = await this.getOrders();
+    const cart = await orders.filter(order => order.dataValues.isCart === true);
     return cart;
 }
 
 User.prototype.addToCart = async function(productId){
-//    grab the order associated with the user
-//    orders are your cart
+
     const cart = await this.getCart();
     //find this cart's line item where productId = product.Id
     const lineItem = await cart.getLineItems().filter(item => item.productId === productId);
     //increment line item quantity field
     lineItem.quantity++;
 
-    //maybe product should be appended to lineItem and then lineItem appended to Cart?
-    //maybe solved by findOrCreate in the api (TBD)
+
 }
 
 User.prototype.removeFromCart = async function(){

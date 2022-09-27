@@ -14,14 +14,13 @@ pokemon.configure({apiKey: '123abc'})
 //users products orders tag
 
 //line item is the product and the amount of sidproduct
-
-//THIS IS WHAT WE ORIGINALLY HAD
 User.hasMany(Order);
+// Tag.belongsToMany(Product, {through: 'Product_Tags'});
+Product.belongsToMany(Tag, {through: 'Product_Tags'});
+// Tag.hasMany(Product);
+LineItem.belongsTo(Product)
 Order.belongsTo(User);
-Product.belongsToMany(Order, { through: LineItem });
-Order.belongsToMany(Product, { through: LineItem });
-Product.belongsToMany(Tag, { through: 'Product_Tags'});
-Tag.belongsToMany(Product, { through: 'Product_Tags'});
+Order.hasMany(LineItem)
   
 
 //THIS IS WHAT AUSTIN SUGGESTS BUT SHOULDNT BE AN ISSUE
@@ -53,7 +52,6 @@ const syncAndSeed = async () => {
         // thisTypes are the types of card (not stored in card) found by referencing allPokemon
         const thisTypes = allPokemon.find(aCard => aCard.id === card.cardId).types;
         thisTypes ? thisTypes.forEach(async type => {
-          console.log(type);
           await card.addTag((await Tag.findOne({where: {type: type}})).id);
         }) : undefined;
       })
@@ -107,11 +105,12 @@ const syncAndSeed = async () => {
       {isCart:true,address:"123 Esch Lane", userId: usersExample[0].id}]);
     
       
+    //const lineItemExample = await LineItem.bulkCreate([{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1},{quantity: 1}]);
     //Fixing the associations had to comment out LINEITEM SEED
-    // const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
-    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
-    //   {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
-    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
+    const lineItemExample = await LineItem.bulkCreate([{quantity: 1, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
+      {quantity: 1, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
+      {quantity: 1, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 1, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
+      {quantity: 1, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
 
     console.log(`
     Seeding successful!

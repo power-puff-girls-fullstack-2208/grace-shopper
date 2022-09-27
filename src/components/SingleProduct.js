@@ -44,13 +44,3 @@ const SingleProduct = () => {
 export default SingleProduct;
     
 
-{/* <body><input id='quantity' type='number' min={0}>
-<button onclick="increment()">+</button>
-<button onclick="decrement()">-</button>
-<script>
-function increment() {
-document.getElementById('quantity').stepUp()
-}
-function decrement() {
-document.getElementById('quantity').stepDown()
-} </script><button>Add To Cart!</button></input></body> */}
