@@ -120,10 +120,7 @@ const AllProducts = () => {
             <div className="contentContainer">
                 {products.length > 0 ? 
                     <AllPagination cards={products} RenderComponent={ProductPaginated} title="Cards" pageLimit={10} dataLimit={40}/>
-                : null}
-                {/* {products && products.length ? products.map((product) =>
-                <ViewCard card={product} key={product.id}/>
-                ): 'Loading products!'} */}
+                : 'Loading up Pokemon...'}
             </div>
         </div>
     )

@@ -28,57 +28,32 @@ const AllPagination = ({cards, RenderComponent, title, pageLimit, dataLimit}) =>
     const getPaginationGroup = () => {
         let start = Math.floor((activePage - 1) / pageLimit) * pageLimit;
         return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
-      };
+    };
 
-    //   {console.log(props)}
-
-      return (
+    return (
         <div>
-      
-          {/* show the posts, 10 posts at a time */}
-          {/* <div className="dataContainer">
-            {getPaginatedData().map((d, idx) => (
-              <RenderComponent key={idx} data={d} />
-            ))}
-          </div> */}
-
-          <ProductPaginated products={getPaginatedData()}/>
-      
-          {/* show the pagiantion
-              it consists of next and previous buttons
-              along with page numbers, in our case, 5 page
-              numbers at a time
-          */}
-          <div className="pagination">
+            <ProductPaginated products={getPaginatedData()}/>
+        
+            <div className="pagination">
             {/* previous button */}
-            <button
-              onClick={previousPage}
-              className={`prev ${activePage === 1 ? 'disabled' : ''}`}
-            >
-              prev
+            <button onClick={previousPage} className={`prev ${activePage === 1 ? 'disabled' : ''}`}>
+                prev
             </button>
-      
+        
             {/* show page numbers */}
             {getPaginationGroup().map((item, index) => (
-              <button
-                key={index}
-                onClick={changePage}
-                className={`paginationItem ${activePage === item ? 'active' : null}`}
-              >
+                <button key={index} onClick={changePage} className={`paginationItem ${activePage === item ? 'active' : null}`}>
                 <span>{item}</span>
-              </button>
+                </button>
             ))}
-      
+        
             {/* next button */}
-            <button
-              onClick={nextPage}
-              className={`next ${activePage === pages ? 'disabled' : ''}`}
-            >
-              next
+            <button onClick={nextPage} className={`next ${activePage === pages ? 'disabled' : ''}`}>
+                next
             </button>
-          </div>
+            </div>
         </div>
-      );
+        );
 }
 
 export default AllPagination;
