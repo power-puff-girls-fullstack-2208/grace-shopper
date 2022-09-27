@@ -52,7 +52,6 @@ const syncAndSeed = async () => {
         // thisTypes are the types of card (not stored in card) found by referencing allPokemon
         const thisTypes = allPokemon.find(aCard => aCard.id === card.cardId).types;
         thisTypes ? thisTypes.forEach(async type => {
-          console.log(type);
           await card.addTag((await Tag.findOne({where: {type: type}})).id);
         }) : undefined;
       })
