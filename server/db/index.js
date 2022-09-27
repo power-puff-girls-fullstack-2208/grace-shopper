@@ -13,13 +13,16 @@ pokemon.configure({apiKey: '123abc'})
 
 //line item is the product and the amount of sidproduct
 
+// LineItem.belongsTo(Product)
+// Order.hasMany(LineItem)
+
 User.hasMany(Order);
-// Tag.belongsToMany(Product, {through: 'Product_Tags'});
-Product.belongsToMany(Tag, {through: 'Product_Tags'});
-// Tag.hasMany(Product);
-LineItem.belongsTo(Product)
 Order.belongsTo(User);
-Order.hasMany(LineItem)
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
+Product.belongsToMany(Tag, { through: 'Product_Tags'});
+Tag.belongsToMany(Product, { through: 'Product_Tags'});
+  
 
 const syncAndStart = async () => {
   await conn.sync({ force: false });
@@ -30,7 +33,21 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 40})).data;
+    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 5})).data;
+
+    // it feels wrong to put this here but this is the only way it will work
+    Product.afterBulkCreate(async (products, options) => {
+      // goes through each object passed into bulkCreate
+      products.map(async pokemon => {
+        // the card is the card that was created
+        const card = await Product.findByPk(pokemon.id);
+        const thisTypes = allPokemon.find(aCard => aCard.id === card.cardId).types;
+        thisTypes ? thisTypes.forEach(async type => {
+          console.log(type);
+          await card.addTag((await Tag.findOne({where: {type: type}})).id);
+        }) : undefined;
+      })
+    })
 
     const usersExample = await User.bulkCreate([{id:1,username:"cplace0",password:"WvUcrbJTJg5Z",email:"cplace0@house.gov",fName:"Connie",lName:"Place", isAdmin: true},
       {id:2,username:"breeveley1",password:"JqCwce1EzJJ",email:"breeveley1@privacy.gov.au",fName:"Benedick",lName:"Reeveley"},
@@ -66,20 +83,20 @@ const syncAndSeed = async () => {
           series: pokemon.set.series,
           releasedOn: pokemon.set.releaseDate
         }
-      }));
+      }), { individualHooks: true });
       // above creates the products first all at once
       // and after bulkCreate, tags are individually added to each product upon checking its types array
-
       // ** previously, creating products and associating tags at the same time created async issues
-      all.forEach(async pokemon => {
-        pokemon.types ? pokemon.types.forEach(async type => {
-          type ? await pokemon.addTag((await Tag.findOne({where: {type: type}})).id) : null;
-        }) : undefined;
-        await pokemon.save();
-      })
-
-      console.log(all);
-
+    //   allPokemon.forEach(async pokemon => {
+    //     pokemon.types ? pokemon.types.forEach(async type => {
+    //       type ? await all.find((card, ind) => {console.log('iteration ' + ind);
+    //       console.log(card.cardId);console.log(pokemon.id);return card.CardId === pokemon.id
+    //     }).addTag((await Tag.findOne({where: {type: type}})).id)
+    //     : null;
+    //   }) : undefined;
+    // })
+    
+    // console.dir(all)
 
     const ordersExample = await Order.bulkCreate([{isCart:false,address:"044 Holy Cross Trail", userId: usersExample[0].id},
       {isCart:false,address:"1311 Utah Lane", userId: usersExample[0].id},
@@ -92,10 +109,10 @@ const syncAndSeed = async () => {
       {isCart:false,address:"4 Dapin Street", userId: usersExample[0].id},
       {isCart:true,address:"123 Esch Lane", userId: usersExample[0].id}]);
       
-    const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
-      {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
+    // const lineItemExample = await LineItem.bulkCreate([{quantity: 0, productId: all[0].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[4].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id },{quantity: 0, productId: all[1].id,orderId: ordersExample[9].id}, {quantity: 0, productId: all[3].id, orderId: ordersExample[9].id},
+    //   {quantity: 0, productId: all[2].id, orderId: ordersExample[9].id},{quantity: 0, productId: all[1].id, orderId: ordersExample[9].id}]);
 
     console.log(`
     Seeding successful!

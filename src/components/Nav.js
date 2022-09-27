@@ -39,7 +39,7 @@ const Nav = () => {
                     </ul>
                 </li>
                 <li><Link to='/users'>User</Link></li>
-                <li><Link to='#'>Cart</Link></li>
+                <li><Link to='/cart'>Cart</Link></li>
             </ul>
         </div>
     )
