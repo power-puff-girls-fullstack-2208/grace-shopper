@@ -1,1 +1,1 @@
-web: JWT=shhh npm run build & node server/seed.js
+web: JWT=shhh PGSSLMODE=require lessc public/src/style.less public/style/style.css ; webpack ; node server/seed.js
