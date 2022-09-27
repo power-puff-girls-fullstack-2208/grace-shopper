@@ -67,7 +67,7 @@ router.post("/login", async (req, res) => {
         maxAge: 2.592e+9,
         httpOnly: true
       })
-      res.json("LOGGED IN!");
+      res.send({user, accessToken});
     }
   });
 });

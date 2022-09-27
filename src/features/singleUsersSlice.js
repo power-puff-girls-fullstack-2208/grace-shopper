@@ -7,7 +7,7 @@ export const getUser = createAsyncThunk('singleUser/getUser', async (id) => {
         return data
     }
     catch (ex){
-        next(ex)
+        console.log(ex)
     }
 })
 

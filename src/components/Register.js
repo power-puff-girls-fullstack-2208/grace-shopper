@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import { addNewUser } from '../features/usersSlice'
+import User from "./User";
 
 function Register(){
-
+    const [ user, setUser ] = useState({})
     const [form, setForm] = useState({
         username: '',
         email: '',
@@ -23,8 +24,12 @@ function Register(){
     
       const handleSubmit = (e) => {
         e.preventDefault()
+
+        setUser(form)
+        console.log(user)
         dispatch(addNewUser(form));
       }
+
 
     return (
         <div className="full-screen-container">
@@ -61,7 +66,7 @@ function Register(){
                     </div>
 
                     <button type="submit" className="login-button">Create User</button>
-                    <Link to="/login" ><p className="register-link">You have an account? Login</p></Link>
+                    <Link to="/users/login" ><p className="register-link">You have an account? Login</p></Link>
                     {/* <div id="signInDiv"></div> */}
                 </form>
             </div>
@@ -70,3 +75,9 @@ function Register(){
 }
 
 export default Register
+
+
+// <div className="registered">
+//                 <h3>Thank you for reigstering!</h3>
+//                 <Link to="/users/login"><p>Back to Login</p></Link>
+//             </div>

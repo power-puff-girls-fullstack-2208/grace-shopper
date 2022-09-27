@@ -9,6 +9,7 @@ const { response } = require('express');
 const pokemon = require('pokemontcgsdk');
 pokemon.configure({apiKey: '123abc'})
 
+
 //what are the models for an ecommerce website?
 //users products orders tag
 
