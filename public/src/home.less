@@ -8,6 +8,11 @@
   margin: 0px;
 }
 
+@buttonColor0: #003a70;
+@buttonColor1: #3d7dca;
+@buttonColor2: #ffcb05;
+@buttonColor3: #c85048;
+
 // CSS FOR HOMEPAGE BANNER IMAGE
 #bannerImg {
   width: 100%;
@@ -21,12 +26,27 @@
 }
 
 #bannerShop {
+  font-weight: 500;
   font-size: 1.4em;
   padding: 13px;
   position: absolute;
   bottom: 50px;
   left: 45px; 
   z-index: 1;
+}
+
+button#bannerShop {
+  box-shadow: 2px 2px 2px 2px inset @buttonColor0;
+  border: 3px solid @buttonColor0;
+  border-radius: 4px;
+  background-color: @buttonColor3;
+  color: @buttonColor2;
+  transition: 0.1s;
+}
+
+button#bannerShop:hover {
+  background-color: @buttonColor1;
+  box-shadow: 2px 2px 2px 2px @buttonColor0;
 }
 
 // CSS FOR INFO BELOW BANNER IMAGE

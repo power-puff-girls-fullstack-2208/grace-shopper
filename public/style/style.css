@@ -130,12 +130,25 @@ body {
   width: 100%;
 }
 #bannerShop {
+  font-weight: 500;
   font-size: 1.4em;
   padding: 13px;
   position: absolute;
   bottom: 50px;
   left: 45px;
   z-index: 1;
+}
+button#bannerShop {
+  box-shadow: 2px 2px 2px 2px inset #003a70;
+  border: 3px solid #003a70;
+  border-radius: 4px;
+  background-color: #c85048;
+  color: #ffcb05;
+  transition: 0.1s;
+}
+button#bannerShop:hover {
+  background-color: #3d7dca;
+  box-shadow: 2px 2px 2px 2px #003a70;
 }
 #bannerInfo {
   background-color: #b6b6b6;
