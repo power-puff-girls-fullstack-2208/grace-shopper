@@ -39,3 +39,12 @@
 #bannerInfo img {
   height: 80px;
 }
+#homeCards {
+  width: 100%;
+  padding: 15px 0px;
+}
+#homeCardsTitle {
+  padding: 8px;
+  font-weight: 500;
+  font-style: oblique;
+}
