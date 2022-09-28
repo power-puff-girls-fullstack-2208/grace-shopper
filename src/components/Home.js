@@ -23,6 +23,10 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProducts());
+    }, [])
+
+    useEffect(() => {
+        // dispatch(getProducts());
     }, [startIndex]);
 
 
