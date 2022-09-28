@@ -6,7 +6,6 @@ import { selectCurrentToken, selectCurrentUser } from "../features/authSlice";
 import Nav from './Nav';
 
 export default function Cart() {
-    if(currentUser) id = currentUser.id;
 
     const dispatch = useDispatch();
     const cart = useSelector(selectCart);

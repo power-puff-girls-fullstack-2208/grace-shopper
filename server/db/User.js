@@ -1,5 +1,4 @@
 const Order = require('./Order');
-
 const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
