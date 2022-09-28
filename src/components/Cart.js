@@ -7,12 +7,11 @@ import Nav from './Nav';
 
 export default function Cart() {
 
-     //check if User is logged in 
-        //hard coded example auth
-        //const token = User.authenticate("cplace0", "WvUcrbJTJg5Z")
-    //fetch the User
-        //user = User.findByToken(token)
-        //iffy about this-> const user = useSelector( state => state.getUser(user.id));
+    const currentUser = useSelector(selectCurrentUser)
+
+    let id; 
+    if(currentUser) id = currentUser.id;
+
 
     const dispatch = useDispatch();
     const cart = useSelector(selectCart);
