@@ -25,6 +25,19 @@ export const addToCart = createAsyncThunk('cart/addToCart', async ( { userId, pr
     }
 })
 
+export const removeFromCart = createAsyncThunk('cart/removeFromCart', async ({userId, productId}) =>{
+    try{
+        const {data} = await axios.put(`/api/order/${userId}/cart/${productId}/decrement`)
+        console.log('expected data from api call: ');
+        console.log(data);
+        return data;
+    }
+    catch(ex){
+        console.log(ex)
+        next(ex)
+    }
+})
+
 const initialState = [];
 
 const cartSlice = createSlice({
@@ -34,11 +47,12 @@ const cartSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getCartThunk.fulfilled, (state, action) => {
             // Add cart to the state array
-            console.log(action.payload);
             return action.payload;
           });
         builder.addCase(addToCart.fulfilled, (state, action) => {
-            console.log(action.payload);
+            return action.payload;
+        });
+        builder.addCase(removeFromCart.fulfilled, (state, action) =>{
             return action.payload;
         })  
     }

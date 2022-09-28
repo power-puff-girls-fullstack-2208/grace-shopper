@@ -30,6 +30,36 @@ router.get('/:id/cart', async (req, res, next) => {
     }
 });
 
+router.put('/:userId/cart/:productId/decrement', async (req, res, next) =>{
+  try{
+    const user = await User.findByPk(req.params.userId,{
+      attributes: {
+        exclude: ['password']
+     }
+    });
+    
+    const cart = await user.getCart();  
+       const cartId = cart[0].dataValues.id;
+       const cart2 = await Order.findByPk(cartId,{
+        include: {
+            model: LineItem,
+        }
+       })
+       const paramsProductId = Number(req.params.productId)
+
+       let cartLineItem = cart2.lineItems.filter(item => item.dataValues.productId === paramsProductId)
+
+       if(cartLineItem.length){
+        const lineItemToUpdate = await LineItem.findByPk(cartLineItem[0].dataValues.id)
+        await lineItemToUpdate.update({quantity: cartLineItem[0].dataValues.quantity - 1})
+      } 
+      res.send(cart2)
+  } catch(error){
+    next(error)
+  }
+})
+
+
 //route to handle adding to cart from button clicker
 router.put('/:userId/cart/:productId', async (req, res, next) =>{
   //takes userId and then returns the user's cart
@@ -77,5 +107,7 @@ router.put('/:userId/cart/:productId', async (req, res, next) =>{
     next(error);
   }
 })
+
+
 
 module.exports = router;
