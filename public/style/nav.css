@@ -18,6 +18,9 @@
   padding: 15px 30px;
   color: black;
 }
+#navBar > a {
+  padding: 5px 15px;
+}
 #navBar a:hover,
 #navBar li:hover,
 #footer a:hover {

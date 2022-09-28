@@ -1,13 +1,14 @@
-.content {
+#homepage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px 80px;
+}
+#homepage * {
+  margin: 0px;
 }
 #bannerImg {
   width: 100%;
-  height: 60%;
-  margin: 0px;
+  height: 100%;
   position: relative;
   z-index: 0;
 }
@@ -18,16 +19,21 @@
   font-size: 1.4em;
   padding: 13px;
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  bottom: 50px;
+  left: 45px;
   z-index: 1;
 }
 #bannerInfo {
   background-color: #b6b6b6;
   width: 100%;
-  height: 200px;
+  height: 175px;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+}
+#bannerInfo > * {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 #bannerInfo img {

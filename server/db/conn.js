@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 
 const config = {logging: false};
 
-
 if(process.env.QUIET){
   config.logging = false;
 }
