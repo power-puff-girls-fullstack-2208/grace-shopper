@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const { createTokens, validateToken } = require('./JWT');
 
 // GET /api/users
-router.get('/', async (req, res, next) => {
+router.get('/', validateToken, async (req, res, next) => {
   try {
     res.send(await User.findAll({
       attributes: {
@@ -55,8 +55,11 @@ router.post("/", async (req, res, next) => {
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ where: { username: username }});
+  
   if(!user) res.status(400).json({error:'User Doesnt Exist'});
+  
   const dbPassword = user.password
+  
   bcrypt.compare(password, dbPassword).then((match) => {
     if (!match) {
       res.status(400).json({error: "Wrong Username and Password Combination!"});
