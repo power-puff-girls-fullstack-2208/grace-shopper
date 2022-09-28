@@ -3,6 +3,9 @@
 @navHeight: 60px;
 @navPaddingHeight: 15px;
 @navPaddingWidth: 30px;
+@navBarColor: #ffcb05;
+@navTextColor: #003a70;
+
 // makes sure the nav bar stays at the top of the page
 #navBar,
 #footer {
@@ -14,7 +17,12 @@
   top: 0px;
   display: flex;
   justify-content: space-between;
-  background-color: gray;
+  background-color: @navBarColor;
+}
+
+#navBar *, #footer * {
+  background-color: @navBarColor;
+  transition: 0.2s;
 }
 
 // the child elements of navBar are also flex (home link, and other links)
@@ -24,24 +32,35 @@
   justify-content: space-evenly;
   height: @navHeight;
   padding: @navPaddingHeight @navPaddingWidth;
-  color: black;
+  color: @navTextColor;
+}
+
+#navBar a, #navBar a:visited {
+  color: @navTextColor;
 }
 
 // style JUST for the home link (pokeball icon)
 #navBar > a {
-  padding: 5px 15px;
+  padding: 5px 20px;
+}
+#navBar img {
+  border-radius: 51%;
 }
 
 // when user hovers over any link in nav; li covers all of padding as well
 #navBar a:hover,
 #navBar li:hover,
-#footer a:hover {
-  background-color: green;
+#footer a:hover,
+#footer li:hover {
+  background-color: @navTextColor;
+  color: #70b8f0;
+  font-weight: 300;
 }
 
 // for every li under the navBar element
 #navBar li,
 #footer li {
+  height: 60px;
   display: inline-block;
   padding: @navPaddingHeight @navPaddingWidth;
 }
@@ -55,14 +74,13 @@
 
 // the dropdown boxes in the navBar
 #navBar li ul {
-  background-color: yellow;
+  background-color: @navBarColor;
   visibility: hidden;
   opacity: 0;
   position: absolute;
   margin-top: 25px;
   margin-left: -(@navPaddingWidth);
   display: none;
-  box-shadow: 2px 2px 2px 2px black;
 }
 
 // css that allows for 'dropdown' functionality
@@ -76,25 +94,30 @@
 // each element under the dropdown ul
 #navBar li ul li {
   clear: both;
-  width: 100%;
+  width: 50%;
+  height: 50px;
+  padding: 12px 0px;
 }
 
 // !!! navBar STYLING ENDS HERE !!!
 
 // styling for footer ONLY
-#footer,
-#footer li {
-  font-size: 12px;
-  height: 45px;
-}
-
 #footer {
-  height: @navHeight;
+  font-size: 12px;
+  height: 50px;
   width: 100vw;
-  margin-top: auto;
   display: flex;
   justify-content: space-between;
-  background-color: gray;
+}
+
+#footer > * {
+  height: 50px;
+}
+
+#footer li {
+  height: 50px;
+  display: inline-block;
+  padding: 14px @navPaddingWidth;
 }
 
 // making sure the nav bar does not squish on slightly smaller monitors

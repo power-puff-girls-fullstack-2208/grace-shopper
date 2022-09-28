@@ -24,23 +24,23 @@ const Nav = () => {
             <Link to='/'><img src={pokeball} width='50px' alt="pokeball logo"/></Link>
             <ul>
                 {/* link that leads to all the cards */}
-                <Link to='/products' key='all'>
+                <Link to='/products'>
                     <li>All Cards ({products.length})</li>
                 </Link>
                 {/* dropdown menu that has links to view cards by a certain type */}
-                <li key='type'>Type
+                <li>Type
                     <ul>
                         {types ? types.map(type => <Link to={`/products/type/${type.type}`} key={type.id}><li>{type.type}</li></Link>) : null}
                     </ul>
                 </li>
                 {/* dropdown menu that has links to view cards by a certain rarity */}
-                <li key='rarity'>Rarity
+                <li>Rarity
                     <ul>
                         {rarities ? rarities.map((rarity, ind) => <Link to={`/products/rarity/${rarity}`} key={ind}><li>{rarity}</li></Link>) : null}
                     </ul>
                 </li>
-                <li><Link to='/users'>User</Link></li>
-                <li><Link to='/cart'>Cart</Link></li>
+                <Link to='/users'><li>User</li></Link>
+                <Link to='/cart'><li>Cart</li></Link>
             </ul>
         </div>
     )
