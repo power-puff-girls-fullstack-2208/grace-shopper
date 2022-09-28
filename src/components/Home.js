@@ -18,9 +18,7 @@ const Home = () => {
         <div className="content">
             <div id="bannerImg">
                 <img src={String(bannerImage)} alt="banner image of pokemon TCG homepage"/>
-                <div id="bannerShop">
-                    <button onClick={() => {}}>Shop our cards</button>
-                </div>
+                <button id="bannerShop" onClick={() => {}}>Shop our cards</button>
             </div>
             <div id="bannerInfo">
                 <div>
