@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logOut, selectCurrentToken, selectCurrentUser } from "../features/authSlice";
 import { getUser } from "../features/singleUsersSlice"
 import Login from "./Login"
 
 
 function User(){
+    const navigate = useNavigate()
     const { user, loading, error } = useSelector(state => state.singleUser) 
     const currentUser = useSelector(selectCurrentUser)
     const currentToken = useSelector(selectCurrentToken)
@@ -25,7 +26,7 @@ function User(){
     function handleLogout(e){
         e.preventDefault
         dispatch(logOut())
-       return (<Navigate to="/"/>)
+       navigate("/")
     }
     
     return (
@@ -34,7 +35,7 @@ function User(){
             {loading && <div>Loading...</div>}
             {!loading && error ? <div>Error: {error}</div>: null}
             {!loading && currentUser && currentToken ? (
-                <>
+                <div>
                 <h3>Welcome {currentUser.username}!</h3>
                 <h4>General Information</h4>
                 <ul className="user-info">
@@ -48,7 +49,7 @@ function User(){
 
                 </ul>
                 <button onClick={handleLogout}>Logout</button>
-                </>
+                </div>
             ): <Login />}
             </div>
         </div>

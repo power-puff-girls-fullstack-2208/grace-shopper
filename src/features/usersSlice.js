@@ -20,9 +20,13 @@ export const deleteUser = (id) => {
 }
 
 export const addNewUser = (user) => {
-    return async (dispatch) => {
-      const { data: newUser } = await axios.post('/api/users', user)
-      dispatch(addUser(newUser))
+    try{
+        return async (dispatch) => {
+          const { data: newUser } = await axios.post('/api/users', user)
+          dispatch(addUser(newUser))
+        }
+    } catch(ex){
+        console.error(ex)
     }
   }
   
