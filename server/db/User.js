@@ -4,7 +4,6 @@ const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
 const jwt = require('jsonwebtoken');
-const Order = require('./Order');
 
 
 const User = conn.define('user', {

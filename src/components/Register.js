@@ -120,7 +120,7 @@ function Register(){
                     </div>
 
                     <button type="submit" className="login-button">Start Collecting Today!</button>
-                    <Link to="/users/login" ><p className="register-link">You have an account? Login</p></Link>
+                    <Link to="/login" ><p className="register-link">You have an account? Login</p></Link>
                     {/* <div id="signInDiv"></div> */}
                 </form>
             </div>
