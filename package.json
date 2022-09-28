@@ -40,7 +40,6 @@
     "redux-thunk": "^2.4.1",
     "sequelize": "^6.21.3",
     "supertest": "^6.2.4",
-    "url-loader": "^4.1.1",
     "volleyball": "^1.5.1",
     "webpack-cli": "^4.10.0"
   },
