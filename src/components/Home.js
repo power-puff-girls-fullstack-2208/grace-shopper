@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, getProducts } from "../features/productsReducer";
+import bannerImage from "../../public/pokemontcg_banner-min.jpg"
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -12,24 +13,26 @@ const Home = () => {
         // dispatch(getProducts());
     }, [dispatch]);
 
+
     return (
         <div className="content">
-            <div id="banner">
-                <div id="bannerImg">
+            <div id="bannerImg">
+                <img src={String(bannerImage)} alt="banner image of pokemon TCG homepage"/>
+                <div id="bannerShop">
                     <button onClick={() => {}}>Shop our cards</button>
                 </div>
-                <div id="bannerInfo">
-                    <div>
-                        <img src="" alt="free shipping logo"/>
-                        <p>Free shipping on US orders above $50</p>
-                    </div>
-                    <div>
-                        <img src="" alt="secure payment logo"/>
-                        <p>Fast and Easy, 100% secure payment</p>
-                    </div>
-                    <div id="bannerButtons">
+            </div>
+            <div id="bannerInfo">
+                <div>
+                    <img src="" alt="free shipping logo"/>
+                    <p>Free shipping on US orders above $50</p>
+                </div>
+                <div>
+                    <img src="" alt="secure payment logo"/>
+                    <p>Fast and Easy, 100% secure payment</p>
+                </div>
+                <div id="bannerButtons">
 
-                    </div>
                 </div>
             </div>
             <hr/>
