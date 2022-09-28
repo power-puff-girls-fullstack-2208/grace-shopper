@@ -12,5 +12,13 @@
   width: 100%;
 }
 #bannerShop {
+  font-size: 1.4em;
+  padding: 13px;
   position: relative;
+  bottom: 15%;
+  left: 8%;
+}
+#bannerInfo {
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -4,10 +4,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, getProducts } from "../features/productsReducer";
 import bannerImage from "../../public/pokemontcg_banner-min.jpg"
+import freeShip from "../../public/freeship.png";
+import securedPay from "../../public/secure_pay.png";
+import { selectCurrentUser } from "../features/authSlice";
 
 const Home = () => {
     const dispatch = useDispatch();
     const products = useSelector(selectProducts);
+    const currentUser = useSelector(selectCurrentUser);
 
     useEffect(() => {
         // dispatch(getProducts());
@@ -18,20 +22,23 @@ const Home = () => {
         <div className="content">
             <div id="bannerImg">
                 <img src={String(bannerImage)} alt="banner image of pokemon TCG homepage"/>
-                <button id="bannerShop" onClick={() => {}}>Shop our cards</button>
+                <Link to={'./products'}>
+                    <button id="bannerShop">Shop our cards</button>
+                </Link>
             </div>
             <div id="bannerInfo">
                 <div>
-                    <img src="" alt="free shipping logo"/>
+                    <img src={freeShip} alt="free shipping logo"/>
                     <p>Free shipping on US orders above $50</p>
                 </div>
                 <div>
-                    <img src="" alt="secure payment logo"/>
+                    <img src={securedPay} alt="secure payment logo"/>
                     <p>Fast and Easy, 100% secure payment</p>
                 </div>
-                <div id="bannerButtons">
-
-                </div>
+                {currentUser ? null : (<div id="bannerButtons">
+                    <Link to={'/login'}><button>Login</button></Link>
+                    <Link to={'/register'}><button>Register Now</button></Link>
+                </div>)}
             </div>
             <hr/>
             <div id="cardShowcase">
