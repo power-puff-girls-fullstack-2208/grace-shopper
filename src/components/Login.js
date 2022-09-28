@@ -15,8 +15,8 @@ function Login(){
     console.log(currentToken)
 
     const [form, setForm] = useState({
-        username: 'rabbit122',
-        password: 'helpme'
+        username: '',
+        password: ''
       })
     
       const dispatch = useDispatch();
