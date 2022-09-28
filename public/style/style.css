@@ -32,6 +32,9 @@ body {
   padding: 15px 30px;
   color: black;
 }
+#navBar > a {
+  padding: 5px 15px;
+}
 #navBar a:hover,
 #navBar li:hover,
 #footer a:hover {
@@ -100,8 +103,8 @@ body {
   font-size: 1.4em;
   padding: 13px;
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  bottom: 50px;
+  left: 45px;
   z-index: 1;
 }
 #bannerInfo {

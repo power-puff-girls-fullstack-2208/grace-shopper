@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRarities, getSets, getTypes, selectRarities, selectTypes } from "../features/filterReducer";
 import { getProducts, selectProducts } from "../features/productsReducer";
+import pokeball from "../../public/pokeball.png"
 
 const Nav = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Nav = () => {
 
     return (
         <div id="navBar">
-            <Link to='/'>Home (this will eventually be a logo/icon instead)</Link>
+            <Link to='/'><img src={pokeball} width='50px' alt="pokeball logo"/></Link>
             <ul>
                 {/* link that leads to all the cards */}
                 <Link to='/products' key='all'>

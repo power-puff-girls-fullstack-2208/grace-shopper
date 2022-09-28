@@ -27,6 +27,11 @@
   color: black;
 }
 
+// style JUST for the home link (pokeball icon)
+#navBar > a {
+  padding: 5px 15px;
+}
+
 // when user hovers over any link in nav; li covers all of padding as well
 #navBar a:hover,
 #navBar li:hover,
@@ -90,4 +95,11 @@
   display: flex;
   justify-content: space-between;
   background-color: gray;
+}
+
+// making sure the nav bar does not squish on slightly smaller monitors
+@media screen and (max-width: 950px) {
+  #navBar {
+    
+  }
 }
