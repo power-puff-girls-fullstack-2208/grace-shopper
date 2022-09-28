@@ -28,6 +28,12 @@ body {
   justify-content: space-between;
   background-color: #ffcb05;
 }
+#navBar,
+#navBar > *,
+#navBar > ul > *,
+#navBar > ul > a > li {
+  border-bottom: 4px solid #a82028;
+}
 #navBar *,
 #footer * {
   background-color: #ffcb05;
