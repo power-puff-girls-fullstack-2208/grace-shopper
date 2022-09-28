@@ -22,7 +22,7 @@ const Home = () => {
     console.log(randomCards);
 
     useEffect(() => {
-        // dispatch(getProducts());
+        dispatch(getProducts());
     }, [startIndex]);
 
 

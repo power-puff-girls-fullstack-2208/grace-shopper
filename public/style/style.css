@@ -208,19 +208,19 @@ button#bannerShop:hover {
   padding: 10px 0px;
 }
 #homeCardsTitle {
+  color: #c85048;
   padding: 15px;
   font-weight: bolder;
   font-style: oblique;
-  text-decoration: underline;
 }
 .innerContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   width: 200px;
-  margin: 10px;
+  margin: 20px 10px;
 }
 .innerContainer img {
+  text-align: center;
   width: 180px;
 }
 #filters-screen {
