@@ -12,8 +12,8 @@ const ViewCard = props => {
                     rarity ? useSelector(selectProducts).filter(card => card.rarity === rarity) : useSelector(selectProducts);
 
     useEffect(() => {
-        dispatch(getProducts());
-    }, [type, dispatch]);
+        // dispatch(getProducts());
+    }, [type]);
 
     return (
         <div className='innerContainer' key={props.card.id}>

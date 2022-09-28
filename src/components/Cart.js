@@ -12,7 +12,7 @@ export default function Cart() {
     const cards = useSelector(selectProducts);
     const currentUser = useSelector(selectCurrentUser)
     const currentToken = useSelector(selectCurrentToken)
-    let id 
+    let id;
     if(currentUser) id = currentUser.id
 
     console.log(currentUser)

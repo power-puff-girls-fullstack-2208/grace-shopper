@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectProducts } from '../features/productsReducer';
+import { getProducts, selectProducts } from '../features/productsReducer';
 import { selectRarities, selectSets, selectTypes } from '../features/filterReducer';
 import { filterProducts, sortProducts, showFilters, cancelFilters } from './allProductsHelper';
 import AllPagination from './Pagination';
 import ProductPaginated from './ProductPaginated';
 
 const AllProducts = () => {
-
+    const dispatch = useDispatch();
     const { type, rarity } = useParams();
     const types = useSelector(selectTypes);
     const rarities = useSelector(selectRarities);
@@ -47,14 +47,16 @@ const AllProducts = () => {
     }
 
     useEffect(() => {
+        dispatch(getProducts());
         setAppliedFilters([]);
         setOptionalFilter([]);
         setSort('none');
+        window.scrollTo(0,0);
     }, [type, rarity]);
 
     return (
-        <div className = 'productsContainer content'>
-            <div><h1>All Products{type ? ' > ' + type : rarity ? ' > ' + rarity : null}</h1></div>
+        <div className = 'content'>
+            <div><h1 id="productsTitle">All Products{type ? ' > ' + type : rarity ? ' > ' + rarity : null}</h1></div>
             {/* div where filters and sorting is prompted */}
             <div className='filtersPrompt'>
                 <button id='filterButton' onClick={showFilters}>Show filtering options</button>
@@ -112,9 +114,9 @@ const AllProducts = () => {
                 </form>
                 <div id='filters-overlay' onClick={cancelFilters}></div>
             </div>
-            <div className="contentContainer">
+            <div className="productsContainer">
                 {products.length > 0 ? 
-                    <AllPagination cards={products} RenderComponent={ProductPaginated} title="Cards" pageLimit={10} dataLimit={40}/>
+                    <AllPagination cards={products} type={type} rarity={rarity} filter={appliedFilters} title="Cards" pageLimit={10} dataLimit={40}/>
                 : 'Loading up Pokemon...'}
             </div>
         </div>

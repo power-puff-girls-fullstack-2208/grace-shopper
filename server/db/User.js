@@ -5,7 +5,6 @@ const { Sequelize } = conn;
 const jwt = require('jsonwebtoken');
 
 
-
 const User = conn.define('user', {
     username:{
         type: Sequelize.STRING,

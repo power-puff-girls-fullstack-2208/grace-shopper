@@ -21,18 +21,12 @@ const App = () => {
                 <main>
                     <Routes>
                         <Route exact path='/' element={<Home/>}/>
-                        {/* route that leads to ALL the cards */}
-
-                        <Route path= 'users/login' element={<Login />} />
-                        <Route path= 'users/register' element={<Register />} />
-
-                        {/* route that leads to all the cards, but filters in cards of a certain type from the nav dropdown */}
+                        <Route path= '/login' element={<Login />} />
+                        <Route path= '/register' element={<Register />} />
                         <Route path='/products/type/:type' element={<AllProducts/>}/>
-                        <Route path='/products' element={<AllProducts/>}/>
-                        <Route path='/products/:id' element={<SingleProduct/>}/>
-                        {/* route that leads to all the cards, but filters in cards of a certain rarity from the nav dropdown */}
                         <Route path='/products/rarity/:rarity' element={<AllProducts/>}/>
-                        {/* route that goes to a view single card given its id */}
+                        <Route path='/products/:id' element={<SingleProduct/>}/>
+                        <Route path='/products' element={<AllProducts/>}/>
                         <Route path= '/users' element={<User />} />
                         <Route path = '/cart' element = {<Cart/>}/> 
                         <Route path='/#' element={<br/>/* <Example/> */ }/>

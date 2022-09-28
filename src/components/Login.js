@@ -58,7 +58,7 @@ function Login(){
                     </div>
 
                     <button type="submit" className="login-button">I choose you!</button>
-                    <Link to="/users/register" ><p className="register-link">Don't have an account? Register a new User</p></Link>
+                    <Link to="/register" ><p className="register-link">Don't have an account? Register a new User</p></Link>
                     {/* <div id="signInDiv"></div> */}
                 </form>
             </div>
