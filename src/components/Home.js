@@ -36,11 +36,11 @@ const Home = () => {
                     </Link>
                 </div>
                 <div id="bannerInfo">
-                    <div>
+                    <div className="storeInfo">
                         <img src={freeShip} alt="free shipping logo"/>
                         <p>Free shipping on US orders above $50</p>
                     </div>
-                    <div>
+                    <div className="storeInfo">
                         <img src={securedPay} alt="secure payment logo"/>
                         <p>Fast and Easy, 100% secure payment</p>
                     </div>

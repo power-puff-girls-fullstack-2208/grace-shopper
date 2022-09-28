@@ -160,20 +160,55 @@ button#bannerShop:hover {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+#bannerInfo * {
+  background-color: #b6b6b6;
+}
 #bannerInfo > * {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 #bannerInfo img {
   height: 80px;
 }
+#bannerInfo div.storeInfo > * {
+  text-align: center;
+  margin: 7px;
+}
+#bannerButtons button {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  width: 15vw;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px #3d7dca;
+  border: 3px solid #003a70;
+  border-radius: 4px;
+  background-color: #ffcb05;
+  color: #003a70;
+  transition: 0.1s;
+}
+#bannerButtons button:hover {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 15vw;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px inset #c85048;
+  border: 3px solid #c85048;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #c85048;
+  transition: 0.1s;
+}
 #homeCards {
   width: 100%;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 #homeCardsTitle {
-  padding: 12px;
+  padding: 15px;
   font-weight: bolder;
   font-style: oblique;
   text-decoration: underline;
