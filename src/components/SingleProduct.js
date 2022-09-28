@@ -19,6 +19,7 @@ const SingleProduct = () => {
     }, [dispatch]);
 
     console.dir(product)
+    console.log(product.id)
 
     const addToCartHandler = async (e, userId, productId) =>{
         e.preventDefault();

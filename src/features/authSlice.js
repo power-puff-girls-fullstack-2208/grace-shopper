@@ -3,7 +3,8 @@ import axios from "axios";
 
 const initialState = { 
     user: null,
-    token: null
+    token: null,
+    cart: []
 }
 
 export const login = createAsyncThunk('auth/login', async (credentials) => {
@@ -29,7 +30,6 @@ const authSlice = createSlice({
     extraReducers: {
         [login.fulfilled]: (state, action) => {
             const { user, accessToken } = action.payload
-            console.log(user, accessToken)
             state.user = user
             state.token = accessToken
         }
