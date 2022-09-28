@@ -9,8 +9,10 @@
 // CSS FOR HOMEPAGE BANNER IMAGE
 #bannerImg {
   width: 100%;
-  height: 45vw;
+  height: 60%;
   margin: 0px;
+  position: relative;
+  z-index: 0;
 }
 
 #bannerImg img {
@@ -20,14 +22,14 @@
 #bannerShop {
   font-size: 1.4em;
   padding: 13px;
-  position: relative;
-  bottom: 9vw;
-  left: 8%; 
+  position: absolute;
+  bottom: 15px;
+  left: 15px; 
+  z-index: 1;
 }
 
 // CSS FOR INFO BELOW BANNER IMAGE
 #bannerInfo {
-  margin: 15px 0px;
   background-color: rgb(182, 182, 182);
   width: 100%;
   height: 200px;
@@ -40,4 +42,8 @@
   height: 80px;
 }
 
-
+// @media screen and (min-width: 1115px) {
+//   #bannerShop {
+//     bottom: ;
+//   }
+// }
