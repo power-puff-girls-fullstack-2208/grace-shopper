@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut, selectCurrentToken, selectCurrentUser } from "../features/authSlice";
 import { getUser } from "../features/singleUsersSlice"
 import Login from "./Login"
+import ProfileSidebar from "./ProfileSidebar";
 
 
 function User(){
@@ -32,7 +33,8 @@ function User(){
             {!loading && error ? <div>Error: {error}</div>: null}
             {!loading && currentUser && currentToken ? (
                 <div>
-                <h3>Welcome {currentUser.username}!</h3>
+                <h1>Welcome {currentUser.username}!</h1>
+                <div className="user-info-container">
                 <h4>General Information</h4>
                 <ul className="user-info">
                     <li>First Name: {currentUser.fName}</li>
@@ -44,7 +46,8 @@ function User(){
                 <ul className="order-history">
 
                 </ul>
-                <button onClick={handleLogout}>Logout</button>
+                <button className="logout-button" onClick={handleLogout}>Logout</button>
+                </div>
                 </div>
             ): <Login />}
             </div>
