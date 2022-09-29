@@ -1,5 +1,4 @@
-#navBar,
-#footer {
+#navBar {
   z-index: 1000;
   text-align: center;
   max-width: 100vw;
@@ -80,6 +79,11 @@
   padding: 12px 0px;
 }
 #footer {
+  z-index: 1000;
+  text-align: center;
+  background-color: #ffcb05;
+  position: sticky;
+  bottom: 0;
   font-size: 12px;
   height: 50px;
   width: 100vw;

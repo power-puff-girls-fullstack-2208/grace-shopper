@@ -18,6 +18,7 @@
 }
 
 body {
+  position: relative;
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 100vh;
@@ -28,6 +29,11 @@ body {
 // began styling for global page div
 .content {
   margin: 0px 90px;
+  min-height: 100vh;
+}
+
+button:hover, a:hover, input:hover {
+  cursor: pointer;
 }
 
 // nav bar styling
@@ -42,7 +48,6 @@ body {
 
 .singleProductContainer {
   display: flex;
-  height: 100%;
   width: 100%;
   text-align: center;
   align-items: center;
@@ -62,7 +67,7 @@ body {
   align-items: center;
   flex-direction: column;
   width: 50%;
-  height: 120vh;
+  height: 80vh;
   padding: 12px;
   justify-content: space-evenly;
 }
@@ -114,8 +119,13 @@ body {
       gap: 10px;
       color: @buttonColor2;
       cursor: pointer;
-      background-color: var(--color);
+      background-color: @buttonColor2;
   }
+}
+
+.login-container * {
+  --color: hsl(var(--primary-dark-hsl), .8);
+  background-color: var(--color);
 }
 
 .login-title {
@@ -227,4 +237,32 @@ body {
   background-color: #ffffff;
   color: @buttonColor3;
   transition: 0.1s;
+}
+
+
+
+.cartCardView {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 15px 8px;
+}
+
+.cartCardView img {
+  text-align: center;
+  width: 180px;
+}
+
+#cartInfo {
+  margin: 50px;
+}
+
+#cartInfo button {
+  margin: 10px;
+  padding: 8px;
+}
+
+#cartWrapper {
+  display: flex;
+  justify-content: space-evenly;
 }

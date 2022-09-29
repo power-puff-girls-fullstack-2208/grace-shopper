@@ -18,9 +18,6 @@ const Home = () => {
     const startIndex = Math.floor(Math.random() * (filteredCards.length - 10));
     const randomCards = filteredCards.slice(startIndex - 10, startIndex);
 
-    console.log(filteredCards);
-    console.log(randomCards);
-
     useEffect(() => {
         dispatch(getProducts());
     }, [])
