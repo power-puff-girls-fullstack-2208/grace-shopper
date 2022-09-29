@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ where: { username: username }});
   
-  if(!user) res.status(400).json({error:'User Doesnt Exist'});
+  if(!user) {res.status(400).json({error:'User Doesnt Exist'}); return};
   
   const dbPassword = user.password
   
