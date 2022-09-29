@@ -358,10 +358,11 @@ button#bannerShop:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 18px;
 }
 .paginationItem {
-  background: #fff;
-  border: 2px solid #666;
+  background: #F0F0F8;
+  border: 2px solid #4a4a4a;
   padding: 10px 15px;
   border-radius: 50%;
   height: 45px;
@@ -387,9 +388,13 @@ button#bannerShop:hover {
   cursor: pointer;
 }
 .paginationItem.active {
-  border: 1px solid #888;
-  color: #888;
+  border: 3px solid #C85048;
+  color: #C85048;
+  background-color: #ffbfba;
   pointer-events: none;
+}
+.paginationItem.active span {
+  background-color: #ffbfba;
 }
 .prev.disabled,
 .next.disabled {
