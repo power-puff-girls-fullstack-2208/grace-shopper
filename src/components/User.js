@@ -17,7 +17,9 @@ function User(){
     if(currentUser) id = currentUser.id
     
     useEffect(() => {
-        dispatch(getUser(id))
+        if (id) {
+            dispatch(getUser(id))
+        }
     }, [dispatch])
 
     function handleLogout(e){
