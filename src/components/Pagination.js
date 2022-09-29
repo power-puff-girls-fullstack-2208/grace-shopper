@@ -57,7 +57,7 @@ const AllPagination = ({cards, pageLimit, type, rarity, filter, dataLimit}) => {
                 ))}
         
                 {/* next button */}
-                <button onClick={nextPage} className={`next ${activePage === pages ? 'disabled' : ''}`}>
+                <button onClick={nextPage} className={`next ${activePage === pages ? 'disabled' : pages === 0 ? 'disabled' : ''}`}>
                     next
                 </button>
             </div>
