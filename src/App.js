@@ -11,6 +11,7 @@ import User from "./components/User";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 const App = () => {
     return (
@@ -21,15 +22,15 @@ const App = () => {
                 <main>
                     <Routes>
                         <Route exact path='/' element={<Home/>}/>
-                        <Route path= '/login' element={<Login />} />
-                        <Route path= '/register' element={<Register />} />
+                        <Route path= '/users/login' element={<Login />} />
+                        <Route path= '/users/register' element={<Register />} />
                         <Route path='/products/type/:type' element={<AllProducts/>}/>
                         <Route path='/products/rarity/:rarity' element={<AllProducts/>}/>
                         <Route path='/products/:id' element={<SingleProduct/>}/>
                         <Route path='/products' element={<AllProducts/>}/>
                         <Route path= '/users' element={<User />} />
                         <Route path = '/cart' element = {<Cart/>}/> 
-                        <Route path='/#' element={<br/>/* <Example/> */ }/>
+                        <Route path='/checkout' element={<Checkout/>}/>
                         
                         {/* add route for your component when you are ready to test it out */}
                         
