@@ -433,6 +433,10 @@ button#bannerShop:hover {
   color: white;
   cursor: pointer;
 }
+.login-container * {
+  --color: hsl(var(--primary-dark-hsl), 0.8);
+  background-color: var(--color);
+}
 .login-title {
   margin: 0;
   color: white;
@@ -514,4 +518,25 @@ button#bannerShop:hover {
 .login-button:hover,
 .login-button:focus {
   background-color: hsl(var(--primary-hsl), 0.4);
+}
+.cartCardView {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 15px 8px;
+}
+.cartCardView img {
+  text-align: center;
+  width: 180px;
+}
+#cartInfo {
+  margin: 50px;
+}
+#cartInfo button {
+  margin: 10px;
+  padding: 8px;
+}
+#cartWrapper {
+  display: flex;
+  justify-content: space-evenly;
 }

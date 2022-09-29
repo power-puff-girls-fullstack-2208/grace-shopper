@@ -78,7 +78,7 @@ function Register(){
 
 
     return (
-        <div className="full-screen-container">
+        <div className="full-screen-container content">
             <div className="login-container">
                 <h1 className="login-title">Pokemon TCG</h1>
                 <p className="login-message">Register New User</p>

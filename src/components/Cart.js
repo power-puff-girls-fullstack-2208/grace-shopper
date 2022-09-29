@@ -49,34 +49,39 @@ export default function Cart() {
     }
 
   return (
-    <div className='content'>Cart
+    <div className='content'>
         <h1>Your Shopping Cart</h1>
-        <h2>Total Price: {totalPrice.toFixed(2)}</h2>
-        <Link to='/checkout'>
-            <button>Checkout!</button>
-        </Link>
-        {/* //onClick={((e) => checkoutHandler(e, cart.id))} */}
-        <div id='cart-container'>
-            
-            {cart.lineItems && cart.lineItems.length? 
-                cart.lineItems.map((itm) =>  {
-                    const card = cards.find(card => card.id === itm.productId);
-                    
-                    return (
-                        <div className='cart-Product' key={itm.id}>
-                            <h1>{card.name}</h1>
-                            <h2>Quantity: {itm.quantity}</h2>
-                            <img src={card.img}/>
-                            <p>{card.descr}</p>
-                            <h3>Price: {(Number(card.price) * itm.quantity).toFixed(2)}</h3>
-
-                            <button onClick={(e) => addToCartHandler(e, currentUser.id, card.id)}>Add Another to Cart</button>
-                            <button onClick={(e) => removeFromCartHandler(e, currentUser.id, card.id)}>Remove from Cart</button>
-                        </div>
-                    )
-                })
-                 :null
-            }
+        <div id='cartWrapper'>
+            {/* //onClick={((e) => checkoutHandler(e, cart.id))} */}
+            <div id='cart-container'>
+                
+                {cart.lineItems && cart.lineItems.length? 
+                    cart.lineItems.map((itm) =>  {
+                        const card = cards.find(card => card.id === itm.productId);
+                        
+                        return (
+                            <div className='cart-Product' key={itm.id}>
+                                <div className='cartCardView'>
+                                    <h2>{card.name}</h2>
+                                    <h3>Quantity: {itm.quantity}</h3>
+                                    <img src={card.img}/>
+                                    <p>{card.descr}</p>
+                                    <h3>Price: {(Number(card.price) * itm.quantity).toFixed(2)}</h3>
+                                </div>
+                                <button onClick={(e) => addToCartHandler(e, currentUser.id, card.id)}>Add Another to Cart</button>
+                                <button onClick={(e) => removeFromCartHandler(e, currentUser.id, card.id)}>Remove from Cart</button>
+                            </div>
+                        )
+                    })
+                    :null
+                }
+            </div>
+            <div id='cartInfo'>
+                <h2>Total Price: {totalPrice.toFixed(2)}</h2>
+                <Link to='/checkout'>
+                    <button>Checkout!</button>
+                </Link>
+            </div>
         </div>
     </div>
   )
