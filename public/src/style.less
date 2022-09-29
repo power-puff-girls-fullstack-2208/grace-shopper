@@ -8,6 +8,7 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+
 :root {
   --primary-hsl: 0, 100%, 50%;
   --primary-light-hsl: 0, 100%, 91%;
@@ -97,29 +98,33 @@ body {
 }
 
 .login-container {
-  --color: hsl(var(--primary-dark-hsl), .8);
+  --color: @buttonColor2;
   background-color: var(--color);
-  box-shadow: 0 0 15px var(--color);
+  box-shadow: 0 0 15px black;
   padding: 40px 30px;
   width: 80%;
   max-width: 600px;
   border-radius: 20px;
+  border-color: @buttonColor3;
+  border-style: ridge;
 
   label {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: white;
+      color: @buttonColor2;
       cursor: pointer;
+      background-color: var(--color);
   }
 }
 
 .login-title {
   margin: 0;
-  color: white;
+  color: @buttonColor0;
   text-align: center;
   font-size: 2rem;
-  font-weight: normal;
+  font-weight: bolder;
+  background-color: @buttonColor2;
 }
 
 .form {
@@ -127,42 +132,41 @@ body {
   flex-direction: column;
   gap: 20px;
   margin-top: 40px;
+  background-color: @buttonColor2;
 }
 
 .input-login {
   display: flex;
   flex-direction: column;
-  gap: 7px;
 }
 
 .login-message {
-  color: white;
+  color: @buttonColor0;
   font-weight: lighter;
   text-align: center;
   padding: 1em;
+  background-color: @buttonColor2;
 }
 
 .register-link {
-  color: white;
+  color: @buttonColor0;
   font-weight: lighter;
   text-align: center;
   padding: 2px;
+  background-color: @buttonColor2;
 }
 
 .input-login label {
-  color: white;
+  color: @buttonColor0;
   font-weight: lighter;
 }
 
 .input-login input {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   padding: .5em;
-  background-color: hsl(var(--primary-light-hsl), .3);
-  border: none;
-  outline: none;
-  color: white;
-  font-weight: lighter;
-  border-radius: .25em;
+  background-color: @buttonColor3;
+  color: @buttonColor0;
+  font-weight: 500;
 }
 
 .input-login.valid input {
@@ -179,7 +183,8 @@ body {
 
 .input-login .msg {
   display: none;
-  font-size: .75rem;
+  font-size: 1.4rem;
+  font-weight: 500;
 }
 
 .input-login.valid .msg,
@@ -196,18 +201,30 @@ body {
 }
 
 .login-button {
-  padding: .5em 1em;
-  font-size: 1.5rem;
-  font-weight: lighter;
-  color: white;
-  background-color: hsl(var(--primary-hsl), .25);
-  border: 1px solid hsl(var(--primary-hsl));
-  border-radius: .25em;
-  outline: none;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px @buttonColor1;
+  border: 3px solid @buttonColor0;
+  border-radius: 4px;
+  background-color: @buttonColor2;
+  color: @buttonColor0;
+  transition: 0.1s;
   cursor: pointer;
 }
 
 .login-button:hover,
 .login-button:focus {
-  background-color: hsl(var(--primary-hsl), .4);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px inset @buttonColor3;
+  border: 3px solid @buttonColor3;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: @buttonColor3;
+  transition: 0.1s;
 }

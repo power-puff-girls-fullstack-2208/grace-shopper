@@ -40,6 +40,7 @@ function Login(){
     }
 
     return (
+        
         <div className="full-screen-container">
             <div className="login-container">
                 <h1 className="login-title">Welcome to Pokemon TCG</h1>
