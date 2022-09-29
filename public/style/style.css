@@ -521,6 +521,8 @@ button#bannerShop:hover {
   transition: 0.1s;
   cursor: pointer;
 }
+.logout-button:focus,
+.logout-button:hover,
 .login-button:hover,
 .login-button:focus {
   font-size: 0.9em;
@@ -534,6 +536,30 @@ button#bannerShop:hover {
   background-color: #ffffff;
   color: #c85048;
   transition: 0.1s;
+}
+.logout-button {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px #3d7dca;
+  border: 3px solid #003a70;
+  border-radius: 4px;
+  background-color: #ffcb05;
+  color: #003a70;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: row;
+}
+.user-container h1 {
+  padding: 3em;
+  display: flex;
+  justify-content: flex-start;
 }
 .cartCardView {
   display: flex;

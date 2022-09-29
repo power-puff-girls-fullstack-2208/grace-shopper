@@ -224,6 +224,8 @@ button:hover, a:hover, input:hover {
   cursor: pointer;
 }
 
+.logout-button:focus,
+.logout-button:hover,
 .login-button:hover,
 .login-button:focus {
   font-size: 0.9em;
@@ -239,6 +241,31 @@ button:hover, a:hover, input:hover {
   transition: 0.1s;
 }
 
+.logout-button{
+  font-size: 0.9em;
+  text-transform: uppercase;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px @buttonColor1;
+  border: 3px solid @buttonColor0;
+  border-radius: 4px;
+  background-color: @buttonColor2;
+  color: @buttonColor0;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.user-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: row;
+  h1{
+    padding: 3em;
+    display: flex;
+    justify-content: flex-start;
+  }
+}
 
 
 .cartCardView {
