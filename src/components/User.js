@@ -19,10 +19,6 @@ function User(){
         dispatch(getUser(id))
     }, [dispatch])
 
-    // console.log(cart) 
-    // console.log(cart.getLineItems());
-
-
     function handleLogout(e){
         e.preventDefault
         dispatch(logOut())

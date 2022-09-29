@@ -10,7 +10,6 @@ const initialState = {
 export const login = createAsyncThunk('auth/login', async (credentials) => {
     try{
         const { data } = await axios.post('/api/users/login', credentials)
-        console.log(data)
         return data
     }
     catch (ex){

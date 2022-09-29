@@ -35,9 +35,7 @@ function Register(){
 
       function checkPassword(){
         let password = form.password
-        console.log(password)
         let confirmPassword = passCheck.confirmPassword
-        console.log(confirmPassword)
 
         if(password.length != 0){
             if(password == confirmPassword){

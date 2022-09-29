@@ -10,16 +10,11 @@ const SingleProduct = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectProduct);
     const user = useSelector(selectCurrentUser);
-    console.log('this is the current user: ')
-    console.log(user)
 
     useEffect(() => {
         dispatch(getProduct(params.id));
-        console.log('we\'ve dispatched our getProduct');
+        window.scrollTo(0,0);
     }, [dispatch]);
-
-    console.dir(product)
-    console.log(product.id)
 
     const addToCartHandler = async (e, userId, productId) =>{
         e.preventDefault();
