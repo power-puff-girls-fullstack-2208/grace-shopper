@@ -5,11 +5,11 @@ const Footer = () => {
     return (
         <div id="footer">
             <ul>
-                <li><Link to='#'>About</Link></li>
-                <li><Link to='#'>Sitemap</Link></li>
-                <li><Link to='#'>FAQ</Link></li>
-                <li><Link to='#'>Trust/Safety</Link></li>
-                <li><Link to='#'>Shipping</Link></li>
+                <Link to='#'><li>About</li></Link>
+                <Link to='#'><li>Sitemap</li></Link>
+                <Link to='#'><li>FAQ</li></Link>
+                <Link to='#'><li>Trust/Safety</li></Link>
+                <Link to='#'><li>Shipping</li></Link>
             </ul>
             <footer>©2022 Grace Shopper, Powerpuff Girls</footer>
         </div>

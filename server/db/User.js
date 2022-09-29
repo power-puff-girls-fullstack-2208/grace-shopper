@@ -1,5 +1,4 @@
 const Order = require('./Order');
-
 const conn = require('./conn');
 const { Sequelize } = conn;
 //jwt auth imported here
@@ -57,39 +56,6 @@ const User = conn.define('user', {
     // }
 })
 
-//create authentication
-User.prototype.generateToken = function() {
-    return jwt.sign({ id: this.id, username: this.username, password: this.password }, process.env.JWT);
-
-}
-
-User.findByToken = async function(token) {
-    const user = await User.findByPk(token)
-    if(!user) {
-        const error = Error('bad credentials')
-        error.status = 401
-        throw error
-    }
-    return user
-}
-
-
-User.authenticate = async function ({ username, password }) {
-    const user = await this.findOne(
-        {
-            where: {
-                username,
-                password
-            }
-        }
-    )
-    if(!user) {
-        const error = Error('bad credentials')
-        error.status = 401
-        throw error
-    }
-    return user.generateToken()
-}
 
 //cart prototypes
 User.prototype.getCart = async function(){
@@ -130,6 +96,5 @@ User.afterCreate(async (user, options) => {
     }
     
 })
-
 
 module.exports = User;

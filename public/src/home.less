@@ -1,12 +1,130 @@
-// began styling for homepage
-.content {
+#homepage {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-// inside content there are only children of 2 divs
-.content > * {
-  width: 85vw;
-  margin: 20px;
+#homepage * {
+  margin: 0px;
 }
+
+@buttonColor0: #003a70;
+@buttonColor1: #3d7dca;
+@buttonColor2: #ffcb05;
+@buttonColor3: #c85048;
+
+// CSS FOR HOMEPAGE BANNER IMAGE
+#bannerImg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+#bannerImg img {
+  width: 100%;
+}
+
+#bannerShop {
+  font-weight: 500;
+  font-size: 1.4em;
+  padding: 13px;
+  position: absolute;
+  bottom: 50px;
+  left: 45px; 
+  z-index: 1;
+}
+
+button#bannerShop {
+  box-shadow: 2px 2px 2px 2px inset @buttonColor0;
+  border: 3px solid @buttonColor0;
+  border-radius: 4px;
+  background-color: @buttonColor3;
+  color: @buttonColor2;
+  transition: 0.1s;
+}
+
+button#bannerShop:hover {
+  background-color: @buttonColor1;
+  box-shadow: 2px 2px 2px 2px @buttonColor0;
+}
+
+// CSS FOR INFO BELOW BANNER IMAGE
+#bannerInfo {
+  background-color: rgb(182, 182, 182);
+  width: 100%;
+  height: 175px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#bannerInfo * {
+  background-color: rgb(182, 182, 182);
+}
+
+#bannerInfo > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#bannerInfo img {
+  height: 80px;
+}
+
+#bannerInfo div.storeInfo > * {
+  text-align: center;
+  margin: 7px;
+}
+
+#bannerButtons button {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  width: 15vw;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px @buttonColor1;
+  border: 3px solid @buttonColor0;
+  border-radius: 4px;
+  background-color: @buttonColor2;
+  color: @buttonColor0;
+  transition: 0.1s;
+}
+
+#bannerButtons button:hover {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 15vw;
+  margin: 14px 1vw;
+  padding: 5%;
+  box-shadow: 2px 2px 2px 2px inset @buttonColor3;
+  border: 3px solid @buttonColor3;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: @buttonColor3;
+  transition: 0.1s;
+}
+
+// CSS FOR CARDS LOADED ON HOME
+#homeCards {
+  width: 100%;
+  padding: 10px 0px;
+}
+
+#homeCardsTitle {
+  color: @buttonColor3;
+  padding: 15px;
+  font-weight: bolder;
+  font-style: oblique;
+}
+
+// @media screen and (min-width: 1115px) {
+//   #bannerShop {
+//     bottom: ;
+//   }
+// }

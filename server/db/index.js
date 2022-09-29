@@ -40,7 +40,7 @@ const syncAndSeed = async () => {
     await conn.sync({ force: true });
 
     const types = await pokemon.type.all();
-    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 100})).data;
+    const allPokemon = (await pokemon.card.where({q: 'supertype:Pokémon', pageSize: 250})).data;
 
     // it feels wrong to put this here but this is the only way it will work
     // adds tags to Product instances after they are created

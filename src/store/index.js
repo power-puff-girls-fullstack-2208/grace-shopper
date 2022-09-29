@@ -8,14 +8,14 @@ import filterReducer from "../features/filterReducer";
 import cartReducer from "../features/cartSlice";
 
 const store = configureStore({
-        reducer: {
-            products: productsReducer,
-            product: productReducer,
-            nav: filterReducer,
-            users: usersReducer,
-            auth: authReducer,
-            singleUser: singleUserReducer,
-            cart: cartReducer,
+    reducer: {
+        products: productsReducer,
+        product: productReducer,
+        nav: filterReducer,
+        users: usersReducer,
+        auth: authReducer,
+        singleUser: singleUserReducer,
+        cart: cartReducer,
     }
 });
 

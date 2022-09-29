@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Pagination from 'react-js-pagination';
 import ProductPaginated from './ProductPaginated';
 
-const AllPagination = ({cards, RenderComponent, title, pageLimit, dataLimit}) => {
-    const [pages] = React.useState(Math.round(cards.length / dataLimit));
+const AllPagination = ({cards, pageLimit, type, rarity, filter, dataLimit}) => {
+    const [pages, setPages] = React.useState(Math.round(cards.length / dataLimit));
     const [activePage, setActivePage] = React.useState(1);
 
     const nextPage = () => {
@@ -29,6 +29,15 @@ const AllPagination = ({cards, RenderComponent, title, pageLimit, dataLimit}) =>
         let start = Math.floor((activePage - 1) / pageLimit) * pageLimit;
         return new Array(pages).fill().map((_, idx) => start + idx + 1);
     };
+
+    React.useEffect(() => {
+        setActivePage(1);
+        setPages(Math.round(cards.length / dataLimit));
+    }, [type, rarity, filter]);
+
+    React.useEffect(() => {
+        window.scrollTo(0,0);
+    }, [activePage])
 
     return (
         <div>

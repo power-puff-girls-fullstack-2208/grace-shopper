@@ -1,5 +1,6 @@
 #navBar,
 #footer {
+  z-index: 1000;
   text-align: center;
   max-width: 100vw;
   height: 60px;
@@ -7,7 +8,18 @@
   top: 0px;
   display: flex;
   justify-content: space-between;
-  background-color: gray;
+  background-color: #ffcb05;
+}
+#navBar,
+#navBar > *,
+#navBar > ul > *,
+#navBar > ul > a > li {
+  border-bottom: 4px solid #a82028;
+}
+#navBar *,
+#footer * {
+  background-color: #ffcb05;
+  transition: 0.2s;
 }
 #navBar > *,
 #footer > * {
@@ -15,15 +27,29 @@
   justify-content: space-evenly;
   height: 60px;
   padding: 15px 30px;
-  color: black;
+  color: #003a70;
+}
+#navBar a,
+#navBar a:visited {
+  color: #003a70;
+}
+#navBar > a {
+  padding: 5px 20px;
+}
+#navBar img {
+  border-radius: 51%;
 }
 #navBar a:hover,
 #navBar li:hover,
-#footer a:hover {
-  background-color: green;
+#footer a:hover,
+#footer li:hover {
+  background-color: #003a70;
+  color: #70b8f0;
+  font-weight: 300;
 }
 #navBar li,
 #footer li {
+  height: 60px;
   display: inline-block;
   padding: 15px 30px;
 }
@@ -33,14 +59,13 @@
   margin: 0;
 }
 #navBar li ul {
-  background-color: yellow;
+  background-color: #ffcb05;
   visibility: hidden;
   opacity: 0;
   position: absolute;
   margin-top: 25px;
   margin-left: -30px;
   display: none;
-  box-shadow: 2px 2px 2px 2px black;
 }
 #navBar li:hover > ul,
 #navBar li ul:hover {
@@ -50,18 +75,22 @@
 }
 #navBar li ul li {
   clear: both;
-  width: 100%;
-}
-#footer,
-#footer li {
-  font-size: 12px;
-  height: 45px;
+  width: 50%;
+  height: 50px;
+  padding: 12px 0px;
 }
 #footer {
-  height: 60px;
+  font-size: 12px;
+  height: 50px;
   width: 100vw;
-  margin-top: auto;
   display: flex;
   justify-content: space-between;
-  background-color: gray;
+}
+#footer > * {
+  height: 50px;
+}
+#footer li {
+  height: 50px;
+  display: inline-block;
+  padding: 14px 30px;
 }

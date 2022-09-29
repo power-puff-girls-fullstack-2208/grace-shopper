@@ -27,10 +27,10 @@ router.get('/types', async (req, res, next) => {
 //get single card
 router.get('/:id', async (req, res, next) => {
     try {
-        const data = await Product.findByPk(req.params.id); 
-            //{
-            // include: {
-            //     model: Tag}} 
+        const data = await Product.findByPk(req.params.id, {
+            include: {
+                model: Tag}} ); 
+            
             res.send(data);
     } catch(error) {
         next(error);
