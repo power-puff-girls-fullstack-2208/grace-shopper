@@ -49,8 +49,8 @@ const Home = () => {
                         <p>Fast and Easy, 100% secure payment</p>
                     </div>
                     {currentUser ? null : (<div id="bannerButtons">
-                        <Link to={'/login'}><button>Login</button></Link>
-                        <Link to={'/register'}><button>Register Now</button></Link>
+                        <Link to={'/users/login'}><button>Login</button></Link>
+                        <Link to={'/users/register'}><button>Register Now</button></Link>
                     </div>)}
                 </div>
                 <hr/>
