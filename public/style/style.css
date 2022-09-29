@@ -254,6 +254,13 @@ button#bannerShop:hover {
 #selected-filters {
   margin: 12px;
 }
+#filterButton {
+  padding: 5px 8px;
+  background-color: #C85048;
+  color: #FFCB05;
+  border: none;
+  border-radius: 6px;
+}
 #filters-screen {
   background-color: transparent;
   width: 100vw;
