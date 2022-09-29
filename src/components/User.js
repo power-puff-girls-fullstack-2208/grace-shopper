@@ -26,7 +26,7 @@ function User(){
     }
     
     return (
-        <div className="user-container">
+        <div className="user-container content">
             <div className="user-wrapper">
             {loading && <div>Loading...</div>}
             {!loading && error ? <div>Error: {error}</div>: null}
