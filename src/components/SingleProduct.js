@@ -10,16 +10,11 @@ const SingleProduct = () => {
     const dispatch = useDispatch();
     const product = useSelector(selectProduct);
     const user = useSelector(selectCurrentUser);
-    console.log('this is the current user: ')
-    console.log(user)
 
     useEffect(() => {
         dispatch(getProduct(params.id));
-        console.log('we\'ve dispatched our getProduct');
+        window.scrollTo(0,0);
     }, [dispatch]);
-
-    console.dir(product)
-    console.log(product.id)
 
     const addToCartHandler = async (e, userId, productId) =>{
         e.preventDefault();
@@ -27,28 +22,28 @@ const SingleProduct = () => {
     }
 
     return (
-        <>
-        {product ? <>
-        <div className='singleProductContainer'>
-            <div className='singleProduct'>
-                <img src={product.img}/>
-                <p>{product.releasedOn}<br></br>
-                {product.series}</p>
+        <div className='content'>
+            {product.id ? 
+            <div className='singleProductContainer'>
+                <div className='singleProduct'>
+                    <img src={product.img}/>
+                    <p>{product.releasedOn}<br></br>
+                    {product.series}</p>
                 </div>
                 <div className='singleProductInfo'>
-                <h1>{product.name}</h1>
-                <p>{product.descr}</p>
-                <p>Rarity: {product.rarity}  Series: {product.series}</p>
-                <p><i>Max HP: {product.hp}<br></br>
-                Attacks: {product.attacks}</i></p>
-                <p><i>Weaknesses: {product.weaknesses}<br></br>
-                Retreat Cost: {product.retreatCost}</i></p>
-                <h3>Price: {product.price}</h3>
-                <button onClick={(e) => addToCartHandler(e, user.id, product.id)}>Add To Cart!</button>
+                    <h1>{product.name}</h1>
+                    <i>{product.descr}</i>
+                    <p>Rarity: {product.rarity}</p><p>Series: {product.series}</p>
+                    <div><i>Max HP: {product.hp}<br></br>
+                    Attacks: {<ul>{product.attacks.map((attack, ind) => <li key={ind}>{attack}</li>)}</ul>}</i></div>
+                    <p><i>Weaknesses: {product.weaknesses}<br></br>
+                    Retreat Cost: {product.retreatCost ? product.retreatCost.join(', ') : 'none'}</i></p>
+                    <h3>Price: {product.price}</h3>
+                    <button onClick={(e) => addToCartHandler(e, user.id, product.id)}>Add To Cart!</button>
                 </div>
+            </div>
+            :null}
         </div>
-    </>:null}
-    </>
     );
 };
 

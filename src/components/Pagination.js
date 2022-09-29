@@ -45,21 +45,21 @@ const AllPagination = ({cards, pageLimit, type, rarity, filter, dataLimit}) => {
         
             <div className="pagination">
             {/* previous button */}
-            <button onClick={previousPage} className={`prev ${activePage === 1 ? 'disabled' : ''}`}>
-                prev
-            </button>
-        
-            {/* show page numbers */}
-            {getPaginationGroup().map((item, index) => (
-                <button key={index} onClick={changePage} className={`paginationItem ${activePage === item ? 'active' : null}`}>
-                <span>{item}</span>
+                <button onClick={previousPage} className={`prev ${activePage === 1 ? 'disabled' : ''}`}>
+                    prev
                 </button>
-            ))}
         
-            {/* next button */}
-            <button onClick={nextPage} className={`next ${activePage === pages ? 'disabled' : ''}`}>
-                next
-            </button>
+                {/* show page numbers */}
+                {getPaginationGroup().map((item, index) => (
+                    <button key={index} onClick={changePage} className={`paginationItem ${activePage === item ? 'active' : null}`}>
+                    <span>{item}</span>
+                    </button>
+                ))}
+        
+                {/* next button */}
+                <button onClick={nextPage} className={`next ${activePage === pages ? 'disabled' : pages === 0 ? 'disabled' : ''}`}>
+                    next
+                </button>
             </div>
         </div>
         );

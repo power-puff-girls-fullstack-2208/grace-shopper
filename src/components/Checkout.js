@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Checkout() {
   return (
-    <div>Congrats you have check out!</div>
+    <div className='content'>Congrats you have check out!</div>
   )
 }
