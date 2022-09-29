@@ -69,7 +69,7 @@ const AllProducts = () => {
                     <option value='alpha-up'>Alphabetical: Z - A</option>
                 </select>
             </div>
-            <div>Filtered by: {appliedFilters.length > 0 ? appliedFilters.join(', ') : 'No additional filters applied'}</div>
+            <div id='selected-filters'>Filtered by: {appliedFilters.length > 0 ? appliedFilters.join(', ') : 'No additional filters applied'}</div>
             <div id='filters-screen'>
                 <form id='filters-form' onSubmit={applyFilters}>
                     <div id='filter-buttons'>

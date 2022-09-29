@@ -25,6 +25,11 @@ body {
   margin: 0px 90px;
   min-height: 100vh;
 }
+button:hover,
+a:hover,
+input:hover {
+  cursor: pointer;
+}
 #navBar {
   z-index: 1000;
   text-align: center;
@@ -236,6 +241,18 @@ button#bannerShop:hover {
 .innerContainer img {
   text-align: center;
   width: 180px;
+}
+#productsTitle {
+  margin: 12px;
+}
+.filtersPrompt {
+  display: flex;
+}
+.filtersPrompt > * {
+  margin: 8px;
+}
+#selected-filters {
+  margin: 12px;
 }
 #filters-screen {
   background-color: transparent;
