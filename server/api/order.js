@@ -3,6 +3,8 @@ const User = require('../db/User');
 const Order = require('../db/Order');
 const LineItem = require('../db/LineItem');
 const {Op} = require('sequelize');
+const { Product } = require('../db');
+
 
 router.get('/:id/cart', async (req, res, next) => {
     //takes a userId and then returns the user's associated cart
@@ -15,20 +17,28 @@ router.get('/:id/cart', async (req, res, next) => {
        const cart = await user.getCart();  
        const cartId = cart[0].dataValues.id;
        const cart2 = await Order.findByPk(cartId,{
-        include: {
+        include: [
+          {
             model: LineItem,
             where: {
                 quantity: {
                     [Op.gt] : 0
                 }
-            }
+            },
+            include: {
+              model: Product,
+            },
         }
+      ]
        })
        res.send(cart2);
     } catch (error) {
       next(error);
     }
 });
+
+
+
 
 router.put('/:userId/cart/:productId/decrement', async (req, res, next) =>{
   try{
