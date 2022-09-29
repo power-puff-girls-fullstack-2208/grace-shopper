@@ -1,8 +1,9 @@
-.innerContainer {
+.innerContainer,
+#homeCards .innerContainer {
   display: flex;
   flex-direction: column;
   width: 200px;
-  margin: 20px 10px;
+  margin: 15px 8px;
 }
 .innerContainer img {
   text-align: center;

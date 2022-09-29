@@ -34,7 +34,7 @@ export default function Cart() {
     
 
   return (
-    <div>Cart
+    <div className='content'>Cart
         <h1>Your Shopping Cart</h1>
         <div id='cart-container'>
             {cart.lineItems && cart.lineItems.length? 
