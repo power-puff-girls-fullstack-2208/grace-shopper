@@ -238,11 +238,14 @@ button#bannerShop:hover {
   width: 180px;
 }
 #filters-screen {
+  background-color: transparent;
   width: 100vw;
   height: 100vh;
   display: none;
   position: fixed;
   top: 0px;
+  left: 0px;
+  z-index: 1001;
   margin: 0;
 }
 #filters-form {
@@ -254,8 +257,8 @@ button#bannerShop:hover {
 }
 #filters-overlay {
   width: 60vw;
-  background-color: black;
-  opacity: 0.5;
+  background-color: grey;
+  opacity: 0.5 !important;
 }
 .optionsOuter {
   margin: 3%;
