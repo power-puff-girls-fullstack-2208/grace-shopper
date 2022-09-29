@@ -21,7 +21,7 @@ const Nav = () => {
 
     return (
         <div id="navBar">
-            <Link to='/'><img src={pokeball} width='50px' alt="pokeball logo"/></Link>
+            <Link to='/'><img src={pokeball} height='100%' alt="pokeball logo"/></Link>
             <ul>
                 {/* link that leads to all the cards */}
                 <Link to='/products'>
