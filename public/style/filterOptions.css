@@ -1,3 +1,22 @@
+#productsTitle {
+  margin: 12px;
+}
+.filtersPrompt {
+  display: flex;
+}
+.filtersPrompt > * {
+  margin: 8px;
+}
+#selected-filters {
+  margin: 12px;
+}
+#filterButton {
+  padding: 5px 8px;
+  background-color: #C85048;
+  color: #FFCB05;
+  border: none;
+  border-radius: 6px;
+}
 #filters-screen {
   background-color: transparent;
   width: 100vw;
@@ -28,9 +47,33 @@
   justify-content: space-evenly;
 }
 .optionsHeader {
+  padding: 5px;
   width: 100%;
 }
 .optionsCheckbox {
   width: 30%;
   padding: 2% 0px;
+}
+.optionsCheckbox label {
+  margin-left: 3px;
+}
+#filter-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+}
+#filter-buttons > * {
+  padding: 10px;
+  width: 80px;
+  color: #3D7DCA;
+  background-color: #FFCB05;
+  border: 4px solid #003A70;
+  transition: 0.2s;
+}
+#filter-buttons > *:hover {
+  border: 4px solid #3D7DCA;
+  color: #FFCB05;
+  background-color: #003A70;
 }

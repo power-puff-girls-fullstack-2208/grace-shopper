@@ -16,9 +16,13 @@ const SingleProduct = () => {
         window.scrollTo(0,0);
     }, [dispatch]);
 
-    const addToCartHandler = async (e, userId, productId) =>{
+    const addToCartHandler = async (e, productId, userId = undefined) =>{
         e.preventDefault();
-        await dispatch(addToCart({ userId, productId } ) );
+        if (userId) {
+            dispatch(addToCart({ userId, productId } ) );
+        } else {
+            window.alert('Please register/login to add to your cart.');
+        }
     }
 
     return (
@@ -39,7 +43,7 @@ const SingleProduct = () => {
                     <p><i>Weaknesses: {product.weaknesses}<br></br>
                     Retreat Cost: {product.retreatCost ? product.retreatCost.join(', ') : 'none'}</i></p>
                     <h3>Price: {product.price}</h3>
-                    <button onClick={(e) => addToCartHandler(e, user.id, product.id)}>Add To Cart!</button>
+                    <button onClick={(e) => user ? addToCartHandler(e, product.id, user.id) : addToCartHandler(e, product.id)}>Add To Cart!</button>
                 </div>
             </div>
             :null}
