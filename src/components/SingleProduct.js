@@ -19,6 +19,7 @@ const SingleProduct = () => {
     const addToCartHandler = async (e, productId, userId = undefined) =>{
         e.preventDefault();
         if (userId) {
+            window.alert(`${product.name} added to cart!`)
             dispatch(addToCart({ userId, productId } ) );
         } else {
             window.alert('Please register/login to add to your cart.');
