@@ -72,6 +72,10 @@ const AllProducts = () => {
             <div>Filtered by: {appliedFilters.length > 0 ? appliedFilters.join(', ') : 'No additional filters applied'}</div>
             <div id='filters-screen'>
                 <form id='filters-form' onSubmit={applyFilters}>
+                    <div id='filter-buttons'>
+                        <button onClick={cancelFilters}>Cancel</button>
+                        <button type='submit'>Apply</button>
+                    </div>
                     <div id='poke-type' className='optionsOuter'>
                         <h3 className='optionsHeader'>By Pokemon Type:</h3>
                         {types ? types.map(type => {
